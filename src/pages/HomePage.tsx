@@ -6,7 +6,6 @@ import {
   Container,
   Group,
   Paper,
-  Select,
   SimpleGrid,
   Skeleton,
   Stack,
@@ -42,8 +41,8 @@ export function HomePage() {
   const [allPlaces, setAllPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasDataError, setHasDataError] = useState(false);
-  const [selectedDestination, setSelectedDestination] = useState('nukus');
-  const [selectedInterest, setSelectedInterest] = useState('history');
+  const [selectedDestination] = useState('nukus');
+  const [selectedInterest] = useState('history');
 
   useEffect(() => {
     let active = true;
@@ -96,10 +95,6 @@ export function HomePage() {
 
   const localizedDestinations = useMemo(() => getLocalizedDestinations(t), [t]);
   const localizedServiceSections = useMemo(() => getLocalizedServiceSections(t), [t]);
-  const destinationOptions = localizedDestinations.map((destination) => ({
-    value: destination.slug,
-    label: destination.name,
-  }));
   const interestOptions = categories.length > 0
     ? categories.map((category) => ({
         value: String(category.id),
@@ -138,11 +133,6 @@ export function HomePage() {
       ]),
     );
   }, [allPlaces]);
-  const selectedDestinationCount =
-    selectedDestinationData && typeof destinationCounts[selectedDestinationData.slug] === 'number'
-      ? destinationCounts[selectedDestinationData.slug]
-      : 0;
-
   const routeSteps = [
     {
       number: '01',
@@ -256,20 +246,15 @@ export function HomePage() {
               spacing={{ base: 'xl', lg: '2.3rem' }}
               className={styles.heroMainGrid}
             >
-              <Stack gap="xl" className={styles.heroContent}>
+              <Stack gap="150px" className={styles.heroContent}>
                 <div>
                 
-                  <Title order={1} mt="md" className={styles.heroTitle}>
+                  <Title order={1} mt="md" fz="94" className={styles.heroTitle}>
                     {t('homeV2.hero.title', {
                       defaultValue: 'Discover Karakalpakstan with Baramiz',
                     })}
                   </Title>
-                  <Text mt="lg" size="lg" c="dimmed" className={styles.heroLead}>
-                    {t('homeV2.hero.description', {
-                      defaultValue:
-                        'Baramiz helps travelers explore real destinations, browse trusted tourism services, and build practical routes with warm desert energy and a product-ready experience.',
-                    })}
-                  </Text>
+               
                 </div>
 
             
@@ -283,8 +268,6 @@ export function HomePage() {
                   <Button variant="subtle" size="md" onClick={handleExploreDestination}>
                     {t('homeV2.planner.exploreButton', { defaultValue: 'Explore destination' })}
                   </Button>
-                </Group>
-
                 {selectedDestinationData ? (
                   <Group gap="xs">
                     {selectedDestinationData.bestFor.slice(0, 3).map((item) => (
@@ -294,6 +277,8 @@ export function HomePage() {
                     ))}
                   </Group>
                 ) : null}
+                </Group>
+
               </Stack>
 
               <Box className={styles.heroVisual}>
@@ -304,27 +289,6 @@ export function HomePage() {
                   })}
                   className={styles.heroIllustration}
                 />
-
-                {selectedDestinationData ? (
-                  <Paper
-                    className={`${styles.heroFloatingCard} ${styles.heroFloatingTop}`}
-                    p="md"
-                    radius="18px"
-                  >
-                    <Text
-                      size="xs"
-                      fw={700}
-                      tt="uppercase"
-                      c="forest.8"
-                      style={{ letterSpacing: '0.08em' }}
-                    >
-                      {selectedDestinationData.kicker}
-                    </Text>
-                    <Text fw={800} size="lg" mt={4}>
-                      {selectedDestinationData.name}
-                    </Text>
-                  </Paper>
-                ) : null}
               </Box>
             </SimpleGrid>
 

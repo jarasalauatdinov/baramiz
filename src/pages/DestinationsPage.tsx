@@ -5,9 +5,7 @@ import {
   Paper,
   SimpleGrid,
   Skeleton,
-  Group,
   Text,
-  TextInput,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { getPlaces } from '../entities/place/api/placeApi';
@@ -20,7 +18,7 @@ export function DestinationsPage() {
   const [places, setPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -87,37 +85,7 @@ export function DestinationsPage() {
 
   return (
     <Container size="xl" py={{ base: 28, md: 40 }}>
-      <Paper
-        withBorder
-        radius="24px"
-        p={{ base: 'md', md: 'lg' }}
-        mb="lg"
-        style={{
-          border: '1px solid rgba(23, 49, 42, 0.08)',
-          background: 'white',
-        }}
-      >
-        <Group justify="space-between" align="flex-end" gap="sm" wrap="wrap">
-          <div>
-            <Text fw={800} fz="1.25rem">
-              {t('nav.destinations')}
-            </Text>
-            <Text size="sm" c="dimmed">
-              {t('destinationsPage.section.eyebrow')}
-            </Text>
-          </div>
-          <TextInput
-            value={search}
-            onChange={(event) => setSearch(event.currentTarget.value)}
-            placeholder={t('destinationsPage.searchPlaceholder', {
-              defaultValue: 'Search destination...',
-            })}
-            w={{ base: '100%', sm: 320 }}
-            aria-label={t('common.search')}
-          />
-        </Group>
-      </Paper>
-
+   
       {hasError ? (
         <Alert color="yellow" variant="light" mb="lg">
           {t('destinationsPage.errors.countsUnavailable')}

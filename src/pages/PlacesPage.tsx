@@ -1,22 +1,18 @@
 ﻿import { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
-  Button,
   Container,
   Group,
   Paper,
-  Select,
   SimpleGrid,
   Skeleton,
   Text,
-  TextInput,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getCategories } from '../entities/category/api/categoryApi';
 import { getPlaces } from '../entities/place/api/placeApi';
 import { PlaceCard } from '../components/PlaceCard';
-import { publicUi } from '../shared/config/publicUi';
 import type { Category, Place } from '../types/api';
 import { formatCategoryLabel } from '../utils/placeArtwork';
 
@@ -31,7 +27,7 @@ export function PlacesPage() {
   const [hasError, setHasError] = useState(false);
   const [selectedCity, setSelectedCity] = useState(queryCity || 'all');
   const [selectedCategory, setSelectedCategory] = useState(queryCategory || 'all');
-  const [search, setSearch] = useState('');
+  const [search] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -125,58 +121,7 @@ export function PlacesPage() {
 
   return (
     <Container size="xl" py={{ base: 28, md: 40 }}>
-      <Paper
-        withBorder
-        radius="24px"
-        p={{ base: 'md', md: 'lg' }}
-        mb="lg"
-        style={{
-          border: `1px solid ${publicUi.border.soft}`,
-          background: 'white',
-        }}
-      >
-        <Group justify="space-between" align="flex-end" mb="sm" wrap="wrap">
-          <div>
-            <Text fw={800} fz="1.25rem">
-              {t('placesPage.hero.title')}
-            </Text>
-            <Text size="sm" c="dimmed">
-              {t('placesPage.hero.eyebrow')}
-            </Text>
-          </div>
-
-          <Group gap="sm">
-            <Button component={Link} to={`/map${mapQueryString}`} variant="light" color="forest">
-              {t('placesPage.results.openMap', { defaultValue: 'Open map' })}
-            </Button>
-            <Button component={Link} to="/route-generator" color="sun" c="#2d2208">
-              {t('common.generateRoute')}
-            </Button>
-          </Group>
-        </Group>
-
-        <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
-          <TextInput
-            label={t('placesPage.form.search')}
-            placeholder={t('placesPage.form.searchPlaceholder')}
-            value={search}
-            onChange={(event) => setSearch(event.currentTarget.value)}
-          />
-          <Select
-            label={t('placesPage.form.destination')}
-            value={selectedCity}
-            onChange={(value) => setSelectedCity(value ?? 'all')}
-            data={cityOptions}
-          />
-          <Select
-            label={t('placesPage.form.category')}
-            value={selectedCategory}
-            onChange={(value) => setSelectedCategory(value ?? 'all')}
-            data={categoryOptions}
-          />
-        </SimpleGrid>
-      </Paper>
-
+    
       {hasError ? (
         <Alert color="yellow" variant="light" mb="lg">
           {t('placesPage.errors.dataUnavailable')}

@@ -98,6 +98,12 @@
   background: rgba(255, 255, 255, 0.9);
 }
 
+@media (max-width: 1215px) {
+  .heroVisual {
+    display: none;
+  }
+}
+
 @media (max-width: 74em) {
   .heroVisual {
     min-height: 520px;

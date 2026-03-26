@@ -8,7 +8,6 @@ import {
   Group,
   LoadingOverlay,
   Paper,
-  SegmentedControl,
   Stack,
   Text,
   Title,
@@ -57,7 +56,7 @@ export function RouteGeneratorPage() {
   const [interests, setInterests] = useState<string[]>(
     queryInterest ? [queryInterest] : ['history', 'museum'],
   );
-  const [language, setLanguage] = useState<RouteLanguage>('uz');
+  const [language] = useState<RouteLanguage>('uz');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});

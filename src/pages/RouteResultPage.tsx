@@ -40,7 +40,6 @@ import type {
   GeneratedRouteItem,
   Place,
   RouteDuration,
-  RouteLanguage,
 } from '../types/api';
 import { formatCategoryLabel, formatMinutesLabel } from '../utils/placeArtwork';
 
@@ -129,12 +128,6 @@ export function RouteResultPage() {
       active = false;
     };
   }, [route]);
-
-  const languageLabels: Record<RouteLanguage, string> = {
-    uz: t('routeGenerator.routeLanguages.uz'),
-    en: t('routeGenerator.routeLanguages.en'),
-    ru: t('routeGenerator.routeLanguages.ru'),
-  };
 
   const durationLabels: Record<RouteDuration, string> = {
     '3_hours': t('routeGenerator.durations.3_hours.label', { defaultValue: '3 hours' }),
