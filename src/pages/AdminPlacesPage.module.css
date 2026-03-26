@@ -1,0 +1,175 @@
+.header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.eyebrow {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.title {
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.description {
+  margin-top: 8px;
+  max-width: 760px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.statCard {
+  padding: 16px 18px;
+  border-color: #d7dee8;
+  background: #ffffff;
+}
+
+.statLabel {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.statValue {
+  margin-top: 8px;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tableCard {
+  border-color: #d7dee8;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.toolbarControls {
+  flex: 1;
+}
+
+.searchInput {
+  width: min(420px, 100%);
+}
+
+.filterInput {
+  width: min(260px, 100%);
+}
+
+.toolbarMeta {
+  min-width: 220px;
+  text-align: right;
+}
+
+.toolbarTitle {
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.toolbarDescription {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.placeCell {
+  min-width: 0;
+}
+
+.placeName {
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.placeMeta {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.locationCell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.locationPrimary {
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.locationSecondary {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.durationValue {
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.languageGroup {
+  max-width: 170px;
+}
+
+.mutedValue {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.emptyState {
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.emptyTitle {
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.emptyDescription {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 992px) {
+  .header,
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbarMeta {
+    min-width: 0;
+    text-align: left;
+  }
+}

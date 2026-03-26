@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700&display=swap');
+
+:root {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: #223229;
+  background-color: #f8f4ec;
+  --page-bg: #f8f4ec;
+  --surface: #ffffff;
+  --surface-soft: #fdf8ef;
+  --surface-muted: #f3ede2;
+  --text-strong: #223229;
+  --text-muted: #6b7166;
+  --brand-primary: #2f5a45;
+  --brand-primary-deep: #1d382b;
+  --brand-accent: #e5b62f;
+  --brand-accent-soft: #fff4cf;
+  --brand-line: rgba(44, 54, 46, 0.1);
+  --shadow-soft: 0 18px 40px rgba(51, 43, 22, 0.08);
+  --focus-ring: 0 0 0 3px rgba(229, 182, 47, 0.35);
+  --motion-fast: 140ms ease;
+  --motion-base: 220ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-strong);
+  background: linear-gradient(180deg, #fbf8f2 0%, #f6f1e6 100%);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  transition: color var(--motion-fast);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+[role='button'] {
+  transition:
+    transform var(--motion-fast),
+    box-shadow var(--motion-base),
+    background-color var(--motion-fast),
+    border-color var(--motion-fast);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(229, 182, 47, 0.28);
+}

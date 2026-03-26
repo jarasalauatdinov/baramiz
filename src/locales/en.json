@@ -1,0 +1,1221 @@
+{
+  "common": {
+    "appName": "Baramiz",
+    "appSubtitle": "Karakalpakstan travel discovery",
+    "featured": "Featured",
+    "tourism": "Tourism",
+    "flexibleVisit": "Flexible visit",
+    "allDestinations": "All destinations",
+    "allCategories": "All categories",
+    "destination": "Destination",
+    "interests": "Interests",
+    "duration": "Duration",
+    "language": "Language",
+    "category": "Category",
+    "search": "Search",
+    "city": "City",
+    "totalTime": "Total time",
+    "stops": "Stops",
+    "selected": "Selected",
+    "browseDestinations": "Browse destinations",
+    "exploreDestination": "Explore destination",
+    "viewAllPlaces": "View all places",
+    "openAiRoute": "Open route builder",
+    "browseServices": "Browse services",
+    "generateRoute": "Build route",
+    "generateAnother": "Build another route",
+    "exploreMorePlaces": "Explore more places",
+    "goToAiRoute": "Go to route generator",
+    "backToGenerator": "Back to generator",
+    "loading": "Loading...",
+    "dataUnavailable": "Some live tourism data is temporarily unavailable.",
+    "minutesLabel": "{{count}} min",
+    "hoursLabel": "{{count}} hr",
+    "hoursMinutesLabel": "{{hours}} hr {{minutes}} min",
+    "attractionsCount": "{{count}} attractions",
+    "curatedDestination": "Curated destination",
+    "interestFilter": "Interest filter: {{interest}}",
+    "routeGeneratedNote": "This route was built from your selected destination and interests.",
+    "noResults": "No results found yet.",
+    "unknownCity": "Karakalpakstan",
+    "viewService": "View service",
+    "viewStay": "View stay",
+    "openService": "Open service",
+    "seeFoodStop": "See food stop",
+    "placeDescriptionFallback": "A strong destination option for your next Baramiz route.",
+    "viewDetails": "View details",
+    "goToRoute": "Go to route generator"
+  },
+  "languages": {
+    "kaa": {
+      "short": "KAA",
+      "name": "Karakalpak"
+    },
+    "ru": {
+      "short": "RU",
+      "name": "Russian"
+    },
+    "uz": {
+      "short": "UZ",
+      "name": "Uzbek"
+    },
+    "en": {
+      "short": "EN",
+      "name": "English"
+    },
+    "switcherLabel": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "places": "Places",
+    "map": "Map",
+    "services": "Services",
+    "aiRoute": "Route",
+    "navigation": "Navigation"
+  },
+  "footer": {
+    "description": "A localized tourism discovery platform for Karakalpakstan, designed as a polished MVP competition demo.",
+    "exploreTitle": "Explore",
+    "attractions": "Attractions",
+    "servicesTitle": "Services",
+    "travelServices": "Travel services",
+    "aiRoutePlanning": "Route planning",
+    "valueTitle": "Value",
+    "destinationDiscovery": "Destination discovery",
+    "tourismServices": "Tourism services",
+    "practicalRouteGeneration": "Practical route generation"
+  },
+  "categories": {
+    "history": "History",
+    "culture": "Culture",
+    "museum": "Museums",
+    "nature": "Nature",
+    "adventure": "Adventure",
+    "food": "Food",
+    "family": "Family"
+  },
+  "categoryDescriptions": {
+    "history": "Fortresses, memorial routes, and places that explain the region's story.",
+    "culture": "Theaters, public spaces, and local traditions that bring the destination to life.",
+    "museum": "Museum stops that add context, structure, and credibility to the journey.",
+    "nature": "Open landscapes, remote viewpoints, and scenic travel moments.",
+    "adventure": "Road trips, fortress circuits, and outdoor movement across dramatic terrain.",
+    "food": "Markets, local dishes, and stops that make the route feel more human.",
+    "family": "Comfortable and practical places that work well for shared travel."
+  },
+  "home": {
+    "hero": {
+      "badge": "Local travel discovery + services",
+      "title": "Explore Karakalpakstan like a real travel platform",
+      "description": "Discover destinations, browse attractions, find tourism services, and use Baramiz as a polished route-planning layer inside a real travel product.",
+      "highlights": [
+        "Museums",
+        "Fortresses",
+        "Local food",
+        "Remote landscapes"
+      ]
+    },
+    "selector": {
+      "title": "Start with a destination",
+      "destination": "Destination",
+      "interests": "Interests",
+      "button": "Explore destination"
+    },
+    "stats": {
+      "featuredDestinations": "Featured destinations",
+      "attractions": "Attractions in platform",
+      "categories": "Tourism categories"
+    },
+    "featuredDestinations": {
+      "eyebrow": "Featured destinations",
+      "title": "Start with a location, not a technical form",
+      "description": "Each destination page combines attractions, services, food, and planning support into one scrollable travel experience."
+    },
+    "themes": {
+      "eyebrow": "Travel themes",
+      "title": "Quick categories for discovery",
+      "description": "Use live categories from the backend as fast entry points into the attraction catalog and destination pages."
+    },
+    "featuredPlaces": {
+      "eyebrow": "Featured places",
+      "title": "Live attractions from the backend",
+      "description": "Baramiz uses the real attraction API for featured destinations and falls back gracefully when image assets fail.",
+      "empty": "Featured places will appear here when the backend returns them."
+    },
+    "services": {
+      "eyebrow": "Tourism services",
+      "title": "A service layer that makes the app feel real",
+      "description": "Static demo services are acceptable for the MVP, but they need to look integrated with the destination discovery flow."
+    },
+    "errors": {
+      "dataUnavailable": "Some live tourism data is temporarily unavailable, but the main browsing flow is still ready to explore."
+    }
+  },
+  "destinationsPage": {
+    "hero": {
+      "badge": "Destination browser",
+      "title": "Browse Karakalpakstan by destination story",
+      "description": "Each destination combines attractions, travel services, experiences, and a polished handoff to route planning. This keeps the app focused on discovery first and practical planning second."
+    },
+    "section": {
+      "eyebrow": "Featured destinations",
+      "title": "Choose the part of Karakalpakstan you want to explore",
+      "description": "The four spotlight destinations are designed to cover the strongest discovery stories in the current MVP: culture, environmental history, fortresses, and remote landscapes."
+    },
+    "errors": {
+      "countsUnavailable": "Destination counts are temporarily unavailable, but destination pages are still ready to open."
+    },
+    "searchPlaceholder": "Search destination..."
+  },
+  "destinationPage": {
+    "notFound": {
+      "title": "Destination not found",
+      "description": "This destination is not available in the current MVP configuration."
+    },
+    "hero": {
+      "planRoute": "Build route",
+      "exploreServices": "Explore services"
+    },
+    "errors": {
+      "attractionsUnavailable": "Attractions are temporarily unavailable for this destination."
+    },
+    "attractions": {
+      "eyebrow": "Top attractions",
+      "title": "What to see in {{name}}",
+      "description": "Live attraction cards from the backend API, filtered by destination city or region logic.",
+      "empty": "No attractions match the current interest filter yet."
+    },
+    "experiences": {
+      "eyebrow": "Experiences",
+      "title": "Activities and travel moods",
+      "description": "Derived from live place categories so the destination page feels broader than a basic attraction list.",
+      "cardTitle": "{{category}} experiences",
+      "defaultDescription": "A themed experience layer for this destination."
+    },
+    "experienceDescriptions": {
+      "history": "Explore fortresses, memorial sites, and the long regional story behind this destination.",
+      "culture": "Discover theaters, markets, and cultural spaces that make local travel feel alive.",
+      "museum": "Museum stops add context and structure to a polished discovery route.",
+      "nature": "Landscape-led travel for wide views, open space, and stronger regional contrast.",
+      "food": "Add local cuisine and market moments to make the destination feel complete.",
+      "adventure": "Remote routes, fortress drives, and outdoor travel for visitors who want motion and scenery."
+    },
+    "accommodation": {
+      "eyebrow": "Accommodation",
+      "title": "Where to stay",
+      "description": "Static demo cards are acceptable here because the goal is to make the platform feel like a real tourism product layer."
+    },
+    "tours": {
+      "eyebrow": "Tours and guides",
+      "title": "Local support for the route",
+      "description": "Static demo offerings help the page feel like a destination hub, not just a database response."
+    },
+    "food": {
+      "eyebrow": "Food",
+      "title": "Restaurants and local flavors",
+      "description": "Food cards help complete the destination story and make the browsing flow feel more human and practical."
+    },
+    "finalCta": {
+      "eyebrow": "Ready for your route?",
+      "title": "Build a smart route for {{name}}",
+      "description": "Use this destination as the base, pick your interests, and get a practical itinerary with map-ready stops."
+    }
+  },
+  "placesPage": {
+    "hero": {
+      "eyebrow": "Attractions",
+      "title": "Browse places across Karakalpakstan",
+      "description": "Filter by destination and category, then jump into destination pages or add a stop to your route planning flow."
+    },
+    "form": {
+      "search": "Search",
+      "searchPlaceholder": "Museum, fortress, market...",
+      "destination": "Destination",
+      "category": "Category"
+    },
+    "errors": {
+      "dataUnavailable": "Some live attraction data is unavailable right now."
+    },
+    "results": {
+      "eyebrow": "Filtered results",
+      "title": "{{count}} places ready to explore",
+      "description": "Large destination cards keep the attraction browser visual and useful instead of looking like a technical list.",
+      "empty": "No places match the current filters yet.",
+      "openMap": "Open map"
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "title": "Tourism services for a fuller travel platform",
+      "description": "These sections are static demo content for the MVP, but they are styled and structured to make Baramiz feel like a real tourism service marketplace layered on top of destination discovery."
+    },
+    "eyebrow": "Services",
+    "sectionActions": {
+      "open": "Open {{service}}"
+    },
+    "sections": {
+      "agencies": {
+        "title": "Tour agencies",
+        "description": "Demo-ready operator cards for packaged tours, day trips, and regional visitor support.",
+        "items": [
+          {
+            "title": "Baramiz Local Tours",
+            "description": "City routes, museum visits, and day-trip packaging for travelers starting in Nukus.",
+            "meta": "City and regional itineraries",
+            "tags": [
+              "Custom route",
+              "Day trips",
+              "Small groups"
+            ]
+          },
+          {
+            "title": "Aral Horizon Travel",
+            "description": "A remote-region operator concept focused on Moynaq, the Aral Sea narrative, and scenic routes.",
+            "meta": "Best for regional travel",
+            "tags": [
+              "Aral Sea",
+              "Scenic travel",
+              "Transfers"
+            ]
+          }
+        ]
+      },
+      "guides": {
+        "title": "Guides",
+        "description": "Local guide profiles for history, culture, and remote destination storytelling.",
+        "items": [
+          {
+            "title": "Heritage storyteller guide",
+            "description": "Designed for travelers who want monuments, museums, and strong regional context.",
+            "meta": "History and culture focus",
+            "tags": [
+              "English",
+              "Museums",
+              "Culture"
+            ]
+          },
+          {
+            "title": "Adventure route guide",
+            "description": "A guide profile for fortress circuits, desert drives, and outdoor-focused day plans.",
+            "meta": "Remote travel support",
+            "tags": [
+              "Outdoor",
+              "Road trip",
+              "Flexible"
+            ]
+          }
+        ]
+      },
+      "transport": {
+        "title": "Transport",
+        "description": "Practical transfer and vehicle support options for visitors moving between cities and remote sites.",
+        "items": [
+          {
+            "title": "City transfer service",
+            "description": "Airport, hotel, and attraction transfers for visitors based in Nukus.",
+            "meta": "Reliable local mobility",
+            "tags": [
+              "Airport pickup",
+              "Hotel transfer",
+              "Private car"
+            ]
+          },
+          {
+            "title": "Regional driver support",
+            "description": "Longer-distance transport for Ellikqala, Moynaq, and the Aral Sea region.",
+            "meta": "Best for full-day routes",
+            "tags": [
+              "Driver",
+              "Road trip",
+              "Remote"
+            ]
+          }
+        ]
+      },
+      "accommodation": {
+        "title": "Accommodation",
+        "description": "Simple but polished stay options for city breaks, road trips, and overnight regional journeys.",
+        "items": [
+          {
+            "title": "Boutique city stay",
+            "description": "Comfortable accommodation concept for travelers focusing on museums and city exploration.",
+            "meta": "Good in Nukus",
+            "tags": [
+              "Boutique",
+              "Breakfast",
+              "Walkable"
+            ]
+          },
+          {
+            "title": "Explorer lodge",
+            "description": "A more flexible regional stay format for nature and road-trip travelers.",
+            "meta": "Built for wider routes",
+            "tags": [
+              "Scenic",
+              "Regional",
+              "Flexible"
+            ]
+          }
+        ]
+      },
+      "experiences": {
+        "title": "Cultural experiences",
+        "description": "Add-on experiences that help the platform feel like a full tourism service layer, not just a place list.",
+        "items": [
+          {
+            "title": "Traditional music evening",
+            "description": "A cultural showcase concept for visitors who want more than a sightseeing list.",
+            "meta": "Evening activity",
+            "tags": [
+              "Culture",
+              "Performance",
+              "Group-friendly"
+            ]
+          },
+          {
+            "title": "Cuisine and market experience",
+            "description": "A more hands-on food and market route built around local flavor and atmosphere.",
+            "meta": "Short or half-day format",
+            "tags": [
+              "Food",
+              "Market",
+              "Local life"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "routeGenerator": {
+    "hero": {
+      "badge": "Route generator",
+      "title": "Build your route",
+      "description": "Choose a destination and interests, then let Baramiz return a practical route you can use right away."
+    },
+    "stats": {
+      "destination": "Destination",
+      "duration": "Duration",
+      "interests": "Interests",
+      "language": "Language"
+    },
+    "form": {
+      "eyebrow": "Route generator",
+      "title": "Build a clear travel route",
+      "description": "Choose a destination and interests. The result page will show a readable travel plan.",
+      "destinationLabel": "Destination",
+      "destinationPlaceholder": "Type or choose a city",
+      "interestsLabel": "Interests",
+      "selectedInterests": "Selected: {{items}}",
+      "durationLabel": "Duration (optional)",
+      "languageLabel": "Language",
+      "openMap": "Open map navigator"
+    },
+    "validation": {
+      "city": "Please choose a destination.",
+      "interests": "Choose at least one interest.",
+      "language": "Choose a language."
+    },
+    "errors": {
+      "generateFailed": "The route could not be generated right now. Please try again."
+    },
+    "notification": {
+      "title": "Route ready",
+      "message": "{{city}} itinerary generated successfully."
+    },
+    "routeLanguages": {
+      "uz": "Uzbek",
+      "en": "English",
+      "ru": "Russian"
+    },
+    "durations": {
+      "3_hours": {
+        "label": "3 hours",
+        "helper": "Short city highlights route."
+      },
+      "half_day": {
+        "label": "Half day",
+        "helper": "Balanced route for half-day discovery."
+      },
+      "1_day": {
+        "label": "1 day",
+        "helper": "Full-day route with more stops and variety."
+      }
+    }
+  },
+  "routeResult": {
+    "empty": {
+      "badge": "No route loaded",
+      "title": "Your route will appear here",
+      "description": "Build a route from the Route Generator page after choosing a destination and interests."
+    },
+    "hero": {
+      "badge": "Recommended route",
+      "stopsBadge": "{{count}} stops",
+      "title": "Your recommended route",
+      "description": "This route turns your selected destination and interests into a readable travel plan."
+    },
+    "summary": {
+      "title": "Your trip - {{city}}",
+      "description": "A practical route plan you can review quickly, navigate immediately, and continue exploring across places, services, and destination pages."
+    },
+    "stats": {
+      "destination": "Destination",
+      "duration": "Duration",
+      "totalTime": "Total time",
+      "stops": "Stops",
+      "language": "Language",
+      "interests": "Interests"
+    },
+    "itinerary": {
+      "eyebrow": "Itinerary",
+      "title": "Suggested route plan",
+      "description": "A polished sequence of stops with timing, visuals, and reasoning for each recommendation.",
+      "empty": "The route is ready, but no stops were returned yet."
+    },
+    "stop": {
+      "why": "Why this stop"
+    },
+    "map": {
+      "eyebrow": "Map preview",
+      "title": "Route path on map",
+      "description": "When place coordinates are available, Baramiz shows route order on map before navigation.",
+      "error": "Map preview is not available because place data could not be loaded right now.",
+      "empty": "No route coordinates are available yet, but your itinerary is ready."
+    },
+    "plan": {
+      "title": "Route plan",
+      "description": "Review your stops, pick a point, and the map will focus on that location.",
+      "focusMap": "Focus on map",
+      "viewDetails": "View details",
+      "navigate": "Navigate",
+      "empty": "No stops are available yet."
+    },
+    "mapPanel": {
+      "title": "Map and navigation",
+      "description": "Markers show your route stops. Select a place from the plan to focus the map.",
+      "selectedTitle": "Selected stop"
+    },
+    "actions": {
+      "startNavigation": "Start navigation",
+      "openGoogle": "Open in Google Maps",
+      "openYandex": "Open in Yandex Maps",
+      "share": "Share",
+      "shareSuccess": "Route summary copied to clipboard.",
+      "shareFailed": "Could not share route right now.",
+      "startOver": "Start over"
+    }
+  },
+  "mapPage": {
+    "hero": {
+      "badge": "Map and navigation",
+      "title": "Explore places on map and build your travel path",
+      "description": "Switch between discovery mode and route mode. Select places, preview travel distance, then open navigation in Google Maps or Yandex Maps."
+    },
+    "errors": {
+      "partial": "Some live data failed to load. You can still use available places and navigation tools."
+    },
+    "filters": {
+      "featuredOnly": "Featured only"
+    },
+    "mode": {
+      "explore": "Explore mode",
+      "route": "Selected route"
+    },
+    "stats": {
+      "visible": "Visible places",
+      "withCoordinates": "With coordinates",
+      "selected": "Selected"
+    },
+    "summary": {
+      "stops": "Stops",
+      "distance": "Distance",
+      "travel": "Estimated travel"
+    },
+    "empty": {
+      "title": "No places with coordinates found",
+      "description": "Try another city or category filter. Places without coordinates stay available in cards, but cannot be pinned on map yet."
+    },
+    "sidebar": {
+      "routeTitle": "Selected route",
+      "exploreTitle": "Place list",
+      "routeEmpty": "Select places from map to build a route path with navigation links.",
+      "exploreEmpty": "No map-ready places for this filter. Try another city or category."
+    },
+    "actions": {
+      "nearMe": "Near me",
+      "clear": "Clear",
+      "openGoogle": "Open in Google Maps",
+      "openYandex": "Open in Yandex Maps",
+      "copy": "Copy coordinates",
+      "remove": "Remove",
+      "selected": "Selected",
+      "add": "Add",
+      "navigate": "Navigate",
+      "addStop": "Add stop",
+      "removeStop": "Remove stop",
+      "yourLocation": "Your location",
+      "copyEmpty": "Select at least one place first.",
+      "copySuccess": "Coordinates copied.",
+      "copyFailed": "Could not copy coordinates.",
+      "nearMeUnsupported": "Geolocation is not available in this browser.",
+      "nearMeSuccess": "Current location found.",
+      "nearMeFailed": "Could not access current location."
+    }
+  },
+  "destinations": {
+    "nukus": {
+      "name": "Nukus",
+      "kicker": "Culture capital",
+      "summary": "The easiest entry point into Karakalpakstan: museums, cultural landmarks, local markets, and strong city-based discovery.",
+      "overview": "Nukus is the main cultural gateway for travelers who want art, museums, food, and a reliable base for exploring the wider region.",
+      "bestFor": [
+        "Museums",
+        "Culture",
+        "Food"
+      ],
+      "metrics": [
+        {
+          "label": "Ideal stay",
+          "value": "1-2 days"
+        },
+        {
+          "label": "Best for",
+          "value": "Museums"
+        },
+        {
+          "label": "Travel style",
+          "value": "City discovery"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Savitsky View Hotel",
+            "description": "A polished city stay concept near museums and cultural attractions, ideal for first-time visitors.",
+            "meta": "Boutique stay in central Nukus",
+            "tags": [
+              "Breakfast",
+              "Walkable",
+              "City center"
+            ]
+          },
+          {
+            "title": "Aral Gate Residence",
+            "description": "Comfortable rooms, business-friendly service, and easy transfers for travelers using Nukus as a base.",
+            "meta": "Modern business-style hotel",
+            "tags": [
+              "Transfer",
+              "Reception",
+              "Fast check-in"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "City culture guide",
+            "description": "A local guide concept focused on museums, markets, and cultural storytelling in Nukus.",
+            "meta": "Half-day guided city experience",
+            "tags": [
+              "English",
+              "Museum focus",
+              "Flexible timing"
+            ]
+          },
+          {
+            "title": "Art and heritage companion",
+            "description": "Designed for visitors who want a deeper explanation of the city's creative and historical significance.",
+            "meta": "Private or small-group format",
+            "tags": [
+              "Private",
+              "Storytelling",
+              "Cultural route"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Traditional dinner stop",
+            "description": "Local cuisine card for a comfortable evening stop with Karakalpak and Uzbek dishes.",
+            "meta": "Good for first-time travelers",
+            "tags": [
+              "Local cuisine",
+              "Dinner",
+              "Family-friendly"
+            ]
+          },
+          {
+            "title": "Bazaar tasting route",
+            "description": "A more casual market-focused food experience for quick tasting and local atmosphere.",
+            "meta": "Best combined with a walking route",
+            "tags": [
+              "Street food",
+              "Quick stop",
+              "Market"
+            ]
+          }
+        ],
+        "tours": [
+          {
+            "title": "Nukus highlights tour",
+            "description": "Museum, market, and culture stops packaged into a smooth city itinerary for a polished demo experience.",
+            "meta": "Half-day or full-day format",
+            "tags": [
+              "Museums",
+              "Culture",
+              "Food"
+            ]
+          },
+          {
+            "title": "Nukus to fortress route",
+            "description": "A city-plus-road-trip concept for visitors who want one urban day and one archaeological extension.",
+            "meta": "Cross-district day trip format",
+            "tags": [
+              "Road trip",
+              "History",
+              "Scenic"
+            ]
+          }
+        ]
+      }
+    },
+    "moynaq": {
+      "name": "Moynaq",
+      "kicker": "Aral Sea story",
+      "summary": "A powerful destination for travelers interested in environmental history, dramatic landscapes, and one of the region's most iconic sites.",
+      "overview": "Moynaq combines visual impact with a strong story, making it a compelling destination for history-focused visitors and competition demos alike.",
+      "bestFor": [
+        "History",
+        "Nature",
+        "Photography"
+      ],
+      "metrics": [
+        {
+          "label": "Ideal stay",
+          "value": "Half day"
+        },
+        {
+          "label": "Best for",
+          "value": "Aral Sea route"
+        },
+        {
+          "label": "Travel style",
+          "value": "Story-led visit"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Aralkum Guest House",
+            "description": "A small demo stay concept close to the main attraction area, designed for overnight visitors.",
+            "meta": "Simple and location-led",
+            "tags": [
+              "Local stay",
+              "Short trip",
+              "Remote"
+            ]
+          },
+          {
+            "title": "Sea Story Lodge",
+            "description": "An atmospheric lodging concept for travelers coming specifically for the Aral Sea narrative.",
+            "meta": "Best for story-led travel",
+            "tags": [
+              "Scenic",
+              "Quiet",
+              "Photo-friendly"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "Ship cemetery guide",
+            "description": "A local guide concept focused on the historical and environmental story behind the site.",
+            "meta": "Highly visual route",
+            "tags": [
+              "History",
+              "Environment",
+              "Photography"
+            ]
+          },
+          {
+            "title": "Moynaq local companion",
+            "description": "Adds context, logistics support, and local perspective to a remote day trip.",
+            "meta": "Useful for first-time visitors",
+            "tags": [
+              "Local insight",
+              "Transfers",
+              "Flexible"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Regional comfort cafe",
+            "description": "A practical stop for travelers combining the ship cemetery and museum in one route.",
+            "meta": "Good between attractions",
+            "tags": [
+              "Lunch",
+              "Casual",
+              "Traveler-friendly"
+            ]
+          },
+          {
+            "title": "Tea and local snacks",
+            "description": "A lighter food stop concept for short visits and photography-led itineraries.",
+            "meta": "Quick break stop",
+            "tags": [
+              "Tea",
+              "Snacks",
+              "Fast stop"
+            ]
+          }
+        ],
+        "tours": [
+          {
+            "title": "Aral Sea memory route",
+            "description": "Combines the ship cemetery, museum, and historical explanation into one memorable visitor journey.",
+            "meta": "Strong for storytelling demos",
+            "tags": [
+              "History",
+              "Museum",
+              "Landscape"
+            ]
+          },
+          {
+            "title": "Remote photography run",
+            "description": "A more visual route focused on landscape views, dramatic sites, and time for photo stops.",
+            "meta": "Best in clear weather",
+            "tags": [
+              "Photography",
+              "Nature",
+              "Outdoor"
+            ]
+          }
+        ]
+      }
+    },
+    "ellikqala": {
+      "name": "Ellikqala",
+      "kicker": "Fortress landscapes",
+      "summary": "Ancient fortresses, desert scenery, and road-trip energy make Ellikqala one of the region's best adventure destinations.",
+      "overview": "Ellikqala is ideal for travelers who want a more cinematic route built around archaeological sites and open landscapes.",
+      "bestFor": [
+        "Adventure",
+        "History",
+        "Road trips"
+      ],
+      "metrics": [
+        {
+          "label": "Ideal stay",
+          "value": "1 day"
+        },
+        {
+          "label": "Best for",
+          "value": "Fortresses"
+        },
+        {
+          "label": "Travel style",
+          "value": "Scenic drive"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Fortress Camp Stay",
+            "description": "A road-trip lodging concept designed around early starts and open-air exploration.",
+            "meta": "Adventure-oriented stay",
+            "tags": [
+              "Road trip",
+              "Desert",
+              "Flexible"
+            ]
+          },
+          {
+            "title": "Heritage Base Camp",
+            "description": "A comfortable overnight option for travelers combining several fortress stops in one trip.",
+            "meta": "Best for multi-stop routes",
+            "tags": [
+              "History",
+              "Small group",
+              "Driver support"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "Fortress route guide",
+            "description": "Helps connect archaeological context with the dramatic setting of Ellikqala's historic sites.",
+            "meta": "Ideal for first-time visitors",
+            "tags": [
+              "History",
+              "Archaeology",
+              "Scenic"
+            ]
+          },
+          {
+            "title": "Desert road companion",
+            "description": "A practical guide concept for travelers who want a smoother, safer remote excursion.",
+            "meta": "Useful for day trips",
+            "tags": [
+              "Logistics",
+              "Adventure",
+              "Outdoor"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Roadside lunch stop",
+            "description": "A simple route support option for fortress visitors spending most of the day outdoors.",
+            "meta": "Built for long drives",
+            "tags": [
+              "Lunch",
+              "Road trip",
+              "Quick stop"
+            ]
+          },
+          {
+            "title": "Camp-style dinner",
+            "description": "A more atmospheric experience card for groups who want a stronger desert travel vibe.",
+            "meta": "Demo cultural add-on",
+            "tags": [
+              "Group dining",
+              "Outdoor",
+              "Cultural"
+            ]
+          }
+        ],
+        "tours": [
+          {
+            "title": "Ayaz Kala adventure circuit",
+            "description": "A scenic multi-stop route built around fortress views and time on location.",
+            "meta": "Best for one-day itineraries",
+            "tags": [
+              "Adventure",
+              "Fortresses",
+              "Views"
+            ]
+          },
+          {
+            "title": "Ancient Khorezm route",
+            "description": "A more educational route concept connecting major ruins into one clear visitor experience.",
+            "meta": "History-led itinerary",
+            "tags": [
+              "History",
+              "Culture",
+              "Road trip"
+            ]
+          }
+        ]
+      }
+    },
+    "aral-sea-region": {
+      "name": "Aral Sea region",
+      "kicker": "Wide landscapes",
+      "summary": "A broader regional journey that blends Moynaq and nearby remote viewpoints into one destination story for travelers seeking scale.",
+      "overview": "The Aral Sea region experience is about dramatic environmental history, remote beauty, and memorable visual storytelling.",
+      "bestFor": [
+        "Nature",
+        "History",
+        "Photography"
+      ],
+      "metrics": [
+        {
+          "label": "Ideal stay",
+          "value": "1 day"
+        },
+        {
+          "label": "Best for",
+          "value": "Regional route"
+        },
+        {
+          "label": "Travel style",
+          "value": "Remote escape"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Regional explorer lodge",
+            "description": "A flexible base concept for visitors combining Moynaq with wider Aral Sea region stops.",
+            "meta": "Designed for broader regional travel",
+            "tags": [
+              "Remote",
+              "Flexible",
+              "Scenic"
+            ]
+          },
+          {
+            "title": "Desert horizon camp",
+            "description": "A more atmospheric stay concept for travelers who want a landscape-driven itinerary.",
+            "meta": "Best for adventurous groups",
+            "tags": [
+              "Outdoor",
+              "Adventure",
+              "Landscape"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "Regional nature guide",
+            "description": "Adds local context and route confidence to a wider Aral Sea region itinerary.",
+            "meta": "Good for multi-stop exploration",
+            "tags": [
+              "Nature",
+              "Remote",
+              "Regional"
+            ]
+          },
+          {
+            "title": "Photography route host",
+            "description": "Designed for travelers prioritizing dramatic viewpoints and longer visual stops.",
+            "meta": "Photo-friendly pacing",
+            "tags": [
+              "Photography",
+              "Nature",
+              "Scenic"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Regional rest stop",
+            "description": "A practical meal stop concept for travelers moving between remote sights.",
+            "meta": "Useful on longer routes",
+            "tags": [
+              "Rest stop",
+              "Lunch",
+              "Road trip"
+            ]
+          },
+          {
+            "title": "Campfire-style dinner",
+            "description": "A demo cultural dining experience to make remote travel feel warmer and more memorable.",
+            "meta": "Best for groups",
+            "tags": [
+              "Outdoor",
+              "Cultural",
+              "Evening"
+            ]
+          }
+        ],
+        "tours": {
+          "1": {
+            "meta": "Built for a fuller regional route"
+          }
+        }
+      }
+    }
+  },
+  "admin": {
+    "nav": {
+      "title": "Baramiz Admin",
+      "subtitle": "Content management",
+      "section": "Content",
+      "overview": "Overview",
+      "places": "Places",
+      "categories": "Categories",
+      "backToSite": "Open public site",
+      "owner": "Owner"
+    },
+    "layout": {
+      "titles": {
+        "overview": "Overview",
+        "places": "Places",
+        "categories": "Categories",
+        "newPlace": "Create place",
+        "editPlace": "Edit place"
+      },
+      "subtitles": {
+        "overview": "Operational summary for tourism content",
+        "places": "Manage destination records and multilingual content",
+        "categories": "Maintain category definitions used across the platform",
+        "newPlace": "Add a new tourism record",
+        "editPlace": "Update an existing tourism record"
+      }
+    },
+    "shared": {
+      "create": "Create",
+      "update": "Save changes",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "newPlace": "New place",
+      "preview": "Preview item"
+    },
+    "notices": {
+      "backendFallback": "Places CRUD now targets the real backend first. Local browser fallback appears only if a request fails or a specific admin resource is not available.",
+      "localSave": "Saved in local demo mode because admin write endpoints are not available right now.",
+      "backendSave": "Saved through the backend successfully.",
+      "translationFallback": "RU and EN were filled from Uzbek because a translation endpoint was not available. Review and edit the generated fields before saving.",
+      "categoriesFallback": "Categories could not be loaded from the backend. Fallback options are being used."
+    },
+    "dashboard": {
+      "pageTitle": "Dashboard overview",
+      "pageDescription": "Track the current state of places and categories, then jump into CRUD screens to keep the tourism catalog ready.",
+      "totalPlaces": "Places",
+      "featuredPlaces": "Featured places",
+      "categories": "Categories",
+      "localDrafts": "Local changes",
+      "recentTitle": "Recent places",
+      "recentDescription": "A quick operational view of the latest place records in the admin dataset.",
+      "categoryTitle": "Category coverage",
+      "categoryDescription": "See which categories exist and how many places currently use them.",
+      "empty": "No records are available yet."
+    },
+    "places": {
+      "pageTitle": "Places",
+      "pageDescription": "Manage tourism records with table-first CRUD actions, filters, and direct edit access.",
+      "filtersTitle": "Filter and manage records",
+      "filtersDescription": "Search by name, city, or region, then open records directly in the editor.",
+      "resultsCount": "records",
+      "searchLabel": "Search places",
+      "searchPlaceholder": "Search by name, city, or region",
+      "noResults": "No places match the current filters.",
+      "deleteConfirm": "Delete this place?",
+      "dataUnavailable": "Some admin data could not be loaded. You can still work with the records that are available.",
+      "table": {
+        "place": "Place",
+        "city": "City",
+        "location": "Location",
+        "category": "Category",
+        "duration": "Duration",
+        "featured": "Featured",
+        "source": "Source",
+        "updated": "Updated",
+        "actions": "Actions"
+      },
+      "storage": {
+        "backend": "Backend",
+        "localDemo": "Local demo"
+      }
+    },
+    "categories": {
+      "pageTitle": "Categories",
+      "pageDescription": "Maintain category records that structure discovery, filtering, and content management.",
+      "searchLabel": "Search categories",
+      "searchPlaceholder": "Search by name or description",
+      "totalLabel": "{{count}} categories",
+      "dataUnavailable": "Category data is partially unavailable right now.",
+      "empty": "No categories are available yet.",
+      "emptyDescription": "No description provided.",
+      "deleteConfirm": "Delete this category?",
+      "previewFallback": "Category preview",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "places": "Places",
+        "storage": "Storage",
+        "actions": "Actions"
+      },
+      "storage": {
+        "backend": "Backend",
+        "localDemo": "Local demo"
+      },
+      "fields": {
+        "name": "Name",
+        "description": "Description",
+        "image": "Image URL"
+      },
+      "validation": {
+        "name": "Category name is required."
+      },
+      "actions": {
+        "new": "New category",
+        "create": "Create category",
+        "update": "Save category"
+      },
+      "messages": {
+        "created": "Category created.",
+        "updated": "Category updated.",
+        "deleted": "Category deleted.",
+        "saveFailed": "The category could not be saved right now.",
+        "deleteFailed": "The category could not be deleted right now."
+      },
+      "modal": {
+        "createTitle": "Create category",
+        "editTitle": "Edit category"
+      }
+    },
+    "form": {
+      "pageCreateTitle": "Create place",
+      "pageCreateDescription": "Add a new place record with operational metadata and multilingual content fields.",
+      "pageEditTitle": "Edit place",
+      "pageEditDescription": "Update a place record, regenerate RU and EN from Uzbek when needed, and keep the catalog consistent.",
+      "basicTitle": "Basic information",
+      "basicDescription": "Core location, category, media, and visibility settings used across the platform.",
+      "mediaTitle": "Media and coordinates",
+      "mediaDescription": "Provide a direct image URL and the operational location data required for a real destination record.",
+      "imageTitle": "Media preview",
+      "imageDescription": "Use a direct image URL. The public site falls back gracefully if the asset does not load.",
+      "uzTitle": "Uzbek source content",
+      "uzDescription": "Primary source text for the place. Use this as the editorial base for RU and EN generation.",
+      "kaaTitle": "Karakalpak content",
+      "kaaDescription": "Manual local-language content that stays under editor control.",
+      "textsTitle": "Multilingual content",
+      "textsDescription": "Uzbek is the primary source, Karakalpak is manual, and RU/EN can be generated then refined.",
+      "translationsTitle": "Generated translations",
+      "translationsDescription": "Generate RU and EN from Uzbek, then edit both fields before saving.",
+      "rulesTitle": "Language rules",
+      "rulesDescription": "The admin panel makes each language workflow explicit so content stays operationally clear.",
+      "languagePrimary": "Primary",
+      "languageManual": "Manual",
+      "languageGenerated": "Auto-generated, editable",
+      "notFeatured": "Not featured",
+      "unsaved": "Unsaved",
+      "fields": {
+        "city": "City",
+        "region": "Region",
+        "category": "Category",
+        "image": "Image URL",
+        "durationMinutes": "Duration (minutes)",
+        "featured": "Featured place",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "nameUz": "Name (UZ)",
+        "descriptionUz": "Description (UZ)",
+        "nameKaa": "Name (KAA)",
+        "descriptionKaa": "Description (KAA)",
+        "nameRu": "Name (RU)",
+        "descriptionRu": "Description (RU)",
+        "nameEn": "Name (EN)",
+        "descriptionEn": "Description (EN)"
+      },
+      "helpers": {
+        "featured": "Show this place in featured sections on the public site.",
+        "coordinates": "Coordinates are optional but useful for future mapping support.",
+        "uzSource": "Uzbek must be written manually. It is the source for RU and EN generation.",
+        "kaaManual": "Karakalpak must be entered manually.",
+        "ruEnEditable": "RU and EN remain editable after generation."
+      },
+      "actions": {
+        "generateTranslations": "Generate RU/EN from UZ"
+      },
+      "validation": {
+        "city": "City is required.",
+        "region": "Region is required.",
+        "category": "Category is required.",
+        "image": "Image URL is required.",
+        "durationMinutes": "Duration must be a valid number greater than zero.",
+        "nameUz": "Uzbek name is required.",
+        "descriptionUz": "Uzbek description is required.",
+        "nameKaa": "Karakalpak name is required.",
+        "descriptionKaa": "Karakalpak description is required.",
+        "latitude": "Latitude must be a valid number.",
+        "longitude": "Longitude must be a valid number.",
+        "uzSource": "Add Uzbek name and description before generating RU/EN."
+      },
+      "messages": {
+        "created": "Place created.",
+        "updated": "Place updated.",
+        "deleted": "Place deleted.",
+        "notFound": "This place could not be found.",
+        "saveFailed": "The place could not be saved right now.",
+        "deleteFailed": "The place could not be deleted right now.",
+        "translationFailed": "RU/EN generation failed. Continue editing the fields manually if needed.",
+        "translationReady": "RU and EN were generated from the live translation flow. Review both fields before saving."
+      }
+    }
+  }
+}

@@ -1,0 +1,1011 @@
+{
+  "common": {
+    "appName": "Baramiz",
+    "appSubtitle": "Qoraqalpog'iston sayohat kashfiyoti",
+    "featured": "Tavsiya etilgan",
+    "tourism": "Turizm",
+    "flexibleVisit": "Moslashuvchan tashrif",
+    "allDestinations": "Barcha manzillar",
+    "allCategories": "Barcha toifalar",
+    "destination": "Manzil",
+    "interests": "Qiziqishlar",
+    "duration": "Davomiylik",
+    "language": "Til",
+    "category": "Toifa",
+    "search": "Qidirish",
+    "city": "Shahar",
+    "totalTime": "Umumiy vaqt",
+    "stops": "Bekatlar",
+    "selected": "Tanlangan",
+    "browseDestinations": "Manzillarni ko'rish",
+    "exploreDestination": "Manzilni ochish",
+    "viewAllPlaces": "Barcha joylar",
+    "openAiRoute": "Marshrut tuzishga o'tish",
+    "browseServices": "Xizmatlarni ko'rish",
+    "generateRoute": "Marshrut tuzish",
+    "generateAnother": "Yana marshrut tuzish",
+    "exploreMorePlaces": "Yana joylarni ko'rish",
+    "goToAiRoute": "Marshrut tuzishga o'tish",
+    "backToGenerator": "Generatorga qaytish",
+    "loading": "Yuklanmoqda...",
+    "dataUnavailable": "Ba'zi jonli turizm ma'lumotlari vaqtincha mavjud emas.",
+    "minutesLabel": "{{count}} daqiqa",
+    "hoursLabel": "{{count}} soat",
+    "hoursMinutesLabel": "{{hours}} soat {{minutes}} daqiqa",
+    "attractionsCount": "{{count}} ta joy",
+    "curatedDestination": "Tanlangan manzil",
+    "interestFilter": "Qiziqish filtri: {{interest}}",
+    "routeGeneratedNote": "Ushbu marshrut tanlangan manzil va qiziqishlar asosida tuzildi.",
+    "noResults": "Hozircha natijalar topilmadi.",
+    "unknownCity": "Qoraqalpog'iston",
+    "viewService": "Xizmatni ko'rish",
+    "viewStay": "Turar joyni ko'rish",
+    "openService": "Xizmatni ochish",
+    "seeFoodStop": "Ovqat bekatini ko'rish",
+    "placeDescriptionFallback": "Keyingi Baramiz marshrutingiz uchun yaxshi manzil varianti.",
+    "viewDetails": "Batafsil",
+    "goToRoute": "Marshrut tuzishga o'tish"
+  },
+  "languages": {
+    "kaa": {
+      "short": "KAA",
+      "name": "Qoraqalpoq"
+    },
+    "ru": {
+      "short": "RU",
+      "name": "Ruscha"
+    },
+    "uz": {
+      "short": "UZ",
+      "name": "O'zbekcha"
+    },
+    "en": {
+      "short": "EN",
+      "name": "Inglizcha"
+    },
+    "switcherLabel": "Til"
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "destinations": "Manzillar",
+    "places": "Joylar",
+    "map": "Xarita",
+    "services": "Xizmatlar",
+    "aiRoute": "Marshrut",
+    "navigation": "Navigatsiya"
+  },
+  "footer": {
+    "description": "Qoraqalpog'iston uchun yaratilgan, musobaqa taqdimoti uchun jilolangan turizm kashfiyot platformasi.",
+    "exploreTitle": "Kashf etish",
+    "attractions": "Diqqatga sazovor joylar",
+    "servicesTitle": "Xizmatlar",
+    "travelServices": "Sayohat xizmatlari",
+    "aiRoutePlanning": "Marshrut rejalash",
+    "valueTitle": "Qiymat",
+    "destinationDiscovery": "Manzillarni kashf etish",
+    "tourismServices": "Turizm xizmatlari",
+    "practicalRouteGeneration": "Amaliy marshrut yaratish"
+  },
+  "categories": {
+    "history": "Tarix",
+    "culture": "Madaniyat",
+    "museum": "Muzeylar",
+    "nature": "Tabiat",
+    "adventure": "Sarguzasht",
+    "food": "Taomlar",
+    "family": "Oila"
+  },
+  "categoryDescriptions": {
+    "history": "Hudud tarixini ochib beradigan qal'alar, xotira yo'nalishlari va joylar.",
+    "culture": "Manzilni jonlantiradigan teatrlar, jamoat joylari va mahalliy an'analar.",
+    "museum": "Sayohatga mazmun va ishonch beradigan muzey bekatlari.",
+    "nature": "Ochiq manzaralar, uzoq nuqtalar va chiroyli sayohat lahzalari.",
+    "adventure": "Qal'a yo'nalishlari, road triplar va keskin relyef bo'ylab faol harakat.",
+    "food": "Marshrutni yanada insoniy qiladigan bozorlar va milliy taomlar.",
+    "family": "Birgalikdagi sayohat uchun qulay va amaliy joylar."
+  },
+  "home": {
+    "hero": {
+      "badge": "Mahalliy sayohat kashfiyoti + xizmatlar",
+      "title": "Qoraqalpog'istonni haqiqiy sayohat platformasidek kashf eting",
+      "description": "Manzillarni kashf eting, diqqatga sazovor joylarni ko'ring, turizm xizmatlarini toping va Baramiz'dan amaliy marshrut rejalash qatlami sifatida foydalaning.",
+      "highlights": [
+        "Muzeylar",
+        "Qal'alar",
+        "Mahalliy taomlar",
+        "Uzoq manzaralar"
+      ]
+    },
+    "selector": {
+      "title": "Manzildan boshlang",
+      "destination": "Manzil",
+      "interests": "Qiziqishlar",
+      "button": "Manzilni ochish"
+    },
+    "stats": {
+      "featuredDestinations": "Tavsiya etilgan manzillar",
+      "attractions": "Platformadagi joylar",
+      "categories": "Turizm toifalari"
+    },
+    "featuredDestinations": {
+      "eyebrow": "Tavsiya etilgan manzillar",
+      "title": "Texnik forma emas, lokatsiyadan boshlang",
+      "description": "Har bir manzil sahifasi joylar, xizmatlar, taomlar va rejalashni bitta qulay sayohat tajribasiga birlashtiradi."
+    },
+    "themes": {
+      "eyebrow": "Sayohat yo'nalishlari",
+      "title": "Kashfiyot uchun tezkor toifalar",
+      "description": "Joylar katalogi va manzil sahifalariga tez kirish nuqtasi sifatida backenddagi jonli toifalardan foydalaning."
+    },
+    "featuredPlaces": {
+      "eyebrow": "Tavsiya etilgan joylar",
+      "title": "Backenddan keladigan jonli joylar",
+      "description": "Baramiz tavsiya etilgan manzillar uchun haqiqiy joylar API'sidan foydalanadi va rasm xatolarini chiroyli tarzda boshqaradi.",
+      "empty": "Backend ma'lumot yuborganda tavsiya etilgan joylar shu yerda ko'rinadi."
+    },
+    "services": {
+      "eyebrow": "Turizm xizmatlari",
+      "title": "Mahsulotni haqiqiy his qildiradigan xizmat qatlami",
+      "description": "MVP uchun statik demo xizmatlar yetarli, ammo ular manzil kashfiyoti bilan uyg'un ko'rinishi kerak."
+    },
+    "errors": {
+      "dataUnavailable": "Ba'zi jonli turizm ma'lumotlari vaqtincha mavjud emas, lekin asosiy kashfiyot oqimi tayyor."
+    }
+  },
+  "destinationsPage": {
+    "hero": {
+      "badge": "Manzillar brauzeri",
+      "title": "Qoraqalpog'istonni manzil hikoyasi orqali ko'ring",
+      "description": "Har bir manzil diqqatga sazovor joylar, turizm xizmatlari, tajribalar va marshrut tuzishga qulay o'tishni birlashtiradi. Shu sabab mahsulot avval kashfiyotga, keyin amaliy rejalashga xizmat qiladi."
+    },
+    "section": {
+      "eyebrow": "Tavsiya etilgan manzillar",
+      "title": "Qoraqalpog'istonning qaysi qismini kashf etishni tanlang",
+      "description": "Ushbu to'rtta asosiy manzil joriy MVP'dagi eng kuchli kashfiyot hikoyalarini qamrab oladi."
+    },
+    "errors": {
+      "countsUnavailable": "Manzil sonlari vaqtincha mavjud emas, lekin manzil sahifalarini ochish mumkin."
+    },
+    "searchPlaceholder": "Manzil qidirish..."
+  },
+  "destinationPage": {
+    "notFound": {
+      "title": "Manzil topilmadi",
+      "description": "Bu manzil joriy MVP konfiguratsiyasida mavjud emas."
+    },
+    "hero": {
+      "planRoute": "Marshrut tuzish",
+      "exploreServices": "Xizmatlarni ko'rish"
+    },
+    "errors": {
+      "attractionsUnavailable": "Bu manzil uchun joylar vaqtincha mavjud emas."
+    },
+    "attractions": {
+      "eyebrow": "Asosiy joylar",
+      "title": "{{name}}da nimalarni ko'rish mumkin",
+      "description": "Backend API'dan keladigan jonli joy kartalari, shahar yoki hudud mantiqi bo'yicha filtrlangan.",
+      "empty": "Hozirgi qiziqish filtri bo'yicha joylar topilmadi."
+    },
+    "experiences": {
+      "eyebrow": "Tajribalar",
+      "title": "Faoliyatlar va sayohat kayfiyati",
+      "description": "Jonli joy toifalaridan olinadi, shu sabab manzil sahifasi oddiy ro'yxatdan kengroq ko'rinadi.",
+      "cardTitle": "{{category}} tajribalari",
+      "defaultDescription": "Ushbu manzil uchun tematik tajriba qatlami."
+    },
+    "experienceDescriptions": {
+      "history": "Qal'alar, yodgorliklar va manzil ortidagi uzoq tarixni o'rganing.",
+      "culture": "Mahalliy sayohatni jonlantiradigan teatrlar, bozorlar va madaniy makonlarni kashf eting.",
+      "museum": "Muzey bekatlari kashfiyot yo'nalishiga mazmun va tuzilma qo'shadi.",
+      "nature": "Keng manzaralar va ochiq makon uchun tabiatga yo'naltirilgan sayohat.",
+      "food": "Manzilni to'liqroq his qilish uchun milliy taomlar va bozor lahzalarini qo'shing.",
+      "adventure": "Harakat va manzara izlaydigan mehmonlar uchun uzoq yo'llar va ochiq havoda sayohat."
+    },
+    "accommodation": {
+      "eyebrow": "Turar joy",
+      "title": "Qayerda qolish mumkin",
+      "description": "Bu yerda statik demo kartalar qabul qilinadi, chunki maqsad platformani haqiqiy turizm mahsulotidek his qildirishdir."
+    },
+    "tours": {
+      "eyebrow": "Turlar va gidlar",
+      "title": "Marshrut uchun mahalliy yordam",
+      "description": "Statik demo takliflar sahifani shunchaki ma'lumot bazasi emas, balki manzil xabiga aylantiradi."
+    },
+    "food": {
+      "eyebrow": "Taomlar",
+      "title": "Restoranlar va mahalliy ta'mlar",
+      "description": "Ovqat kartalari manzil hikoyasini to'ldiradi va kashfiyot oqimini yanada amaliy qiladi."
+    },
+    "finalCta": {
+      "eyebrow": "Marshrutga tayyormisiz?",
+      "title": "{{name}} uchun aqlli marshrut tuzing",
+      "description": "Bu manzilni asos qilib, qiziqishlaringizni tanlang va xaritaga tayyor bekatlarga ega amaliy marshrut oling."
+    }
+  },
+  "placesPage": {
+    "hero": {
+      "eyebrow": "Joylar",
+      "title": "Qoraqalpog'iston bo'ylab joylarni ko'ring",
+      "description": "Manzil va toifa bo'yicha filtrlang, so'ng manzil sahifalariga o'ting yoki marshrut rejalash oqimiga bekat qo'shing."
+    },
+    "form": {
+      "search": "Qidirish",
+      "searchPlaceholder": "Muzey, qal'a, bozor...",
+      "destination": "Manzil",
+      "category": "Toifa"
+    },
+    "errors": {
+      "dataUnavailable": "Ba'zi jonli joy ma'lumotlari hozir mavjud emas."
+    },
+    "results": {
+      "eyebrow": "Filtrlangan natijalar",
+      "title": "Ko'rishga tayyor {{count}} ta joy",
+      "description": "Katta manzil kartalari joylar brauzerini texnik ro'yxat emas, foydali vizual tajribaga aylantiradi.",
+      "empty": "Hozirgi filtrlarga mos joylar topilmadi.",
+      "openMap": "Xaritani ochish"
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "title": "To'liqroq sayohat platformasi uchun turizm xizmatlari",
+      "description": "Bu bo'limlar MVP uchun statik demo kontent, ammo ular Baramiz'ni manzil kashfiyoti ustiga qurilgan haqiqiy turizm xizmati sifatida his qildiradi."
+    },
+    "eyebrow": "Xizmatlar",
+    "sectionActions": {
+      "open": "{{service}}ni ochish"
+    },
+    "sections": {
+      "agencies": {
+        "title": "Tur agentliklari",
+        "description": "Paket turlar, kunlik sayohatlar va hududiy mehmon yordami uchun demo operator kartalari.",
+        "items": [
+          {
+            "title": "Baramiz Local Tours",
+            "description": "City routes, museum visits, and day-trip packaging for travelers starting in Nukus.",
+            "meta": "City and regional itineraries",
+            "tags": [
+              "Custom route",
+              "Day trips",
+              "Small groups"
+            ]
+          },
+          {
+            "title": "Aral Horizon Travel",
+            "description": "A remote-region operator concept focused on Moynaq, the Aral Sea narrative, and scenic routes.",
+            "meta": "Best for regional travel",
+            "tags": [
+              "Aral Sea",
+              "Scenic travel",
+              "Transfers"
+            ]
+          }
+        ]
+      },
+      "guides": {
+        "title": "Gidlar",
+        "description": "Tarix, madaniyat va uzoq manzillar hikoyalari uchun mahalliy gid profillari.",
+        "items": [
+          {
+            "title": "Heritage storyteller guide",
+            "description": "Designed for travelers who want monuments, museums, and strong regional context.",
+            "meta": "History and culture focus",
+            "tags": [
+              "English",
+              "Museums",
+              "Culture"
+            ]
+          },
+          {
+            "title": "Adventure route guide",
+            "description": "A guide profile for fortress circuits, desert drives, and outdoor-focused day plans.",
+            "meta": "Remote travel support",
+            "tags": [
+              "Outdoor",
+              "Road trip",
+              "Flexible"
+            ]
+          }
+        ]
+      },
+      "transport": {
+        "title": "Transport",
+        "description": "Shaharlar va uzoq joylar o'rtasida harakatlanadigan mehmonlar uchun amaliy transport variantlari.",
+        "items": [
+          {
+            "title": "City transfer service",
+            "description": "Airport, hotel, and attraction transfers for visitors based in Nukus.",
+            "meta": "Reliable local mobility",
+            "tags": [
+              "Airport pickup",
+              "Hotel transfer",
+              "Private car"
+            ]
+          },
+          {
+            "title": "Regional driver support",
+            "description": "Longer-distance transport for Ellikqala, Moynaq, and the Aral Sea region.",
+            "meta": "Best for full-day routes",
+            "tags": [
+              "Driver",
+              "Road trip",
+              "Remote"
+            ]
+          }
+        ]
+      },
+      "accommodation": {
+        "title": "Turar joy",
+        "description": "Shahar tanaffuslari va road triplar uchun sodda, ammo jozibali turar joy variantlari.",
+        "items": [
+          {
+            "title": "Boutique city stay",
+            "description": "Comfortable accommodation concept for travelers focusing on museums and city exploration.",
+            "meta": "Good in Nukus",
+            "tags": [
+              "Boutique",
+              "Breakfast",
+              "Walkable"
+            ]
+          },
+          {
+            "title": "Explorer lodge",
+            "description": "A more flexible regional stay format for nature and road-trip travelers.",
+            "meta": "Built for wider routes",
+            "tags": [
+              "Scenic",
+              "Regional",
+              "Flexible"
+            ]
+          }
+        ]
+      },
+      "experiences": {
+        "title": "Madaniy tajribalar",
+        "description": "Platformani shunchaki joylar ro'yxati emas, to'liq turizm qatlami sifatida his qildiradigan qo'shimcha tajribalar.",
+        "items": [
+          {
+            "title": "Traditional music evening",
+            "description": "A cultural showcase concept for visitors who want more than a sightseeing list.",
+            "meta": "Evening activity",
+            "tags": [
+              "Culture",
+              "Performance",
+              "Group-friendly"
+            ]
+          },
+          {
+            "title": "Cuisine and market experience",
+            "description": "A more hands-on food and market route built around local flavor and atmosphere.",
+            "meta": "Short or half-day format",
+            "tags": [
+              "Food",
+              "Market",
+              "Local life"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "routeGenerator": {
+    "hero": {
+      "badge": "Marshrut tuzish",
+      "title": "Marshrutingizni tuzing",
+      "description": "Manzil va qiziqishlarni tanlang, Baramiz sizga darhol foydalanish mumkin bo'lgan amaliy marshrutni qaytaradi."
+    },
+    "stats": {
+      "destination": "Manzil",
+      "duration": "Davomiylik",
+      "interests": "Qiziqishlar",
+      "language": "Til"
+    },
+    "form": {
+      "eyebrow": "Marshrut tuzish",
+      "title": "Aniq sayohat marshrutini tuzing",
+      "description": "Manzil va qiziqishlarni tanlang. Natija sahifasida o'qish oson bo'lgan sayohat rejasi ko'rsatiladi.",
+      "destinationLabel": "Manzil",
+      "destinationPlaceholder": "Shaharni yozing yoki tanlang",
+      "interestsLabel": "Qiziqishlar",
+      "selectedInterests": "Tanlangan: {{items}}",
+      "durationLabel": "Davomiylik (ixtiyoriy)",
+      "languageLabel": "Til",
+      "openMap": "Xarita navigatorini ochish"
+    },
+    "validation": {
+      "city": "Iltimos, manzilni tanlang.",
+      "interests": "Kamida bitta qiziqishni tanlang.",
+      "language": "Tilni tanlang."
+    },
+    "errors": {
+      "generateFailed": "Hozir marshrutni yaratib bo'lmadi. Iltimos, yana urinib ko'ring."
+    },
+    "notification": {
+      "title": "Marshrut tayyor",
+      "message": "{{city}} bo'yicha marshrut muvaffaqiyatli yaratildi."
+    },
+    "routeLanguages": {
+      "uz": "O'zbekcha",
+      "en": "Inglizcha",
+      "ru": "Ruscha"
+    },
+    "durations": {
+      "3_hours": {
+        "label": "3 soat",
+        "helper": "Shahar markazidagi asosiy joylar uchun qisqa marshrut."
+      },
+      "half_day": {
+        "label": "Yarim kun",
+        "helper": "Yarim kunlik kashfiyot uchun muvozanatli marshrut."
+      },
+      "1_day": {
+        "label": "1 kun",
+        "helper": "Ko'proq bekatlar va xilma-xillik bilan to'liq kunlik marshrut."
+      }
+    }
+  },
+  "routeResult": {
+    "empty": {
+      "badge": "Marshrut yuklanmagan",
+      "title": "Marshrutingiz shu yerda ko'rinadi",
+      "description": "Manzil va qiziqishlarni tanlagandan so'ng Marshrut tuzish sahifasidan marshrut yarating."
+    },
+    "hero": {
+      "badge": "Tavsiya etilgan marshrut",
+      "stopsBadge": "{{count}} bekat",
+      "title": "Siz uchun tavsiya etilgan marshrut",
+      "description": "Bu marshrut tanlangan manzil va qiziqishlarni o'qish oson bo'lgan sayohat rejasiga aylantiradi."
+    },
+    "summary": {
+      "title": "Sayohatingiz - {{city}}",
+      "description": "Joylar va xizmatlarni davom ettirib o'rganishingiz uchun tez ko'rib chiqiladigan, darhol navigatsiyaga o'tkaziladigan amaliy marshrut rejasi."
+    },
+    "stats": {
+      "destination": "Manzil",
+      "duration": "Davomiylik",
+      "totalTime": "Umumiy vaqt",
+      "stops": "Bekatlar",
+      "language": "Til",
+      "interests": "Qiziqishlar"
+    },
+    "itinerary": {
+      "eyebrow": "Marshrut",
+      "title": "Tavsiya etilgan sayohat rejasi",
+      "description": "Har bir tavsiya uchun vaqt, vizual va izoh bilan puxta ketma-ket bekatlar.",
+      "empty": "Marshrut tayyor, ammo hozircha bekatlar qaytmadi."
+    },
+    "stop": {
+      "why": "Nega bu bekat"
+    },
+    "map": {
+      "eyebrow": "Xarita ko'rinishi",
+      "title": "Marshrut yo'li xaritada",
+      "description": "Joy koordinatalari mavjud bo'lsa, Baramiz navigatsiyadan oldin marshrut ketma-ketligini xaritada ko'rsatadi.",
+      "error": "Hozir joy ma'lumotlari yuklanmagani sababli xarita ko'rinishini chiqarib bo'lmadi.",
+      "empty": "Hozircha marshrut koordinatalari yo'q, lekin marshrut rejangiz tayyor."
+    },
+    "plan": {
+      "title": "Marshrut rejasi",
+      "description": "Bekatlarni ko'rib chiqing, nuqtani tanlang va xarita shu joyga fokuslanadi.",
+      "focusMap": "Xaritada ko'rsatish",
+      "viewDetails": "Batafsil",
+      "navigate": "Navigatsiya",
+      "empty": "Hozircha bekatlar mavjud emas."
+    },
+    "mapPanel": {
+      "title": "Xarita va navigatsiya",
+      "description": "Markerlar marshrut bekatlarini ko'rsatadi. Xaritani fokuslash uchun rejadan joy tanlang.",
+      "selectedTitle": "Tanlangan bekat"
+    },
+    "actions": {
+      "startNavigation": "Navigatsiyani boshlash",
+      "openGoogle": "Google Mapsda ochish",
+      "openYandex": "Yandex Mapsda ochish",
+      "share": "Ulashish",
+      "shareSuccess": "Marshrut xulosasi nusxalandi.",
+      "shareFailed": "Hozir marshrutni ulashib bo'lmadi.",
+      "startOver": "Qaytadan boshlash"
+    }
+  },
+  "mapPage": {
+    "hero": {
+      "badge": "Xarita va navigatsiya",
+      "title": "Joylarni xaritada ko'ring va sayohat yo'lingizni tuzing",
+      "description": "Kashfiyot rejimi va tanlangan marshrut rejimi o'rtasida almashing. Joylarni tanlang, masofani ko'ring va Google Maps yoki Yandex Mapsda navigatsiyani oching."
+    },
+    "errors": {
+      "partial": "Ba'zi jonli ma'lumotlar yuklanmadi. Mavjud joylar va navigatsiya vositalari bilan ishlash davom etadi."
+    },
+    "filters": {
+      "featuredOnly": "Faqat tavsiya etilgan"
+    },
+    "mode": {
+      "explore": "Kashfiyot rejimi",
+      "route": "Tanlangan marshrut"
+    },
+    "stats": {
+      "visible": "Ko'rinayotgan joylar",
+      "withCoordinates": "Koordinatali joylar",
+      "selected": "Tanlanganlar"
+    },
+    "summary": {
+      "stops": "Bekatlar",
+      "distance": "Masofa",
+      "travel": "Taxminiy yo'l vaqti"
+    },
+    "empty": {
+      "title": "Koordinatali joylar topilmadi",
+      "description": "Boshqa shahar yoki toifa filtri bilan urinib ko'ring. Koordinatasiz joylar kartalarda ko'rinadi, lekin xaritaga pin qilib bo'lmaydi."
+    },
+    "sidebar": {
+      "routeTitle": "Tanlangan marshrut",
+      "exploreTitle": "Joylar ro'yxati",
+      "routeEmpty": "Marshrut yo'lini yaratish uchun xaritadan joylarni tanlang.",
+      "exploreEmpty": "Bu filtrda xarita uchun tayyor joy topilmadi. Boshqa shahar yoki toifani sinab ko'ring."
+    },
+    "actions": {
+      "nearMe": "Yaqinimdagilar",
+      "clear": "Tozalash",
+      "openGoogle": "Google Mapsda ochish",
+      "openYandex": "Yandex Mapsda ochish",
+      "copy": "Koordinatalarni nusxalash",
+      "remove": "Olib tashlash",
+      "selected": "Tanlangan",
+      "add": "Qo'shish",
+      "navigate": "Navigatsiya",
+      "addStop": "Bekat qo'shish",
+      "removeStop": "Bekatni olib tashlash",
+      "yourLocation": "Sizning joylashuvingiz",
+      "copyEmpty": "Avval kamida bitta joy tanlang.",
+      "copySuccess": "Koordinatalar nusxalandi.",
+      "copyFailed": "Koordinatalarni nusxalab bo'lmadi.",
+      "nearMeUnsupported": "Bu brauzerda geolokatsiya qo'llab-quvvatlanmaydi.",
+      "nearMeSuccess": "Joriy joylashuv topildi.",
+      "nearMeFailed": "Joriy joylashuvni olish imkoni bo'lmadi."
+    }
+  },
+  "destinations": {
+    "nukus": {
+      "name": "Nukus",
+      "kicker": "Madaniyat markazi",
+      "summary": "Qoraqalpog'istonga qulay kirish nuqtasi: muzeylar, madaniy obidalar, mahalliy bozorlar va shahar kashfiyoti.",
+      "overview": "Nukus san'at, muzeylar, taomlar va kengroq hududni o'rganish uchun ishonchli baza istaydigan sayohatchilar uchun asosiy madaniy darvoza.",
+      "bestFor": [
+        "Muzeylar",
+        "Madaniyat",
+        "Taomlar"
+      ],
+      "metrics": [
+        {
+          "label": "Mos davomiylik",
+          "value": "1-2 kun"
+        },
+        {
+          "label": "Eng mos",
+          "value": "Muzeylar"
+        },
+        {
+          "label": "Sayohat uslubi",
+          "value": "Shahar kashfiyoti"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Savitsky View Hotel",
+            "description": "A polished city stay concept near museums and cultural attractions, ideal for first-time visitors.",
+            "meta": "Boutique stay in central Nukus",
+            "tags": [
+              "Breakfast",
+              "Walkable",
+              "City center"
+            ]
+          },
+          {
+            "title": "Aral Gate Residence",
+            "description": "Comfortable rooms, business-friendly service, and easy transfers for travelers using Nukus as a base.",
+            "meta": "Modern business-style hotel",
+            "tags": [
+              "Transfer",
+              "Reception",
+              "Fast check-in"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "City culture guide",
+            "description": "A local guide concept focused on museums, markets, and cultural storytelling in Nukus.",
+            "meta": "Half-day guided city experience",
+            "tags": [
+              "English",
+              "Museum focus",
+              "Flexible timing"
+            ]
+          },
+          {
+            "title": "Art and heritage companion",
+            "description": "Designed for visitors who want a deeper explanation of the city's creative and historical significance.",
+            "meta": "Private or small-group format",
+            "tags": [
+              "Private",
+              "Storytelling",
+              "Cultural route"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Traditional dinner stop",
+            "description": "Local cuisine card for a comfortable evening stop with Karakalpak and Uzbek dishes.",
+            "meta": "Good for first-time travelers",
+            "tags": [
+              "Local cuisine",
+              "Dinner",
+              "Family-friendly"
+            ]
+          },
+          {
+            "title": "Bazaar tasting route",
+            "description": "A more casual market-focused food experience for quick tasting and local atmosphere.",
+            "meta": "Best combined with a walking route",
+            "tags": [
+              "Street food",
+              "Quick stop",
+              "Market"
+            ]
+          }
+        ],
+        "tours": [
+          {
+            "title": "Nukus highlights tour",
+            "description": "Museum, market, and culture stops packaged into a smooth city itinerary for a polished demo experience.",
+            "meta": "Half-day or full-day format",
+            "tags": [
+              "Museums",
+              "Culture",
+              "Food"
+            ]
+          },
+          {
+            "title": "Nukus to fortress route",
+            "description": "A city-plus-road-trip concept for visitors who want one urban day and one archaeological extension.",
+            "meta": "Cross-district day trip format",
+            "tags": [
+              "Road trip",
+              "History",
+              "Scenic"
+            ]
+          }
+        ]
+      }
+    },
+    "moynaq": {
+      "name": "Moynaq",
+      "kicker": "Orol dengizi hikoyasi",
+      "summary": "Ekologik tarix, keskin manzaralar va hududning ramziy joylariga qiziqadigan sayohatchilar uchun kuchli manzil.",
+      "overview": "Moynaq kuchli hikoya va vizual ta'sirni birlashtirib, tarixga qiziqqan mehmonlar uchun jozibali manzilga aylanadi.",
+      "bestFor": [
+        "Tarix",
+        "Tabiat",
+        "Fotografiya"
+      ],
+      "metrics": [
+        {
+          "label": "Mos davomiylik",
+          "value": "Yarim kun"
+        },
+        {
+          "label": "Eng mos",
+          "value": "Orol yo'nalishi"
+        },
+        {
+          "label": "Sayohat uslubi",
+          "value": "Hikoya markazidagi tashrif"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Aralkum Guest House",
+            "description": "A small demo stay concept close to the main attraction area, designed for overnight visitors.",
+            "meta": "Simple and location-led",
+            "tags": [
+              "Local stay",
+              "Short trip",
+              "Remote"
+            ]
+          },
+          {
+            "title": "Sea Story Lodge",
+            "description": "An atmospheric lodging concept for travelers coming specifically for the Aral Sea narrative.",
+            "meta": "Best for story-led travel",
+            "tags": [
+              "Scenic",
+              "Quiet",
+              "Photo-friendly"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "Ship cemetery guide",
+            "description": "A local guide concept focused on the historical and environmental story behind the site.",
+            "meta": "Highly visual route",
+            "tags": [
+              "History",
+              "Environment",
+              "Photography"
+            ]
+          },
+          {
+            "title": "Moynaq local companion",
+            "description": "Adds context, logistics support, and local perspective to a remote day trip.",
+            "meta": "Useful for first-time visitors",
+            "tags": [
+              "Local insight",
+              "Transfers",
+              "Flexible"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Regional comfort cafe",
+            "description": "A practical stop for travelers combining the ship cemetery and museum in one route.",
+            "meta": "Good between attractions",
+            "tags": [
+              "Lunch",
+              "Casual",
+              "Traveler-friendly"
+            ]
+          },
+          {
+            "title": "Tea and local snacks",
+            "description": "A lighter food stop concept for short visits and photography-led itineraries.",
+            "meta": "Quick break stop",
+            "tags": [
+              "Tea",
+              "Snacks",
+              "Fast stop"
+            ]
+          }
+        ],
+        "tours": [
+          {
+            "title": "Aral Sea memory route",
+            "description": "Combines the ship cemetery, museum, and historical explanation into one memorable visitor journey.",
+            "meta": "Strong for storytelling demos",
+            "tags": [
+              "History",
+              "Museum",
+              "Landscape"
+            ]
+          },
+          {
+            "title": "Remote photography run",
+            "description": "A more visual route focused on landscape views, dramatic sites, and time for photo stops.",
+            "meta": "Best in clear weather",
+            "tags": [
+              "Photography",
+              "Nature",
+              "Outdoor"
+            ]
+          }
+        ]
+      }
+    },
+    "ellikqala": {
+      "name": "Ellikqala",
+      "kicker": "Qal'a manzaralari",
+      "summary": "Qadimiy qal'alar, cho'l manzaralari va road trip kayfiyati Ellikqalani hududdagi eng yaxshi sarguzasht manzillaridan biriga aylantiradi.",
+      "overview": "Ellikqala arxeologik joylar va ochiq manzaralar atrofida yanada kino uslubidagi marshrut istaydigan sayohatchilar uchun juda mos.",
+      "bestFor": [
+        "Sarguzasht",
+        "Tarix",
+        "Road triplar"
+      ],
+      "metrics": [
+        {
+          "label": "Mos davomiylik",
+          "value": "1 kun"
+        },
+        {
+          "label": "Eng mos",
+          "value": "Qal'alar"
+        },
+        {
+          "label": "Sayohat uslubi",
+          "value": "Manzarali safar"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Fortress Camp Stay",
+            "description": "A road-trip lodging concept designed around early starts and open-air exploration.",
+            "meta": "Adventure-oriented stay",
+            "tags": [
+              "Road trip",
+              "Desert",
+              "Flexible"
+            ]
+          },
+          {
+            "title": "Heritage Base Camp",
+            "description": "A comfortable overnight option for travelers combining several fortress stops in one trip.",
+            "meta": "Best for multi-stop routes",
+            "tags": [
+              "History",
+              "Small group",
+              "Driver support"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "Fortress route guide",
+            "description": "Helps connect archaeological context with the dramatic setting of Ellikqala's historic sites.",
+            "meta": "Ideal for first-time visitors",
+            "tags": [
+              "History",
+              "Archaeology",
+              "Scenic"
+            ]
+          },
+          {
+            "title": "Desert road companion",
+            "description": "A practical guide concept for travelers who want a smoother, safer remote excursion.",
+            "meta": "Useful for day trips",
+            "tags": [
+              "Logistics",
+              "Adventure",
+              "Outdoor"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Roadside lunch stop",
+            "description": "A simple route support option for fortress visitors spending most of the day outdoors.",
+            "meta": "Built for long drives",
+            "tags": [
+              "Lunch",
+              "Road trip",
+              "Quick stop"
+            ]
+          },
+          {
+            "title": "Camp-style dinner",
+            "description": "A more atmospheric experience card for groups who want a stronger desert travel vibe.",
+            "meta": "Demo cultural add-on",
+            "tags": [
+              "Group dining",
+              "Outdoor",
+              "Cultural"
+            ]
+          }
+        ],
+        "tours": [
+          {
+            "title": "Ayaz Kala adventure circuit",
+            "description": "A scenic multi-stop route built around fortress views and time on location.",
+            "meta": "Best for one-day itineraries",
+            "tags": [
+              "Adventure",
+              "Fortresses",
+              "Views"
+            ]
+          },
+          {
+            "title": "Ancient Khorezm route",
+            "description": "A more educational route concept connecting major ruins into one clear visitor experience.",
+            "meta": "History-led itinerary",
+            "tags": [
+              "History",
+              "Culture",
+              "Road trip"
+            ]
+          }
+        ]
+      }
+    },
+    "aral-sea-region": {
+      "name": "Orol dengizi hududi",
+      "kicker": "Keng manzaralar",
+      "summary": "Katta ko'lam izlaydigan sayohatchilar uchun Moynaq va yaqin uzoq nuqtalarni bitta manzil hikoyasiga birlashtiradigan hududiy sayohat.",
+      "overview": "Orol dengizi hududi keskin ekologik tarix, uzoq go'zallik va esda qoladigan vizual hikoyachilik haqida.",
+      "bestFor": [
+        "Tabiat",
+        "Tarix",
+        "Fotografiya"
+      ],
+      "metrics": [
+        {
+          "label": "Mos davomiylik",
+          "value": "1 kun"
+        },
+        {
+          "label": "Eng mos",
+          "value": "Hududiy yo'nalish"
+        },
+        {
+          "label": "Sayohat uslubi",
+          "value": "Uzoq dam olish"
+        }
+      ],
+      "support": {
+        "stays": [
+          {
+            "title": "Regional explorer lodge",
+            "description": "A flexible base concept for visitors combining Moynaq with wider Aral Sea region stops.",
+            "meta": "Designed for broader regional travel",
+            "tags": [
+              "Remote",
+              "Flexible",
+              "Scenic"
+            ]
+          },
+          {
+            "title": "Desert horizon camp",
+            "description": "A more atmospheric stay concept for travelers who want a landscape-driven itinerary.",
+            "meta": "Best for adventurous groups",
+            "tags": [
+              "Outdoor",
+              "Adventure",
+              "Landscape"
+            ]
+          }
+        ],
+        "guides": [
+          {
+            "title": "Regional nature guide",
+            "description": "Adds local context and route confidence to a wider Aral Sea region itinerary.",
+            "meta": "Good for multi-stop exploration",
+            "tags": [
+              "Nature",
+              "Remote",
+              "Regional"
+            ]
+          },
+          {
+            "title": "Photography route host",
+            "description": "Designed for travelers prioritizing dramatic viewpoints and longer visual stops.",
+            "meta": "Photo-friendly pacing",
+            "tags": [
+              "Photography",
+              "Nature",
+              "Scenic"
+            ]
+          }
+        ],
+        "food": [
+          {
+            "title": "Regional rest stop",
+            "description": "A practical meal stop concept for travelers moving between remote sights.",
+            "meta": "Useful on longer routes",
+            "tags": [
+              "Rest stop",
+              "Lunch",
+              "Road trip"
+            ]
+          },
+          {
+            "title": "Campfire-style dinner",
+            "description": "A demo cultural dining experience to make remote travel feel warmer and more memorable.",
+            "meta": "Best for groups",
+            "tags": [
+              "Outdoor",
+              "Cultural",
+              "Evening"
+            ]
+          }
+        ],
+        "tours": {
+          "1": {
+            "meta": "Kengroq mintaqaviy marshrut uchun tuzilgan"
+          }
+        }
+      }
+    }
+  }
+}
