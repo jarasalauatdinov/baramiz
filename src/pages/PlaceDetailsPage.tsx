@@ -240,7 +240,7 @@ export function PlaceDetailsPage() {
                 <Text c="dimmed">
                   {place.description ??
                     t('placeDetails.descriptionFallback', {
-                      defaultValue: 'A strong stop for destination discovery and route planning.',
+                      defaultValue: 'A practical stop for this city route.',
                     })}
                 </Text>
 
@@ -311,27 +311,27 @@ export function PlaceDetailsPage() {
 
           <SimpleGrid cols={{ base: 1, lg: 2 }} spacing="md">
             <Paper withBorder p={{ base: 'lg', md: 'xl' }} radius={publicUi.radius.panel} bg="white">
-              <PageHeaderBlock
-                eyebrow={t('placeDetails.context.eyebrow', { defaultValue: 'Highlights' })}
-                title={t('placeDetails.context.title', { defaultValue: 'At a glance' })}
-                size="section"
-                mb="sm"
-              />
-              <Stack gap={4}>
+              <PageHeaderBlock eyebrow={t('placeDetails.context.eyebrow', { defaultValue: 'Highlights' })} title={t('placeDetails.context.title', { defaultValue: 'Quick highlights' })} size="section" mb="sm" />
+              <Stack gap="xs">
+                <Group gap="xs" wrap="wrap">
+                  <Badge color="sun" variant="light" radius="xl" c="#5a420b">
+                    {formatCategoryLabel(place.category, t)}
+                  </Badge>
+                  <Badge color="forest" variant="light" radius="xl">
+                    {formatMinutesLabel(place.durationMinutes, t)}
+                  </Badge>
+                  {destination ? (
+                    <Badge color="gray" variant="light" radius="xl">
+                      {destination.name}
+                    </Badge>
+                  ) : null}
+                </Group>
                 <Text c="dimmed" size="sm">
-                  - {t('placeDetails.context.point1', { defaultValue: 'Best used with nearby stops in the same city.' })}
+                  {t('placeDetails.context.point1', { defaultValue: 'Best combined with nearby city stops.' })}
                 </Text>
                 <Text c="dimmed" size="sm">
-                  - {t('placeDetails.context.point2', { defaultValue: 'Quick to include in route generation.' })}
+                  {t('placeDetails.context.point2', { defaultValue: 'Easy to include in route generation.' })}
                 </Text>
-                {destination ? (
-                  <Text c="dimmed" size="sm">
-                    - {t('placeDetails.context.point3', {
-                      defaultValue: 'Part of the {{destination}} destination flow.',
-                      destination: destination.name,
-                    })}
-                  </Text>
-                ) : null}
               </Stack>
             </Paper>
 
@@ -381,9 +381,7 @@ export function PlaceDetailsPage() {
           <PageHeaderBlock
             eyebrow={t('placeDetails.related.eyebrow', { defaultValue: 'Nearby' })}
             title={t('placeDetails.related.title', { defaultValue: 'Continue with nearby stops' })}
-            description={t('placeDetails.related.description', {
-              defaultValue: 'Keep this trip in one city flow.',
-            })}
+            description={t('placeDetails.related.description', { defaultValue: 'Keep this trip in one city flow.' })}
             size="section"
             action={
               <Button component={Link} to={relatedPlacesQuery} variant="light" color="forest">
@@ -411,9 +409,7 @@ export function PlaceDetailsPage() {
           <PageHeaderBlock
             eyebrow={t('placeDetails.support.eyebrow', { defaultValue: 'Support' })}
             title={t('placeDetails.support.title', { defaultValue: 'Services and local help' })}
-            description={t('placeDetails.support.description', {
-              defaultValue: 'Open support options if needed.',
-            })}
+            description={t('placeDetails.support.description', { defaultValue: 'Useful support near this place.' })}
             size="section"
           />
 

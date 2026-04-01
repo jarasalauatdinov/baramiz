@@ -1,17 +1,19 @@
-﻿import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
+  Button,
   Group,
   Paper,
+  ScrollArea,
   Select,
   SimpleGrid,
   Skeleton,
+  Stack,
   Text,
   TextInput,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
-import { PageHeaderBlock } from '../components/layout/PageHeaderBlock';
 import { PageSection } from '../components/layout/PageSection';
 import { getCategories } from '../entities/category/api/categoryApi';
 import { getPlaces } from '../entities/place/api/placeApi';
@@ -87,8 +89,8 @@ export function PlacesPage() {
 
   const categoryOptions = useMemo(
     () => [
-      { value: 'all', label: t('common.allCategories') },
-      ...categories.map((category) => ({ value: String(category.id), label: formatCategoryLabel(String(category.id), t) })),
+      { id: 'all', label: t('common.allCategories') },
+      ...categories.map((category) => ({ id: String(category.id), label: formatCategoryLabel(String(category.id), t) })),
     ],
     [categories, t],
   );
@@ -111,76 +113,87 @@ export function PlacesPage() {
   }, [places, search, selectedCategory, selectedCity]);
 
   return (
-    <PageSection py={{ base: 18, md: 30 }}>
-      <PageHeaderBlock
-        eyebrow={t('placesPage.pageEyebrow', { defaultValue: 'Explore' })}
-        title={t('placesPage.pageTitle', {
-          defaultValue: 'Find places fast',
-        })}
-        description={t('placesPage.pageDescription', {
-          defaultValue:
-            'Search by city or category and open place details.',
-        })}
-        size="section"
-      />
+    <PageSection py={{ base: 14, md: 22 }}>
+      <Stack gap="md">
+        <Stack gap={2}>
+          <Text size="xs" fw={700} c="sun.8" tt="uppercase" style={{ letterSpacing: '0.08em' }}>
+            {t('placesPage.pageEyebrow', { defaultValue: 'Explore' })}
+          </Text>
+          <Text fw={800} size="1.45rem" lh={1.12}>
+            {t('placesPage.pageTitle', { defaultValue: 'Explore places' })}
+          </Text>
+        </Stack>
 
-      {hasError ? (
-        <Alert color="yellow" variant="light" mb="lg">
-          {t('placesPage.errors.dataUnavailable')}
-        </Alert>
-      ) : null}
+        {hasError ? (
+          <Alert color="yellow" variant="light">
+            {t('placesPage.errors.dataUnavailable')}
+          </Alert>
+        ) : null}
 
-      <Group justify="space-between" align="flex-end" mb="sm" wrap="wrap">
-        <div>
-          <Text fw={700} fz="1.15rem">
+        <Paper withBorder p="md" radius="24px" bg="white">
+          <Stack gap="sm">
+            <TextInput
+              placeholder={t('placesPage.filters.searchPlaceholder', {
+                defaultValue: 'Search place name',
+              })}
+              value={search}
+              onChange={(event) => setSearch(event.currentTarget.value)}
+              radius="xl"
+            />
+
+            <Group grow>
+              <Select
+                label={t('placesPage.filters.cityLabel', { defaultValue: 'Destination' })}
+                data={cityOptions}
+                value={selectedCity}
+                onChange={(value) => setSelectedCity(value ?? 'all')}
+              />
+            </Group>
+
+            <ScrollArea type="never" offsetScrollbars>
+              <Group gap="xs" wrap="nowrap" pb={4}>
+                {categoryOptions.map((category) => (
+                  <Button
+                    key={category.id}
+                    radius="xl"
+                    size="compact-sm"
+                    variant={selectedCategory === category.id ? 'filled' : 'light'}
+                    color={selectedCategory === category.id ? 'sun' : 'gray'}
+                    c={selectedCategory === category.id ? '#2d2208' : undefined}
+                    onClick={() => setSelectedCategory(category.id)}
+                  >
+                    {category.label}
+                  </Button>
+                ))}
+              </Group>
+            </ScrollArea>
+          </Stack>
+        </Paper>
+
+        {!loading ? (
+          <Text c="dimmed" size="sm">
             {t('placesPage.results.title', { count: filteredPlaces.length })}
           </Text>
-          <Text size="sm" c="dimmed">
-            {t('placesPage.results.description')}
-          </Text>
-        </div>
-      </Group>
+        ) : null}
 
-      <Group mb="md" grow align="flex-end">
-        <TextInput
-          label={t('common.search')}
-          placeholder={t('placesPage.filters.searchPlaceholder', {
-            defaultValue: 'Search place name',
-          })}
-          value={search}
-          onChange={(event) => setSearch(event.currentTarget.value)}
-        />
-        <Select
-          label={t('placesPage.filters.cityLabel', { defaultValue: 'Destination' })}
-          data={cityOptions}
-          value={selectedCity}
-          onChange={(value) => setSelectedCity(value ?? 'all')}
-        />
-        <Select
-          label={t('placesPage.filters.categoryLabel', { defaultValue: 'Category' })}
-          data={categoryOptions}
-          value={selectedCategory}
-          onChange={(value) => setSelectedCategory(value ?? 'all')}
-        />
-      </Group>
-
-      {loading ? (
-        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <Skeleton key={index} h={420} radius="32px" />
-          ))}
-        </SimpleGrid>
-      ) : filteredPlaces.length > 0 ? (
-        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
-          {filteredPlaces.map((place) => (
-            <PlaceCard key={String(place.id)} place={place} variant="immersive" />
-          ))}
-        </SimpleGrid>
-      ) : (
-        <Paper withBorder p="xl" radius="32px" bg="white">
-          <Text c="dimmed">{t('placesPage.results.empty')}</Text>
-        </Paper>
-      )}
+        {loading ? (
+          <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <Skeleton key={index} h={420} radius="32px" />
+            ))}
+          </SimpleGrid>
+        ) : filteredPlaces.length > 0 ? (
+          <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
+            {filteredPlaces.map((place) => (
+              <PlaceCard key={String(place.id)} place={place} variant="immersive" />
+            ))}
+          </SimpleGrid>
+        ) : (
+          <Paper withBorder p="xl" radius="32px" bg="white">
+            <Text c="dimmed">{t('placesPage.results.empty')}</Text>
+          </Paper>
+        )}
+      </Stack>
     </PageSection>
   );
 }

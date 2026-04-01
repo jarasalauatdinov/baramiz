@@ -247,7 +247,7 @@ export function RoutePlanningForm({
               <Text fw={700}>{t('routeGenerator.summary.title', { defaultValue: 'Planning summary' })}</Text>
               <Text c="dimmed" style={{ lineHeight: 1.68 }}>
                 {t('routeGenerator.summary.description', {
-                  defaultValue: 'The system uses your route priorities to shape stop order, route density, and travel logic.',
+                  defaultValue: 'Review your selections before generating route.',
                 })}
               </Text>
               <Stack gap={8} mt="sm">
@@ -258,22 +258,6 @@ export function RoutePlanningForm({
                 <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.budget', { defaultValue: 'Budget' })}:</Text> {budgetLevel ? getBudgetLevelLabel(budgetLevel, t) : '-'}</Text>
                 <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.duration', { defaultValue: 'Duration' })}:</Text> {getDurationLabel(duration, t)}</Text>
                 <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.pace', { defaultValue: 'Pace' })}:</Text> {getTravelPaceLabel(travelPace, t)}</Text>
-              </Stack>
-            </Stack>
-          </Paper>
-
-          <Paper withBorder p={{ base: 'lg', md: 'xl' }} radius="26px" bg="white">
-            <Stack gap="sm">
-              <Text fw={700}>{t('routeGenerator.output.title', { defaultValue: 'What the result will include' })}</Text>
-              <Text c="dimmed" style={{ lineHeight: 1.68 }}>
-                {t('routeGenerator.output.description', {
-                  defaultValue: 'The result screen gives a clear route plan.',
-                })}
-              </Text>
-              <Stack gap={8} mt="sm">
-                <Text size="sm">- {t('routeGenerator.output.item1', { defaultValue: 'Stop-by-stop timeline with reasons.' })}</Text>
-                <Text size="sm">- {t('routeGenerator.output.item2', { defaultValue: 'Map-ready stops when coordinates exist.' })}</Text>
-                <Text size="sm">- {t('routeGenerator.output.item3', { defaultValue: 'Quick links to places and support.' })}</Text>
               </Stack>
             </Stack>
           </Paper>

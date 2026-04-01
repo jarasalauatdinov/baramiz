@@ -132,15 +132,12 @@ export function RouteGeneratorPage() {
   };
 
   return (
-    <PageSection py={{ base: 18, md: 28 }}>
+    <PageSection py={{ base: 14, md: 22 }}>
       <Container size="xl">
         <PageHeaderBlock
           eyebrow={t('routeGenerator.form.eyebrow')}
           title={t('routeGenerator.form.title')}
-          description={t('routeGenerator.form.description', {
-            defaultValue:
-              'Choose city and preferences, then generate a practical route.',
-          })}
+          description={t('routeGenerator.form.description')}
           size="section"
         />
 
@@ -182,11 +179,11 @@ export function RouteGeneratorPage() {
 
           <TravelAssistantPanel
             title={t('routeGenerator.assistant.title', {
-              defaultValue: 'Need a quick planning answer?',
+              defaultValue: 'Need a quick answer?',
             })}
             description={t('routeGenerator.assistant.description', {
               defaultValue:
-                'Ask about cities, timing, or what fits your interests. Messages go only to the Baramiz backend assistant.',
+                'Ask about city, timing, or interests. Messages go only to Baramiz backend.',
             })}
             placeholder={t('routeGenerator.assistant.placeholder', {
               defaultValue: 'Ask about a city, timing, or what kind of route fits best...',
@@ -205,7 +202,7 @@ export function RouteGeneratorPage() {
             <Text c="dimmed" mt={6} size="sm">
               {t('routeGenerator.integrations.description', {
                 defaultValue:
-                  'Backend route endpoint is used first. Live place data is used only as fallback.',
+                  'Backend route API is used first. Local fallback is only for failures.',
               })}
             </Text>
           </Paper>

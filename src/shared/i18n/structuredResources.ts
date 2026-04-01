@@ -731,6 +731,7 @@ Object.assign(enPages, {
     },
   },
   appHome: {
+    greeting: 'Good to see you',
     hero: {
       eyebrow: 'Baramiz app',
       title: 'Find places fast and turn them into a route',
@@ -749,6 +750,14 @@ Object.assign(enPages, {
     },
     featured: {
       title: 'Featured places',
+    },
+    destinations: {
+      title: 'Top destinations',
+    },
+    support: {
+      servicesEyebrow: 'Support',
+      servicesTitle: 'Local support nearby',
+      servicesDescription: '{{services}} services and {{guides}} guides available.',
     },
   },
 });
@@ -798,6 +807,7 @@ Object.assign(uzPages, {
     },
   },
   appHome: {
+    greeting: 'Sizni yana ko‘rganimizdan xursandmiz',
     hero: {
       eyebrow: 'Baramiz ilovasi',
       title: 'Joylarni tez toping va marshrutga aylantiring',
@@ -816,6 +826,14 @@ Object.assign(uzPages, {
     },
     featured: {
       title: 'Tavsiya etilgan joylar',
+    },
+    destinations: {
+      title: 'Top manzillar',
+    },
+    support: {
+      servicesEyebrow: 'Yordam',
+      servicesTitle: 'Mahalliy yordam yaqin',
+      servicesDescription: '{{services}} ta xizmat va {{guides}} ta gid mavjud.',
     },
   },
 });
@@ -865,6 +883,7 @@ Object.assign(ruPages, {
     },
   },
   appHome: {
+    greeting: 'Рады снова вас видеть',
     hero: {
       eyebrow: 'Приложение Baramiz',
       title: 'Быстро находите места и собирайте маршрут',
@@ -883,6 +902,14 @@ Object.assign(ruPages, {
     },
     featured: {
       title: 'Рекомендуемые места',
+    },
+    destinations: {
+      title: 'Топ-направления',
+    },
+    support: {
+      servicesEyebrow: 'Поддержка',
+      servicesTitle: 'Локальная помощь рядом',
+      servicesDescription: '{{services}} сервисов и {{guides}} гидов доступны.',
     },
   },
 });
@@ -932,6 +959,7 @@ Object.assign(kaaPages, {
     },
   },
   appHome: {
+    greeting: 'Sizdi qayta kórgenimizge quwanamız',
     hero: {
       eyebrow: 'Baramiz ilovasi',
       title: 'Orinlerdi tez tabıń ham marshrutqa aylantırıń',
@@ -950,6 +978,14 @@ Object.assign(kaaPages, {
     },
     featured: {
       title: 'Usınılǵan orinler',
+    },
+    destinations: {
+      title: 'Top manziller',
+    },
+    support: {
+      servicesEyebrow: 'Qollaw',
+      servicesTitle: 'Lokal qollaw jaqın',
+      servicesDescription: '{{services}} xızmet hám {{guides}} gid bar.',
     },
   },
 });

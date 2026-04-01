@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
+  Avatar,
   Badge,
   Button,
   Group,
   Paper,
+  ScrollArea,
   Select,
   SimpleGrid,
   Skeleton,
@@ -15,8 +17,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { DestinationImage } from '../components/DestinationImage';
-import { PageSection } from '../components/layout/PageSection';
 import { PlaceCard } from '../components/PlaceCard';
+import { PageSection } from '../components/layout/PageSection';
 import { getLocalizedDestinations } from '../data/destinations';
 import { guideProfiles } from '../data/guides';
 import { getLocalizedServiceSections } from '../data/services';
@@ -92,10 +94,7 @@ export function AppHomePage() {
 
   const categoryOptions = useMemo<CategoryOption[]>(
     () => [
-      {
-        id: ALL_CATEGORY,
-        label: t('pages.appHome.categories.all', { defaultValue: 'All categories' }),
-      },
+      { id: ALL_CATEGORY, label: t('pages.appHome.categories.all') },
       ...categories.map((category) => ({
         id: String(category.id),
         label: formatCategoryLabel(String(category.id), t),
@@ -127,7 +126,7 @@ export function AppHomePage() {
       .slice(0, 4);
   }, [featuredPlaces, search, selectedCategory]);
 
-  const featuredDestinations = useMemo(() => destinations.slice(0, 3), [destinations]);
+  const highlightedDestinations = useMemo(() => destinations.slice(0, 3), [destinations]);
   const localizedDate = useMemo(
     () =>
       new Date().toLocaleDateString(i18n.resolvedLanguage ?? 'en', {
@@ -158,61 +157,104 @@ export function AppHomePage() {
   };
 
   return (
-    <PageSection py={{ base: 16, md: 24 }}>
-      <Stack gap="lg">
-        <Group justify="space-between" align="center">
+    <PageSection py={{ base: 14, md: 20 }}>
+      <Stack gap="md">
+        <Group justify="space-between" align="center" wrap="nowrap">
           <Stack gap={2}>
             <Text size="sm" c="dimmed">
-              {t('pages.appHome.greeting', { defaultValue: 'Good to see you' })}
+              {t('pages.appHome.greeting')}
             </Text>
-            <Text fw={800} size="1.2rem" lh={1.15}>
+            <Text fw={800} size="1.22rem" lh={1.12}>
               {t('common.appName')}
             </Text>
           </Stack>
-          <Badge variant="light" color="sun" radius="xl" c="#5a420b">
-            {localizedDate}
-          </Badge>
+          <Group gap="xs" wrap="nowrap">
+            <Badge variant="light" color="sun" radius="xl" c="#5a420b">
+              {localizedDate}
+            </Badge>
+            <Avatar radius="xl" size={34} color="dune" c="#5f3824">
+              BA
+            </Avatar>
+          </Group>
         </Group>
+
+        <TextInput
+          placeholder={t('pages.appHome.filters.searchPlaceholder')}
+          value={search}
+          onChange={(event) => setSearch(event.currentTarget.value)}
+          radius="xl"
+          size="md"
+          styles={{
+            input: {
+              background: '#fff',
+              borderColor: 'rgba(187, 145, 109, 0.28)',
+              boxShadow: '0 10px 24px rgba(61, 46, 30, 0.08)',
+            },
+          }}
+        />
 
         <Paper
           withBorder
-          p={{ base: 'md', md: 'xl' }}
-          radius="30px"
+          radius={publicUi.radius.hero}
+          p={0}
           style={{
-            borderColor: 'rgba(219, 189, 139, 0.32)',
-            background:
-              'linear-gradient(140deg, rgba(255,248,233,0.98), rgba(255,254,249,0.98))',
-            boxShadow: '0 16px 36px rgba(59, 45, 24, 0.08)',
+            borderColor: 'rgba(193, 148, 117, 0.28)',
+            overflow: 'hidden',
+            boxShadow: publicUi.shadow.hero,
           }}
         >
-          <Stack gap="md">
-            <Badge color="sun" variant="light" radius="xl" c="#5a420b" w="fit-content">
-              {t('pages.appHome.hero.eyebrow', { defaultValue: 'Route planner' })}
-            </Badge>
-            <Text fw={800} size="clamp(1.4rem, 6vw, 1.95rem)" lh={1.08}>
-              {t('pages.appHome.hero.title', {
-                defaultValue: 'Build a practical route in a few taps',
-              })}
-            </Text>
-            <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="sm">
-              <Select
-                label={t('common.destination')}
-                data={destinationOptions}
-                value={selectedDestination}
-                onChange={(value) => setSelectedDestination(value ?? 'nukus')}
-              />
-              <Button
-                color="sun"
-                c="#2d2208"
-                onClick={navigateToRouteBuilder}
-                mt={{ base: 0, sm: 24 }}
-                radius="xl"
-              >
-                {t('common.generateRoute')}
-              </Button>
-            </SimpleGrid>
+          <DestinationImage
+            src={selectedDestinationData?.heroImage}
+            name={selectedDestinationData?.name ?? t('common.appName')}
+            city={selectedDestinationData?.city}
+            category={selectedDestinationData?.heroCategory}
+            height={210}
+            radius={0}
+          >
+            <div style={{ position: 'absolute', inset: 16, zIndex: 1, display: 'grid', alignContent: 'space-between' }}>
+              <Badge color="sun" variant="light" radius="xl" c="#5a420b" w="fit-content">
+                {t('pages.appHome.hero.eyebrow')}
+              </Badge>
+              <Stack gap={4}>
+                <Text fw={800} c="white" size="clamp(1.4rem, 6vw, 1.95rem)" lh={1.05}>
+                  {t('pages.appHome.hero.title')}
+                </Text>
+                <Text size="sm" c="rgba(255,255,255,0.88)">
+                  {t('pages.appHome.hero.description')}
+                </Text>
+              </Stack>
+            </div>
+          </DestinationImage>
+          <Stack p="md" gap="sm" bg="#fffdf8">
+            <Select
+              label={t('common.destination')}
+              data={destinationOptions}
+              value={selectedDestination}
+              onChange={(value) => setSelectedDestination(value ?? 'nukus')}
+            />
+            <Button color="sun" c="#2d2208" radius="xl" onClick={navigateToRouteBuilder}>
+              {t('common.generateRoute')}
+            </Button>
           </Stack>
         </Paper>
+
+        <ScrollArea type="never" offsetScrollbars>
+          <Group gap="xs" wrap="nowrap" pb={4}>
+            {categoryOptions.map((category) => (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.id ? 'filled' : 'light'}
+                color={selectedCategory === category.id ? 'sun' : 'gray'}
+                c={selectedCategory === category.id ? '#2d2208' : undefined}
+                radius="xl"
+                size="compact-sm"
+                onClick={() => setSelectedCategory(category.id)}
+              >
+                {category.label}
+              </Button>
+            ))}
+          </Group>
+        </ScrollArea>
 
         {hasDataError ? (
           <Alert color="yellow" variant="light">
@@ -220,38 +262,10 @@ export function AppHomePage() {
           </Alert>
         ) : null}
 
-        <Paper withBorder p="md" radius="24px" bg="white">
-          <Stack gap="sm">
-            <TextInput
-              placeholder={t('pages.appHome.filters.searchPlaceholder', {
-                defaultValue: 'Search museums, nature, food...',
-              })}
-              value={search}
-              onChange={(event) => setSearch(event.currentTarget.value)}
-              radius="xl"
-            />
-            <Group gap="xs" wrap="wrap">
-              {categoryOptions.slice(0, 8).map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? 'filled' : 'light'}
-                  color={selectedCategory === category.id ? 'sun' : 'gray'}
-                  c={selectedCategory === category.id ? '#2d2208' : undefined}
-                  radius="xl"
-                  size="compact-sm"
-                  onClick={() => setSelectedCategory(category.id)}
-                >
-                  {category.label}
-                </Button>
-              ))}
-            </Group>
-          </Stack>
-        </Paper>
-
-        <Stack gap="sm">
-          <Group justify="space-between" align="center">
+        <Stack gap="xs">
+          <Group justify="space-between" align="center" wrap="nowrap">
             <Text fw={800} size="lg">
-              {t('pages.appHome.featured.title', { defaultValue: 'Featured places' })}
+              {t('pages.appHome.featured.title')}
             </Text>
             <Button variant="subtle" component={Link} to={routePaths.appExplore}>
               {t('common.viewAllPlaces')}
@@ -261,7 +275,7 @@ export function AppHomePage() {
           {loading ? (
             <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
               {Array.from({ length: 2 }).map((_, index) => (
-                <Skeleton key={index} h={360} radius="24px" />
+                <Skeleton key={index} h={352} radius="24px" />
               ))}
             </SimpleGrid>
           ) : visiblePlaces.length > 0 ? (
@@ -277,23 +291,24 @@ export function AppHomePage() {
           )}
         </Stack>
 
-        <Stack gap="sm">
-          <Group justify="space-between" align="center">
+        <Stack gap="xs">
+          <Group justify="space-between" align="center" wrap="nowrap">
             <Text fw={800} size="lg">
-              {t('pages.appHome.destinations.title', { defaultValue: 'Top destinations' })}
+              {t('pages.appHome.destinations.title')}
             </Text>
             <Button variant="subtle" component={Link} to={routePaths.appDestinations}>
-              {t('common.viewAllDestinations', { defaultValue: 'All destinations' })}
+              {t('common.browseDestinations')}
             </Button>
           </Group>
+
           <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="sm">
-            {featuredDestinations.map((destination) => (
+            {highlightedDestinations.map((destination) => (
               <Paper
                 key={destination.slug}
                 component={Link}
                 to={routePaths.appDestinationDetails(destination.slug)}
                 withBorder
-                radius="24px"
+                radius="22px"
                 p={0}
                 style={{
                   overflow: 'hidden',
@@ -311,7 +326,7 @@ export function AppHomePage() {
                   height="auto"
                   radius={0}
                 >
-                  <div style={{ position: 'absolute', inset: 'auto 14px 14px 14px', zIndex: 1 }}>
+                  <div style={{ position: 'absolute', inset: 'auto 12px 12px 12px', zIndex: 1 }}>
                     <Text size="xs" fw={700} c="rgba(255,255,255,0.88)" tt="uppercase">
                       {destination.city}
                     </Text>
@@ -325,47 +340,25 @@ export function AppHomePage() {
           </SimpleGrid>
         </Stack>
 
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-          <Paper withBorder radius="24px" p="lg" bg="white">
-            <Stack gap={6}>
+        <Paper withBorder radius="24px" p="lg" bg="white">
+          <Group justify="space-between" align="center" wrap="nowrap" gap="sm">
+            <Stack gap={2}>
               <Text size="xs" fw={700} c="sun.8" tt="uppercase">
-                {t('pages.appHome.support.servicesEyebrow', { defaultValue: 'Services' })}
+                {t('pages.appHome.support.servicesEyebrow')}
               </Text>
-              <Text fw={800} size="lg">
-                {t('pages.appHome.support.servicesTitle', { defaultValue: 'Local travel support' })}
-              </Text>
+              <Text fw={800}>{t('pages.appHome.support.servicesTitle')}</Text>
               <Text c="dimmed" size="sm">
                 {t('pages.appHome.support.servicesDescription', {
-                  defaultValue: '{{count}} options for stays, transport, tours, and tickets.',
-                  count: serviceCount,
+                  services: serviceCount,
+                  guides: guideProfiles.length,
                 })}
               </Text>
-              <Button component={Link} to={routePaths.appServices} variant="light" color="forest" radius="xl" mt="xs">
-                {t('routeResult.actions.exploreServices', { defaultValue: 'Explore services' })}
-              </Button>
             </Stack>
-          </Paper>
-
-          <Paper withBorder radius="24px" p="lg" bg="white">
-            <Stack gap={6}>
-              <Text size="xs" fw={700} c="sun.8" tt="uppercase">
-                {t('pages.appHome.support.guidesEyebrow', { defaultValue: 'Guides' })}
-              </Text>
-              <Text fw={800} size="lg">
-                {t('pages.appHome.support.guidesTitle', { defaultValue: 'Local experts' })}
-              </Text>
-              <Text c="dimmed" size="sm">
-                {t('pages.appHome.support.guidesDescription', {
-                  defaultValue: '{{count}} guides available across key cities.',
-                  count: guideProfiles.length,
-                })}
-              </Text>
-              <Button component={Link} to={routePaths.appGuides} variant="light" color="forest" radius="xl" mt="xs">
-                {t('layout.navigation.guides', { defaultValue: 'Guides' })}
-              </Button>
-            </Stack>
-          </Paper>
-        </SimpleGrid>
+            <Button component={Link} to={routePaths.appServices} radius="xl" color="forest" variant="light">
+              {t('layout.navigation.services')}
+            </Button>
+          </Group>
+        </Paper>
       </Stack>
     </PageSection>
   );

@@ -6,24 +6,24 @@ export const publicUi = {
     cardInner: '18px',
   },
   border: {
-    default: 'rgba(38, 49, 42, 0.10)',
-    soft: 'rgba(38, 49, 42, 0.07)',
-    accent: 'rgba(229, 182, 47, 0.20)',
+    default: 'rgba(94, 72, 53, 0.12)',
+    soft: 'rgba(94, 72, 53, 0.08)',
+    accent: 'rgba(207, 109, 69, 0.22)',
   },
   shadow: {
-    hero: '0 24px 56px rgba(52, 40, 18, 0.10)',
-    card: '0 18px 40px rgba(45, 36, 17, 0.07)',
-    cardSoft: '0 12px 26px rgba(30, 39, 34, 0.07)',
+    hero: '0 24px 56px rgba(61, 43, 28, 0.16)',
+    card: '0 18px 40px rgba(54, 39, 26, 0.1)',
+    cardSoft: '0 12px 26px rgba(60, 44, 31, 0.1)',
   },
   background: {
     hero:
-      'linear-gradient(140deg, rgba(255,252,246,0.99), rgba(243,247,239,0.95) 58%, rgba(217,171,98,0.12))',
+      'linear-gradient(140deg, rgba(255,250,242,0.99), rgba(248,240,230,0.95) 58%, rgba(207,109,69,0.16))',
     panel:
-      'linear-gradient(145deg, rgba(255,255,255,0.99), rgba(249,251,247,0.95))',
+      'linear-gradient(145deg, rgba(255,255,255,0.99), rgba(250,245,238,0.96))',
     accent:
-      'linear-gradient(180deg, rgba(255,248,228,0.92), rgba(255,255,255,0.98))',
+      'linear-gradient(180deg, rgba(252,236,218,0.92), rgba(255,255,255,0.98))',
     surface: '#ffffff',
-    surfaceSoft: '#fffdf8',
-    surfaceMuted: '#faf6ee',
+    surfaceSoft: '#fdf8ef',
+    surfaceMuted: '#f8efe3',
   },
 } as const;

@@ -9,7 +9,7 @@ import '@mantine/notifications/styles.css';
 import './styles.css';
 
 const theme = createTheme({
-  primaryColor: 'sun',
+  primaryColor: 'terracotta',
   defaultRadius: 'lg',
   fontFamily: '"Manrope", "Segoe UI", sans-serif',
   headings: {
@@ -17,6 +17,18 @@ const theme = createTheme({
     fontWeight: '700',
   },
   colors: {
+    terracotta: [
+      '#fdf4ef',
+      '#f9e5d9',
+      '#f2c7ad',
+      '#e9a683',
+      '#de825d',
+      '#cf6d45',
+      '#b75e3a',
+      '#9b4f31',
+      '#7d3f27',
+      '#622f1d',
+    ],
     forest: [
       '#edf3ef',
       '#d7e6dc',
@@ -57,7 +69,7 @@ const theme = createTheme({
   components: {
     Button: {
       defaultProps: {
-        radius: 'md',
+        radius: 'xl',
       },
     },
     Paper: {

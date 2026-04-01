@@ -291,7 +291,7 @@ export function RouteResultPage() {
   }
 
   return (
-    <Container size="xl" py={{ base: 18, md: 28 }}>
+    <Container size="xl" py={{ base: 14, md: 22 }}>
       <Paper withBorder radius="30px" p={{ base: 'xl', md: '2rem' }} bg="white" mb="lg">
         <Stack gap="lg">
           <Group justify="space-between" align="flex-start" wrap="wrap">
@@ -438,7 +438,7 @@ export function RouteResultPage() {
                             <Text size="sm" c="dimmed">
                               {stop.city}
                             </Text>
-                            <Text size="sm" c="dimmed" style={{ lineHeight: 1.6 }}>
+                            <Text size="sm" c="dimmed" style={{ lineHeight: 1.6 }} lineClamp={2}>
                               {stop.description}
                             </Text>
                             <Text size="sm" fw={600} style={{ lineHeight: 1.6 }}>
@@ -606,7 +606,7 @@ export function RouteResultPage() {
         <RouteResultPanel
           title={t('routeResult.tips.sectionTitle', { defaultValue: 'Travel tips for this route' })}
           description={t('routeResult.tips.sectionDescription', {
-            defaultValue: 'Short practical notes for this route.',
+            defaultValue: 'Short practical notes.',
           })}
         >
           <RouteTravelTips tips={travelTips} />
@@ -615,7 +615,7 @@ export function RouteResultPage() {
         <RouteResultPanel
           title={t('routeResult.support.title', { defaultValue: 'Useful support around this route' })}
           description={t('routeResult.support.description', {
-            defaultValue: 'Optional services and guides for this route.',
+            defaultValue: 'Optional services and guides.',
           })}
         >
           <Stack gap="md">
@@ -659,11 +659,11 @@ export function RouteResultPage() {
       <Box mt="lg">
         <TravelAssistantPanel
           title={t('routeResult.assistant.title', {
-            defaultValue: 'Need to adjust this route?',
+            defaultValue: 'Need route adjustments?',
           })}
           description={t('routeResult.assistant.description', {
             defaultValue:
-              'Ask to shorten, reorder, or improve this route. Sent only to Baramiz backend.',
+              'Ask to shorten, reorder, or improve this route. Sent only to backend.',
           })}
           placeholder={t('routeResult.assistant.placeholder', {
             defaultValue: 'Ask how to shorten, reorder, or improve this route...',

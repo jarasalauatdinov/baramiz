@@ -2,21 +2,21 @@
 
 :root {
   font-family: "Manrope", "Segoe UI", sans-serif;
-  color: #223229;
-  background-color: #f8f4ec;
-  --page-bg: #f8f4ec;
+  color: #2f2a24;
+  background-color: #f8f1e6;
+  --page-bg: #f8f1e6;
   --surface: #ffffff;
-  --surface-soft: #fdf8ef;
-  --surface-muted: #f3ede2;
-  --text-strong: #223229;
-  --text-muted: #6b7166;
-  --brand-primary: #2f5a45;
-  --brand-primary-deep: #1d382b;
-  --brand-accent: #e5b62f;
-  --brand-accent-soft: #fff4cf;
-  --brand-line: rgba(44, 54, 46, 0.1);
-  --shadow-soft: 0 18px 40px rgba(51, 43, 22, 0.07);
-  --focus-ring: 0 0 0 3px rgba(229, 182, 47, 0.35);
+  --surface-soft: #fdf7ed;
+  --surface-muted: #f3e8d9;
+  --text-strong: #2f2a24;
+  --text-muted: #75695c;
+  --brand-primary: #cf6d45;
+  --brand-primary-deep: #9b4f31;
+  --brand-accent: #e2ad56;
+  --brand-accent-soft: #fef1d8;
+  --brand-line: rgba(92, 69, 52, 0.12);
+  --shadow-soft: 0 18px 40px rgba(70, 53, 39, 0.11);
+  --focus-ring: 0 0 0 3px rgba(207, 109, 69, 0.28);
   --motion-fast: 140ms ease;
   --motion-base: 220ms ease;
 }
@@ -33,7 +33,7 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text-strong);
-  background: linear-gradient(180deg, #fbf8f2 0%, #f6f1e6 100%);
+  background: linear-gradient(180deg, #fcf8f2 0%, #f5ede1 100%);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -81,5 +81,5 @@ textarea:focus-visible {
 }
 
 ::selection {
-  background: rgba(229, 182, 47, 0.28);
+  background: rgba(226, 173, 86, 0.32);
 }
