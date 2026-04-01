@@ -1,9 +1,11 @@
 import { Badge, Button, Group, Paper, Stack, Text, Title } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import type { DestinationConfig } from '../data/destinations';
-import { DestinationImage } from './DestinationImage';
+import type { DestinationConfig } from '../entities/destination/model/types';
+import { routePaths } from '../router/paths';
 import { publicUi } from '../shared/config/publicUi';
+import { formatCategoryLabel, formatMinutesLabel } from '../utils/placeArtwork';
+import { DestinationImage } from './DestinationImage';
 
 interface DestinationCardProps {
   destination: DestinationConfig;
@@ -27,9 +29,9 @@ export function DestinationCard({ destination, placeCount }: DestinationCardProp
       <DestinationImage
         src={destination.heroImage}
         name={destination.name}
-        city={destination.name}
+        city={destination.city}
         category={destination.heroCategory}
-        aspectRatio="16 / 10"
+        aspectRatio="16 / 11"
         height="auto"
         radius={0}
       >
@@ -37,35 +39,65 @@ export function DestinationCard({ destination, placeCount }: DestinationCardProp
           <Text size="xs" fw={700} style={{ letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.9 }}>
             {destination.kicker}
           </Text>
-          <Title order={3} style={{ marginTop: 6, color: 'white' }}>
+          <Title order={3} style={{ marginTop: 6, color: 'white', lineHeight: 1.08 }}>
             {destination.name}
           </Title>
+          <Text size="sm" mt={6} c="rgba(255,255,255,0.9)">
+            {destination.city}, {destination.region}
+          </Text>
         </div>
       </DestinationImage>
 
-      <Stack p="xl" gap="md">
-        <Text c="dimmed" style={{ lineHeight: 1.72 }}>
+      <Stack p={{ base: 'md', md: 'xl' }} gap="md">
+        <Group gap="xs" wrap="wrap">
+          <Badge color="forest" variant="light" radius="xl">
+            {formatCategoryLabel(destination.category, t)}
+          </Badge>
+          <Badge color="sun" variant="light" radius="xl" c="#5a420b">
+            {formatMinutesLabel(destination.estimatedVisitMinutes, t)}
+          </Badge>
+          <Badge color="gray" variant="light" radius="xl">
+            {destination.bestSeason}
+          </Badge>
+        </Group>
+
+        <Text c="dimmed" size="sm" style={{ lineHeight: 1.72 }}>
           {destination.summary}
         </Text>
 
-        <Group gap="xs">
-          {destination.bestFor.map((item) => (
+        <Group gap="xs" wrap="wrap">
+          {destination.tags.map((item) => (
             <Badge key={item} color="sun" variant="light" radius="xl" c="#5a420b">
               {item}
             </Badge>
           ))}
         </Group>
 
-        <Group justify="space-between" align="center" wrap="wrap">
-          <Text fw={700} c="forest.8">
-            {typeof placeCount === 'number'
-              ? t('common.attractionsCount', { count: placeCount })
-              : t('common.curatedDestination')}
-          </Text>
-          <Button component={Link} to={`/destinations/${destination.slug}`} color="sun" c="#2d2208">
+        <Stack gap="sm">
+          <div>
+            <Text fw={700} size="sm" c="forest.8">
+              {typeof placeCount === 'number'
+                ? t('common.attractionsCount', { count: placeCount })
+                : t('common.curatedDestination')}
+            </Text>
+            <Text size="sm" c="dimmed" mt={4}>
+              {t('destinationsPage.card.nearbyPoints', {
+                defaultValue: '{{count}} nearby points ready for planning',
+                count: destination.nearbyPoints.length,
+              })}
+            </Text>
+          </div>
+
+          <Button
+            component={Link}
+            to={routePaths.appDestinationDetails(destination.slug)}
+            color="sun"
+            c="#2d2208"
+            fullWidth
+          >
             {t('common.exploreDestination')}
           </Button>
-        </Group>
+        </Stack>
       </Stack>
     </Paper>
   );

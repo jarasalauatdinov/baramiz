@@ -1,28 +1,29 @@
 export const publicUi = {
   radius: {
-    hero: '34px',
-    panel: '28px',
+    hero: '32px',
+    panel: '26px',
     card: '24px',
-    cardInner: '20px',
+    cardInner: '18px',
   },
   border: {
-    default: 'rgba(44, 54, 46, 0.1)',
-    soft: 'rgba(44, 54, 46, 0.08)',
-    accent: 'rgba(229, 182, 47, 0.24)',
+    default: 'rgba(38, 49, 42, 0.10)',
+    soft: 'rgba(38, 49, 42, 0.07)',
+    accent: 'rgba(229, 182, 47, 0.20)',
   },
   shadow: {
-    hero: '0 26px 60px rgba(54, 41, 17, 0.12)',
-    card: '0 18px 42px rgba(43, 34, 16, 0.07)',
-    cardSoft: '0 14px 28px rgba(35, 43, 38, 0.08)',
+    hero: '0 24px 56px rgba(52, 40, 18, 0.10)',
+    card: '0 18px 40px rgba(45, 36, 17, 0.07)',
+    cardSoft: '0 12px 26px rgba(30, 39, 34, 0.07)',
   },
   background: {
     hero:
-      'linear-gradient(140deg, rgba(255,252,245,0.98), rgba(235,240,229,0.94) 60%, rgba(217,171,98,0.14))',
+      'linear-gradient(140deg, rgba(255,252,246,0.99), rgba(243,247,239,0.95) 58%, rgba(217,171,98,0.12))',
     panel:
-      'linear-gradient(145deg, rgba(255,255,255,0.98), rgba(246,251,246,0.92))',
+      'linear-gradient(145deg, rgba(255,255,255,0.99), rgba(249,251,247,0.95))',
     accent:
-      'linear-gradient(180deg, rgba(255,247,223,0.92), rgba(255,255,255,0.98))',
+      'linear-gradient(180deg, rgba(255,248,228,0.92), rgba(255,255,255,0.98))',
     surface: '#ffffff',
     surfaceSoft: '#fffdf8',
+    surfaceMuted: '#faf6ee',
   },
 } as const;

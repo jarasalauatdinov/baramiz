@@ -3,6 +3,10 @@ import type { AdminPlaceRecord } from '../types/admin';
 
 const ADMIN_PLACES_STORAGE_KEY = 'baramiz-admin-places';
 const ADMIN_DELETED_STORAGE_KEY = 'baramiz-admin-deleted-place-ids';
+const FALLBACK_PLACE_COORDINATES = {
+  lat: 42.4602,
+  lng: 59.6166,
+} as const;
 
 const isBrowser = typeof window !== 'undefined';
 
@@ -128,14 +132,16 @@ const pickPrimaryText = (record: AdminPlaceRecord, field: 'name' | 'description'
 const toPublicPlace = (record: AdminPlaceRecord): Place => ({
   id: record.id,
   name: pickPrimaryText(record, 'name') || 'Untitled place',
-  description: pickPrimaryText(record, 'description') || undefined,
-  categoryId: record.category,
-  categoryName: record.category,
-  city: record.city || undefined,
-  region: record.region || undefined,
-  imageUrl: record.image || undefined,
+  description: pickPrimaryText(record, 'description') || '',
+  category: record.category,
+  city: record.city || '',
+  region: record.region || '',
+  imageUrl: record.image || '',
   featured: record.featured,
-  coordinates: record.coordinates,
+  coordinates: {
+    lat: record.coordinates.lat ?? FALLBACK_PLACE_COORDINATES.lat,
+    lng: record.coordinates.lng ?? FALLBACK_PLACE_COORDINATES.lng,
+  },
   durationMinutes: record.durationMinutes,
 });
 
@@ -162,11 +168,16 @@ export const buildAdminRecordFromPlace = (place: Place): AdminPlaceRecord => ({
   id: String(place.id),
   city: place.city ?? '',
   region: place.region ?? '',
-  category: String(place.categoryId ?? place.categoryName ?? ''),
+  category: String(place.category ?? ''),
   image: place.imageUrl ?? '',
   durationMinutes: place.durationMinutes ?? 60,
   featured: place.featured === true,
-  coordinates: place.coordinates ?? {},
+  coordinates: place.coordinates
+    ? {
+        lat: place.coordinates.lat,
+        lng: place.coordinates.lng,
+      }
+    : {},
   name_uz: place.name,
   description_uz: place.description ?? '',
   name_kaa: '',

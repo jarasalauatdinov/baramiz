@@ -1,13 +1,13 @@
-﻿{
+{
   "common": {
     "appName": "Baramiz",
     "appSubtitle": "Qaraqalpaqstan sayahat platformasi",
     "featured": "Usinilgan",
     "tourism": "Turizm",
     "flexibleVisit": "Iykemli barip keliw",
-    "allDestinations": "Barliq menziller",
+    "allDestinations": "Barliq manziller",
     "allCategories": "Barliq kategoriyalar",
-    "destination": "Menzil",
+    "destination": "Manzil",
     "interests": "Qiziqiwlar",
     "duration": "Dawami",
     "language": "Til",
@@ -17,8 +17,8 @@
     "totalTime": "Uliwma waqit",
     "stops": "Toqtawlar",
     "selected": "Tanlangan",
-    "browseDestinations": "Menzillerdi koriw",
-    "exploreDestination": "Menzildi ashuw",
+    "browseDestinations": "Manzillerdi koriw",
+    "exploreDestination": "Manzildi ashuw",
     "viewAllPlaces": "Barliq orinlar",
     "openAiRoute": "Marshrut quruwga otiw",
     "browseServices": "Xizmetlerdi koriw",
@@ -34,16 +34,16 @@
     "hoursLabel": "{{count}} saat",
     "hoursMinutesLabel": "{{hours}} saat {{minutes}} min",
     "attractionsCount": "{{count}} orin",
-    "curatedDestination": "Tanlangan menzil",
+    "curatedDestination": "Tanlangan manzil",
     "interestFilter": "Qiziqiw filtrsi: {{interest}}",
-    "routeGeneratedNote": "Bul marshrut tanlangan menzil men qiziqiwlar tiykarinda qurildi.",
+    "routeGeneratedNote": "Bul marshrut tanlangan manzil men qiziqiwlar tiykarinda qurildi.",
     "noResults": "Hazirshe natije joq.",
     "unknownCity": "Qaraqalpaqstan",
     "viewService": "Xizmetti koriw",
     "viewStay": "Turar jaydi koriw",
     "openService": "Xizmetti ashuw",
     "seeFoodStop": "As stobin koriw",
-    "placeDescriptionFallback": "Keyingi Baramiz marshrutingiz ushin jaqsi menzil variantı.",
+    "placeDescriptionFallback": "Keyingi Baramiz marshrutingiz ushin jaqsi manzil variantı.",
     "viewDetails": "Toligiraq"
   },
   "languages": {
@@ -69,7 +69,7 @@
     "home": "Bas bet",
     "destinations": "Manziller",
     "places": "Orinlar",
-    "map": "Xarita",
+    "map": "Karta",
     "services": "Xizmetler",
     "aiRoute": "Marshrut",
     "navigation": "Navigatsiya"
@@ -82,12 +82,12 @@
     "travelServices": "Sayahat xizmetleri",
     "aiRoutePlanning": "Marshrut josparlaw",
     "valueTitle": "Qimmati",
-    "destinationDiscovery": "Menzildi ashuw",
+    "destinationDiscovery": "Manzildi ashuw",
     "tourismServices": "Turizm xizmetleri",
     "practicalRouteGeneration": "Ameliy marshrut quruw"
   },
   "footerV2": {
-    "description": "Sayahat josparlaw, menzil ashuw ham isenimli lokal xizmetler Qaraqalpaqstan ushin.",
+    "description": "Sayahat josparlaw, manzil ashuw ham isenimli lokal xizmetler Qaraqalpaqstan ushin.",
     "exploreTitle": "Ashiw",
     "planTitle": "Sayahatti josparlan",
     "guides": "Lokal gidler katalogi",
@@ -95,7 +95,7 @@
     "valueTitle": "Ne ushin Baramiz",
     "value1": "Jili ham ameliy marshrut josparlaw",
     "value2": "Backendten kelgen tiris turizm orinlari",
-    "value3": "Isenimli lokal menzil ashuw"
+    "value3": "Isenimli lokal manzil ashiw"
   },
   "categories": {
     "history": "Tariyx",
@@ -124,8 +124,8 @@
     "hero": {
       "badge": "Qaraqalpaqstan ushin zamanaoui turizm josparlaw",
       "title": "Qaraqalpaqstandi Baramiz menen ashin",
-      "description": "Baramiz sayahatshilargha haqiyqiy menzillerdi ashıwgha, isenimli turizm xizmetlerin tabiwgha ham ameliy marshrutlar qurıwgha jardem beredi.",
-      "primaryCta": "Menzildi ashuw",
+      "description": "Baramiz sayahatshilargha haqiyqiy manzillerdi ashıwgha, isenimli turizm xizmetlerin tabiwgha ham ameliy marshrutlar qurıwgha jardem beredi.",
+      "primaryCta": "Manzildi ashiw",
       "secondaryCta": "Orinlardi koriw",
       "routeCta": "Marshrut jıynaw",
       "stats": {
@@ -137,19 +137,19 @@
     },
     "planner": {
       "title": "Sayahatti baslan",
-      "description": "Menzil men qiziqiwdı tanlap, koriwge yamasa marshrut qurıwgha otiń.",
-      "destinationLabel": "Menzil",
+      "description": "Manzil men qiziqiwdı tanlap, koriwge yamasa marshrut qurıwgha otiń.",
+      "destinationLabel": "Manzil",
       "interestsLabel": "Qiziqiw",
-      "exploreButton": "Menzildi ashuw"
+      "exploreButton": "Manzildi ashiw"
     },
     "destinations": {
-      "eyebrow": "Populyar menziller",
-      "title": "Sayahatshilar en kop tanlaytin menzillerden baslan",
-      "description": "Nokis muzeylerinan Moynaq ham Aral tenizi tarixina shekem Baramiz Qaraqalpaqstanni menzil boyinsha tusinikli etip korsetedı."
+      "eyebrow": "Populyar manziller",
+      "title": "Sayahatshilar en kop tanlaytin manzillerden baslan",
+      "description": "Nokis muzeylerinan Moynaq ham Aral tenizi tarixina shekem Baramiz Qaraqalpaqstanni manzil boyinsha tusinikli etip korsetedı."
     },
     "map": {
       "eyebrow": "Xarita ham navigatsiya",
-      "title": "Menzil boyinsha amaliy navigatsiya ushin xarıtaga otiń",
+      "title": "Manzil boyinsha amaliy navigatsiya ushin xarıtaga otiń",
       "description": "Xarıtani aship, qala ham kategoriya boyinsha orinlardı filtrleń, toqtawlar tizbegin quriń ham Google Maps ne Yandex Mapsqa otip ketin.",
       "openMap": "Xaritani ashiw"
     },
@@ -174,23 +174,25 @@
     "guides": {
       "eyebrow": "Lokal gidler katalogi",
       "title": "Regiondi jaqsi biletin gidler menen baylanisiń",
-      "description": "Kusli turizm platformasina tek orinlar emes, balki lokal bilimdi sayahatqa aynaldiratugin adamlar da kerek."
+      "description": "Kusli turizm platformasina tek orinlar emes, balki lokal bilimdi sayahatqa aynaldiratugin adamlar da kerek.",
+      "specialtiesTitle": "Ba?darlari",
+      "contactAction": "Gid menen baylanisiw"
     },
     "services": {
       "eyebrow": "Turizm xizmetleri",
       "title": "Oteller, transport ham turlar bir platformada",
-      "description": "Baramiz haqiyqiy turizm onimi boliw ushin xizmetler menziller ham marshrutlar menen birge turadi.",
+      "description": "Baramiz haqiyqiy turizm onimi boliw ushin xizmetler manziller ham marshrutlar menen birge turadi.",
       "cardAction": "Xizmetti ashuw"
     },
     "why": {
       "eyebrow": "Ne ushin Baramiz",
       "title": "Lokal kontekst ham ameliy josparlaw menen turizm platformasi",
-      "description": "Baramiz menzil ashıwdi, gidlerdi, xizmetlerdi ham marshrut qurıwdi Qaraqalpaqstan ushin bir onimge biriktiredi.",
+      "description": "Baramiz manzil ashıwdi, gidlerdi, xizmetlerdi ham marshrut qurıwdi Qaraqalpaqstan ushin bir onimge biriktiredi.",
       "items": {
         "aiTitle": "Ameliy marshrut josparlaw",
         "aiDescription": "Baramiz abstrakt demo emes, balki haqiyqiy turizm qararları ushin qural.",
         "localTitle": "Qaraqalpaqstan fokusı",
-        "localDescription": "Menziller, gidler ham xizmetler sayahatshilar regiondı qanday ashatıni boyinsha quralgan.",
+        "localDescription": "Manziller, gidler ham xizmetler sayahatshilar regiondı qanday ashatıni boyinsha quralgan.",
         "liveTitle": "Backendten tiris orinlar",
         "liveDescription": "Usinilgan orinlar ham kategoriyalar haqiyqiy backendten kelip, soraw qateliklerin togrı otkizedi.",
         "servicesTitle": "Onimdi tolıq etetin xizmetler",
@@ -198,19 +200,132 @@
       }
     }
   },
-  "destinationsPage": {
+  "homepage": {
     "hero": {
-      "badge": "Menziller katalogi",
-      "title": "Qaraqalpaqstanni menzil hikayeleri arqali ashin",
-      "description": "Har bir menzil diqqatqa sazawar orinlar, xizmetler, tasirler ham marshrut qurıwgha qolay otiwdi birlestiredi."
+      "eyebrow": "Qaraqalpaqstan turizm platformasi",
+      "title": "Qaraqalpaqstan boylap isenimli sayahatlard? manziller, xizmetler h?m ?meliy marshrutlar menen bir platformada josparla?",
+      "description": "Baramiz sayahatsh?n? q?z???wdan ?meliy ?reketke al?p barad?: manzildi ashi?, haq?yq?y orinlerdi k?ri?, lokal jardem tab?? h?m qollan?w?a bolatugin marshrut quri?.",
+      "primaryCta": "Manzildi ashiw",
+      "secondaryCta": "Marshrut josparlawd? baslaw",
+      "visualAlt": "Qaraqalpaqstanda?? manziller kollaji"
     },
-    "section": {
-      "eyebrow": "Usinilgan menziller",
-      "title": "Qaysi Qaraqalpaqstan boligin ashqıńiz kelgenin tanlań",
-      "description": "Tort tiykargi menzil kazirgi MVP ushin en kusli ashuw scenariylerin qamtiydi."
+    "stats": {
+      "destinations": "Manziller",
+      "places": "Tiris orinler",
+      "categories": "Kategoriyalar",
+      "guides": "Gidler"
+    },
+    "quickBuilder": {
+      "eyebrow": "Tez marshrut kirisi",
+      "title": "?wel manzildi tanla?, keyin orinler yamasa marshrutqa ?ti?",
+      "description": "?wel manzildi tanla?, kerek bolsa q?z???w qos?? h?m sayahatsh??a say bol?an b?likke ?ti?.",
+      "destinationLabel": "Us?n?l?an manziller",
+      "destinationHelp": "Sayahatt?? tiykar? bolatugin manzildi tanla?.",
+      "interestsLabel": "Q?z???wlar",
+      "interestsHelp": "Sayahatsh?n?? ?stin q?z??? an?q bolsa, bitta q?z???w qos??. Tek manzilden baslaw ushin bos qald?r?w?a da bolad?.",
+      "summaryBadge": "Josparlaw q?sqasha mazmun?",
+      "selectedDestination": "Manzil",
+      "selectedInterest": "Q?z???w",
+      "summaryText": "Kontekst ushin manzil betin ashi?, say kelgen orinlerdi k?ri? yamasa birden marshrut qur?w?a ?ti?.",
+      "destinationAction": "Manzil betin ashiw",
+      "placesAction": "Say orinlerdi koriw",
+      "noInterest": "?zirshe q?z???w tanlanba?an"
+    },
+    "destinations": {
+      "eyebrow": "Us?n?l?an manziller",
+      "title": "Regiondegi e? k?shli sayahat hikayelerin beretin manziller",
+      "description": "Adamlar birinshi tan?ytugin manzillerden basla?, keyin orinler, xizmetler h?m marshrut josparlaw?a tere?irek kiri?."
+    },
+    "places": {
+      "eyebrow": "Tiris orinler",
+      "title": "Platforman? birden paydal? etetin haq?yq?y orinler",
+      "description": "Us?n?l?an diqqatqa sazawar orinler backendten j?klenedi, son?? ushin bas bet haq?yq?y turizm kontentige tayanad?.",
+      "empty": "Backend ma?l?wmat jiberse, us?n?l?an orinler os? jerde k?rinedi."
+    },
+    "services": {
+      "eyebrow": "K?p k?riletin xizmetler",
+      "title": "Ash?wd? haq?yq?y sayahatqa al?p baratug?n qollaw xizmetleri",
+      "description": "Turar jay, agentlikler h?m transport erte k?rinedi, son?? ushin platforma reklamadan k?ri ?meliy ?nimday seziledi.",
+      "cardAction": "Xizmetti ashiw"
+    },
+    "guides": {
+      "eyebrow": "Lokal gidler",
+      "title": "Lokal bilim sayahat jol?na jaq?n qalad?",
+      "description": "Gid profilleri m?deniy kontekstti, logistika senimin h?m regionl?q tajiiriybeni k?sheytedi.",
+      "actionLabel": "Gidlerdi koriw"
+    },
+    "why": {
+      "eyebrow": "Ne ushin Baramiz",
+      "title": "Haq?yq?y turizm qararlar? ushin qural?an ?nim d?zilisi",
+      "description": "Baramiz manzil ash?w?, lokal xizmetler h?m marshrut josparlaw aynalas?nda qur?l?an, son?? ushin keyingi qadam h?r waq?t an?q.",
+      "planningTitle": "Abstrakt AI emes, ?meliy marshrut josparlaw",
+      "planningDescription": "Marshrut qur?w manzil h?m q?z???wlardan baslan?p, sayahatsh?n? paydal? n?tiyjege al?p keledi.",
+      "localTitle": "Qaraqalpaqstan sayahat? haq?yqatlar?na say qur?l?an",
+      "localDescription": "N?kis, Moynaq, qala jol?, muzeyler h?m uzaq landshaftlar ?nimni? ortas?nda qalad?.",
+      "platformTitle": "Tarqal?an better emes, bitta platforma a??m?",
+      "platformDescription": "Orinler, xizmetler, gidler h?m marshrutlar bir tajiriybede jasayd?, son?? ushin ?nim t?tas k?rinedi."
+    },
+    "route": {
+      "eyebrow": "Marshrut josparlaw qalay isleydi",
+      "title": "Marshrut josparlaw ?nimdi almasht?rmayd?, on? k?sheytedi",
+      "description": "Marshrut qur?w k?shli funkciya bol?p qalad?, biraq ol manzil konteksti h?m haq?yq?y sayahatsh? ?stinliklerinen baslanad?.",
+      "steps": {
+        "destinationTitle": "Qay jerdan baslawd? tanla?",
+        "destinationDescription": "Sayahatsh?n?? haq?yq?y jol?na say kelgen N?kis, Moynaq, Ellikkala yamasa basqa manzildi tanla?.",
+        "interestsTitle": "Ma??zl? q?z???wlard? qos??",
+        "interestsDescription": "Marshrut jalp? emes, paydal? bol?w? ushin muzey, tariyx, tabiyat, tamak h?m lokal m?deniyatt? aralast?r??.",
+        "resultTitle": "Izertlewdan ?meliy ?reketke ?ti?",
+        "resultDescription": "N?tiyjeni ashi?, toqtawlard? k?ri? h?m karta navigaciyas?, orinler h?m turizm xizmetlerine ?ti?."
+      }
+    },
+    "trust": {
+      "eyebrow": "M?deniy h?m regionl?q isenim",
+      "title": "Regionl?q identitet jalp? travel-kontent ishinde jo?al?p ketpeydi",
+      "description": "Qaraqalpaqstan turizm platformasi ushin lokal kontekst dizayn sapas? qatar?nda ma??zl?.",
+      "regionTitle": "Sayahatsh?lar soraytugin manziller tiykar etip al?n?an",
+      "regionDescription": "Bas bet adamlar birinshi tan?ytugin orinlerden baslanad?: N?kis, Moynaq, Ellikkala, Aral te?izi region? h?m Ustyurt jol?.",
+      "tagNukus": "N?kis",
+      "tagMoynaq": "Moynaq",
+      "tagEllikqala": "Ellikkala",
+      "cultureTitle": "M?deniyat h?m miyras tiykar?? a??mda qalad?",
+      "cultureDescription": "Muzeyler, miyras jol?, lokal gidler h?m m?deniy kontekst shette qalmayd?.",
+      "tagMuseums": "Muzeyler",
+      "tagHeritage": "Miyras",
+      "tagLocalGuides": "Lokal gidler",
+      "operationTitle": "Haq?yq?y turizm ?nimi siyaql? qur?l?an",
+      "operationDescription": "Tiris orinler, manzil betteri, xizmetler h?m marshrut josparlaw birge isleydi, son?? ushin ?nim q?z?lar h?m hamkorlar ald?nda isenimli k?rinedi.",
+      "tagLivePlaces": "Tiris orinler",
+      "tagServices": "Xizmetler",
+      "tagRoutes": "Marshrutlar"
+    },
+    "finalCta": {
+      "eyebrow": "Josparlawd? baslaw?a tayarms?z?",
+      "title": "Manzildi tanla?, orinlerdi k?ri? h?m on? marshrutqa aynald?r??",
+      "description": "Baramiz paydalan?wsh? ash?wdan marshrut josparlaw?a tabi??y ?tken waq?tta e? jaqs? isleydi. E? ma??zl? manzilden basla? h?m tajiriybeni haq?yq?y turizm kontekstinde saqla?.",
+      "destinationLabel": "Tanlan?an manzil",
+      "summary": "H?zir marshrut qur?w?a ?ti? yamasa k?birek kontekst ushin ald?n manzil betin ashi?.",
+      "destinationAction": "Manzildi ashiw"
+    },
+    "categories": {
+      "defaultDescription": "Marshrut qur?w men manzil betterin ?meliy saqlaw?a jardem beretin an?q sayahat q?z???w?."
     },
     "errors": {
-      "countsUnavailable": "Menzil boyinsha orin sani waqtinsha joq, biraq menzil betterin ashıw mumkin."
+      "dataUnavailable": "Ayrim tiris turizm ma?l?wmatlar? waqt?nsha joq, biraq tiykar?? ash?w a??m? islewin davam etedi."
+    }
+  },
+  "destinationsPage": {
+    "hero": {
+      "badge": "Manziller katalogi",
+      "title": "Qaraqalpaqstanni manzil hikayeleri arqali ashin",
+      "description": "Har bir manzil diqqatqa sazawar orinlar, xizmetler, tasirler ham marshrut qurıwgha qolay otiwdi birlestiredi."
+    },
+    "section": {
+      "eyebrow": "Usinilgan manziller",
+      "title": "Qaysi Qaraqalpaqstan boligin ashqıńiz kelgenin tanlań",
+      "description": "Tort tiykargi manzil kazirgi MVP ushin en kusli ashuw scenariylerin qamtiydi."
+    },
+    "errors": {
+      "countsUnavailable": "Manzil boyinsha orin sani waqtinsha joq, biraq manzil betterin ashıw mumkin."
     },
     "searchPlaceholder": "Menzildi izlew..."
   },
@@ -317,7 +432,7 @@
       "eyebrow": "Marshrut generatori",
       "title": "Tusinikli sayahat marshrutin quriń",
       "description": "Menzil men qiziqiwlardı tanlań. Natije betinde oqiwga qolay sayahat jospari korsetiledi.",
-      "destinationLabel": "Menzil",
+      "destinationLabel": "Manzil",
       "destinationPlaceholder": "Qalani jazıń yamasa tanlań",
       "interestsLabel": "Qiziqiwlar",
       "selectedInterests": "Tanlangan: {{items}}",
@@ -361,20 +476,20 @@
     "empty": {
       "badge": "Marshrut juklenbegen",
       "title": "Marshrutingiz mında korinedi",
-      "description": "Menzil men qiziqiwlardı tanlagannan soń Marshrut generatori betinen marshrut quriń."
+      "description": "Manzil men qiziqiwlardı tanlagannan soń Marshrut generatori betinen marshrut quriń."
     },
     "hero": {
       "badge": "Usinilgan marshrut",
       "stopsBadge": "{{count}} toqtaw",
       "title": "Siz ushin usinilgan marshrut",
-      "description": "Bul marshrut tanlangan menzil men qiziqiwlardı tusinikli sayahat josparina aynaldiradi."
+      "description": "Bul marshrut tanlangan manzil men qiziqiwlardı tusinikli sayahat josparina aynaldiradi."
     },
     "summary": {
       "title": "Sayahatińiz - {{city}}",
       "description": "Tez tusinip, darhal navigatsiyaga otip, orinler ham xizmetlerdi davom etip ashıw ushin ameliy marshrut jospari."
     },
     "stats": {
-      "destination": "Menzil",
+      "destination": "Manzil",
       "duration": "Dawamı",
       "totalTime": "Uliwma waqit",
       "stops": "Toqtawlar",
@@ -478,4 +593,3 @@
     }
   }
 }
-

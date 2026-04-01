@@ -152,6 +152,119 @@
       "dataUnavailable": "Ba'zi jonli turizm ma'lumotlari vaqtincha mavjud emas, lekin asosiy kashfiyot oqimi tayyor."
     }
   },
+  "homepage": {
+    "hero": {
+      "eyebrow": "Qoraqalpog?iston turizm platformasi",
+      "title": "Qoraqalpog?iston bo?ylab ishonchli sayohatlarni manzillar, xizmatlar va amaliy marshrutlar bilan bir platformada rejalang",
+      "description": "Baramiz sayohatchini qiziqishdan amaliy harakatga olib o?tadi: manzilni oching, haqiqiy joylarni ko?ring, mahalliy yordamni toping va foydalanish mumkin bo?lgan marshrut tuzing.",
+      "primaryCta": "Manzilni ochish",
+      "secondaryCta": "Marshrutni rejalashni boshlash",
+      "visualAlt": "Qoraqalpog?istondagi manzillar kollaji"
+    },
+    "stats": {
+      "destinations": "Manzillar",
+      "places": "Jonli joylar",
+      "categories": "Toifalar",
+      "guides": "Gidlar"
+    },
+    "quickBuilder": {
+      "eyebrow": "Tezkor marshrut kirishi",
+      "title": "Avval manzilni tanlang, keyin joylar yoki marshrutga o?ting",
+      "description": "Dastlab manzilni tanlang, kerak bo?lsa qiziqishni qo?shing va sayohatchiga mos bo?lgan oqimga o?ting.",
+      "destinationLabel": "Tavsiya etilgan manzillar",
+      "destinationHelp": "Sayohatni qaysi manzil belgilashini tanlang.",
+      "interestsLabel": "Qiziqishlar",
+      "interestsHelp": "Agar sayohatchining ustuvor yo?nalishi aniq bo?lsa, bitta qiziqishni qo?shing. Faqat manzildan boshlash uchun bo?sh qoldirish ham mumkin.",
+      "summaryBadge": "Rejalash xulosasi",
+      "selectedDestination": "Manzil",
+      "selectedInterest": "Qiziqish",
+      "summaryText": "Kontekst uchun manzil sahifasini oching, mos joylarni ko?ring yoki to?g?ridan-to?g?ri marshrut tuzishga o?ting.",
+      "destinationAction": "Manzil sahifasini ochish",
+      "placesAction": "Mos joylarni ko?rish",
+      "noInterest": "Hali qiziqish tanlanmagan"
+    },
+    "destinations": {
+      "eyebrow": "Tavsiya etilgan manzillar",
+      "title": "Hududdagi eng kuchli sayohat hikoyalarini beradigan manzillar",
+      "description": "Odamlar avval tanlaydigan manzillardan boshlang, so?ng joylar, xizmatlar va marshrut rejalashga chuqurlashing."
+    },
+    "places": {
+      "eyebrow": "Jonli joylar",
+      "title": "Platformani darhol foydali qiladigan haqiqiy joylar",
+      "description": "Tavsiya etilgan diqqatga sazovor joylar backenddan yuklanadi, shu sabab bosh sahifa haqiqiy turizm kontentiga tayanadi.",
+      "empty": "Backend ma?lumot yuborganda tavsiya etilgan joylar shu yerda ko?rinadi."
+    },
+    "services": {
+      "eyebrow": "Ommabop xizmatlar",
+      "title": "Kashfiyotdan haqiqiy sayohatga olib o?tadigan yordamchi xizmatlar",
+      "description": "Turar joy, agentliklar va transport erta ko?rinadi, shuning uchun platforma reklama emas, amaliy mahsulotdek seziladi.",
+      "cardAction": "Xizmatni ochish"
+    },
+    "guides": {
+      "eyebrow": "Mahalliy gidlar",
+      "title": "Mahalliy bilim sayohat oqimining ichida qoladi",
+      "description": "Gid profillari madaniy kontekst, logistika ishonchi va hududiy tajribani kuchaytiradi.",
+      "actionLabel": "Gidlarni ko?rish"
+    },
+    "why": {
+      "eyebrow": "Nega Baramiz",
+      "title": "Haqiqiy turizm qarorlari uchun tuzilgan mahsulot tuzilmasi",
+      "description": "Baramiz manzil kashfiyoti, mahalliy xizmatlar va marshrut rejalash atrofida qurilgan, shu sabab keyingi qadam har doim aniq bo?ladi.",
+      "planningTitle": "Abstrakt AI emas, amaliy marshrut rejalash",
+      "planningDescription": "Marshrut tuzish manzil va qiziqishlardan boshlanadi, keyin foydali natijaga olib boradi.",
+      "localTitle": "Qoraqalpog?iston sayohat haqiqatlariga mos qurilgan",
+      "localDescription": "Nukus, Moynaq, qal?a yo?nalishlari, muzeylar va uzoq manzaralar mahsulot markazida qoladi.",
+      "platformTitle": "Tarqoq sahifalar emas, bitta platforma oqimi",
+      "platformDescription": "Joylar, xizmatlar, gidlar va marshrutlar bitta tajribada yashaydi, shu sabab mahsulot yaxlit ko?rinadi."
+    },
+    "route": {
+      "eyebrow": "Marshrut rejalash qanday ishlaydi",
+      "title": "Marshrut rejalash mahsulotni almashtirmaydi, uni kuchaytiradi",
+      "description": "Marshrut tuzish kuchli funksiya bo?lib qoladi, lekin u manzil konteksti va haqiqiy sayohatchi ustuvorliklaridan boshlanadi.",
+      "steps": {
+        "destinationTitle": "Qayerdan boshlashni tanlang",
+        "destinationDescription": "Sayohatchining haqiqiy yo?liga mos bo?lgan Nukus, Moynaq, Ellikqala yoki boshqa manzilni tanlang.",
+        "interestsTitle": "Muhim qiziqishlarni qo?shing",
+        "interestsDescription": "Marshrut umumiy emas, foydali bo?lishi uchun muzey, tarix, tabiat, taom va mahalliy madaniyatni aralashtiring.",
+        "resultTitle": "Tadqiqotdan harakatga o?ting",
+        "resultDescription": "Natijani oching, bekatlarni ko?ring va xarita navigatsiyasi, joylar hamda turizm xizmatlariga o?ting."
+      }
+    },
+    "trust": {
+      "eyebrow": "Madaniy va hududiy ishonch",
+      "title": "Hududiy identitet umumiy turizm kontentiga singib ketmaydi",
+      "description": "Qoraqalpog?iston turizm platformasi uchun mahalliy kontekst dizayn sifati kabi muhim.",
+      "regionTitle": "Sayohatchilar so?raydigan manzillar asos qilib olingan",
+      "regionDescription": "Bosh sahifa odamlar avval qidiradigan joylardan boshlanadi: Nukus, Moynaq, Ellikqala, Orol dengizi hududi va Ustyurt yo?nalishlari.",
+      "tagNukus": "Nukus",
+      "tagMoynaq": "Moynaq",
+      "tagEllikqala": "Ellikqala",
+      "cultureTitle": "Madaniyat va meros asosiy oqimda qoladi",
+      "cultureDescription": "Muzeylar, meros yo?nalishlari, mahalliy gidlar va madaniy kontekst chetga chiqmaydi.",
+      "tagMuseums": "Muzeylar",
+      "tagHeritage": "Meros",
+      "tagLocalGuides": "Mahalliy gidlar",
+      "operationTitle": "Haqiqiy turizm mahsulotidek tuzilgan",
+      "operationDescription": "Jonli joylar, manzil sahifalari, xizmatlar va marshrut rejalash birga ishlaydi, shu sabab mahsulot hakamlar va hamkorlar oldida ishonchli ko?rinadi.",
+      "tagLivePlaces": "Jonli joylar",
+      "tagServices": "Xizmatlar",
+      "tagRoutes": "Marshrutlar"
+    },
+    "finalCta": {
+      "eyebrow": "Rejalashni boshlashga tayyormisiz?",
+      "title": "Manzilni tanlang, joylarni ko?ring va uni marshrutga aylantiring",
+      "description": "Baramiz foydalanuvchi kashfiyotdan marshrut rejalashga tabiiy o?tganda eng yaxshi ishlaydi. Eng muhim manzildan boshlang va tajribani haqiqiy turizm kontekstida saqlang.",
+      "destinationLabel": "Tanlangan manzil",
+      "summary": "Hozir marshrut tuzishga o?ting yoki ko?proq kontekst uchun avval manzil sahifasini oching.",
+      "destinationAction": "Manzilni ochish"
+    },
+    "categories": {
+      "defaultDescription": "Marshrut tuzish va manzil sahifalarini amaliy saqlashga yordam beradigan aniq sayohat qiziqishi."
+    },
+    "errors": {
+      "dataUnavailable": "Ba?zi jonli turizm ma?lumotlari vaqtincha mavjud emas, lekin asosiy kashfiyot oqimi ishlashda davom etadi."
+    }
+  },
   "destinationsPage": {
     "hero": {
       "badge": "Manzillar brauzeri",
@@ -1006,6 +1119,12 @@
           }
         }
       }
+    }
+  },
+  "homeV2": {
+    "guides": {
+      "specialtiesTitle": "Mutaxassisligi",
+      "contactAction": "Gid bilan bog?lanish"
     }
   }
 }

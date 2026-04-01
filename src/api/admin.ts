@@ -1,4 +1,4 @@
-import { API_BASE_URL, getCategories, getPlaceById, getPlaces } from './api';
+import { getCategories, getPlaceById, getPlaces } from './api';
 import {
   buildAdminCategoryFromCategory,
   getStoredAdminCategoryById,
@@ -17,6 +17,7 @@ import {
   saveStoredAdminPlaces,
   saveStoredDeletedPlaceIds,
 } from './adminPlaceStore';
+import { buildApiUrl } from '../shared/config/api';
 import type {
   AdminCategoryFormValues,
   AdminCategoryMutationResult,
@@ -186,7 +187,7 @@ const requestAdmin = async (path: string, init: RequestInit = {}): Promise<Respo
     headers.set('Content-Type', 'application/json');
   }
 
-  return fetch(`${API_BASE_URL}${path}`, {
+  return fetch(buildApiUrl(path), {
     ...init,
     headers,
   });

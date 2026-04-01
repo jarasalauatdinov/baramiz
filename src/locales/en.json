@@ -152,6 +152,119 @@
       "dataUnavailable": "Some live tourism data is temporarily unavailable, but the main browsing flow is still ready to explore."
     }
   },
+  "homepage": {
+    "hero": {
+      "eyebrow": "Karakalpakstan tourism platform",
+      "title": "Plan confident trips across Karakalpakstan with destinations, services, and practical routes in one platform",
+      "description": "Baramiz helps travelers move from discovery to action: open a destination, review real places, find local support, and build a route that can actually be used.",
+      "primaryCta": "Explore destination",
+      "secondaryCta": "Start route planning",
+      "visualAlt": "Collage of destinations in Karakalpakstan"
+    },
+    "stats": {
+      "destinations": "Destinations",
+      "places": "Live places",
+      "categories": "Categories",
+      "guides": "Guides"
+    },
+    "quickBuilder": {
+      "eyebrow": "Quick route entry",
+      "title": "Start with a destination, then move into places or a route",
+      "description": "Choose a destination first, add an interest if needed, and continue into the part of the platform that fits the traveler.",
+      "destinationLabel": "Featured destinations",
+      "destinationHelp": "Select the destination that should anchor the trip.",
+      "interestsLabel": "Interests",
+      "interestsHelp": "Add one interest if the traveler already has a priority. Leave it empty to start from destination only.",
+      "summaryBadge": "Planning summary",
+      "selectedDestination": "Destination",
+      "selectedInterest": "Interest",
+      "summaryText": "Open the destination page for context, browse matching places, or continue directly into route planning.",
+      "destinationAction": "Open destination page",
+      "placesAction": "Browse matching places",
+      "noInterest": "No interest selected yet"
+    },
+    "destinations": {
+      "eyebrow": "Featured destinations",
+      "title": "Destinations that carry the clearest travel stories in the region",
+      "description": "Start with the destinations people recognize first, then go deeper into places, services, and route planning."
+    },
+    "places": {
+      "eyebrow": "Live places",
+      "title": "Real places that make the platform feel useful immediately",
+      "description": "Featured attractions are loaded from the backend so the homepage points to actual tourism content.",
+      "empty": "Featured places will appear here when the backend returns them."
+    },
+    "services": {
+      "eyebrow": "Popular services",
+      "title": "Travel support that turns discovery into an actual trip",
+      "description": "Accommodation, agencies, and transport appear early so the platform feels operational, not promotional.",
+      "cardAction": "Open service"
+    },
+    "guides": {
+      "eyebrow": "Local guides",
+      "title": "Local knowledge stays close to the traveler journey",
+      "description": "Guide profiles add cultural context, logistics confidence, and a more credible regional experience.",
+      "actionLabel": "See guides"
+    },
+    "why": {
+      "eyebrow": "Why Baramiz",
+      "title": "A structure built for real tourism decisions",
+      "description": "Baramiz is arranged around destination discovery, local services, and route planning so the next step is always clear.",
+      "planningTitle": "Practical route planning instead of abstract AI",
+      "planningDescription": "The route builder starts from destination and interests, then hands the traveler into a useful result.",
+      "localTitle": "Built around Karakalpakstan travel realities",
+      "localDescription": "Nukus, Moynaq, fortress routes, museums, and remote landscapes stay central to the product.",
+      "platformTitle": "One platform flow, not scattered pages",
+      "platformDescription": "Places, services, guides, and routes live in one experience, so the product feels coherent."
+    },
+    "route": {
+      "eyebrow": "How route planning works",
+      "title": "Route planning supports the product instead of replacing it",
+      "description": "The route builder remains a strong feature, but it starts from destination context and real traveler priorities.",
+      "steps": {
+        "destinationTitle": "Choose where to start",
+        "destinationDescription": "Pick Nukus, Moynaq, Ellikqala, or another destination that matches the traveler's real route.",
+        "interestsTitle": "Add interests that matter",
+        "interestsDescription": "Mix museums, history, nature, food, and local culture so the route feels useful instead of generic.",
+        "resultTitle": "Move from research to action",
+        "resultDescription": "Open the result, review stops, and continue into map navigation, places, and tourism services."
+      }
+    },
+    "trust": {
+      "eyebrow": "Cultural and regional trust",
+      "title": "Regional identity stays visible instead of being flattened into generic travel content",
+      "description": "For a Karakalpakstan tourism platform, local context matters as much as design quality.",
+      "regionTitle": "Built around destinations travelers already ask for",
+      "regionDescription": "The homepage leads with places people recognize first: Nukus, Moynaq, Ellikqala, the Aral Sea region, and Ustyurt routes.",
+      "tagNukus": "Nukus",
+      "tagMoynaq": "Moynaq",
+      "tagEllikqala": "Ellikqala",
+      "cultureTitle": "Culture and heritage remain part of the main flow",
+      "cultureDescription": "Museums, heritage routes, local guides, and cultural context stay visible instead of becoming side notes.",
+      "tagMuseums": "Museums",
+      "tagHeritage": "Heritage",
+      "tagLocalGuides": "Local guides",
+      "operationTitle": "Structured like a real tourism product",
+      "operationDescription": "Live places, destination pages, services, and route planning work together so the platform feels credible in front of judges and partners.",
+      "tagLivePlaces": "Live places",
+      "tagServices": "Services",
+      "tagRoutes": "Routes"
+    },
+    "finalCta": {
+      "eyebrow": "Ready to start planning?",
+      "title": "Choose a destination, review the places, and turn it into a route",
+      "description": "Baramiz works best when users move naturally from discovery into route planning. Start with the destination that matters most and keep the experience grounded in real tourism context.",
+      "destinationLabel": "Selected destination",
+      "summary": "Continue into the route builder now or explore the destination page first for more context.",
+      "destinationAction": "Open destination"
+    },
+    "categories": {
+      "defaultDescription": "A clear travel interest area that helps the route builder and destination pages stay practical."
+    },
+    "errors": {
+      "dataUnavailable": "Some live tourism data is temporarily unavailable, but the main exploration flow is still ready."
+    }
+  },
   "destinationsPage": {
     "hero": {
       "badge": "Destination browser",
@@ -1216,6 +1329,12 @@
         "translationFailed": "RU/EN generation failed. Continue editing the fields manually if needed.",
         "translationReady": "RU and EN were generated from the live translation flow. Review both fields before saving."
       }
+    }
+  },
+  "homeV2": {
+    "guides": {
+      "specialtiesTitle": "Specialties",
+      "contactAction": "Contact guide"
     }
   }
 }

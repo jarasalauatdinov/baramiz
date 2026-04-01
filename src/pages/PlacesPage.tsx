@@ -1,15 +1,18 @@
 ﻿import { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
-  Container,
   Group,
   Paper,
+  Select,
   SimpleGrid,
   Skeleton,
   Text,
+  TextInput,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+import { PageHeaderBlock } from '../components/layout/PageHeaderBlock';
+import { PageSection } from '../components/layout/PageSection';
 import { getCategories } from '../entities/category/api/categoryApi';
 import { getPlaces } from '../entities/place/api/placeApi';
 import { PlaceCard } from '../components/PlaceCard';
@@ -27,7 +30,7 @@ export function PlacesPage() {
   const [hasError, setHasError] = useState(false);
   const [selectedCity, setSelectedCity] = useState(queryCity || 'all');
   const [selectedCategory, setSelectedCategory] = useState(queryCategory || 'all');
-  const [search] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -97,7 +100,7 @@ export function PlacesPage() {
       const matchesCity = selectedCity === 'all' || place.city === selectedCity;
       const matchesCategory =
         selectedCategory === 'all' ||
-        String(place.categoryId ?? place.categoryName ?? '').toLowerCase() === selectedCategory.toLowerCase();
+        place.category.toLowerCase() === selectedCategory.toLowerCase();
       const matchesSearch =
         !query ||
         place.name.toLowerCase().includes(query) ||
@@ -107,28 +110,27 @@ export function PlacesPage() {
     });
   }, [places, search, selectedCategory, selectedCity]);
 
-  const mapQueryString = useMemo(() => {
-    const query = new URLSearchParams();
-    if (selectedCity !== 'all') {
-      query.set('city', selectedCity);
-    }
-    if (selectedCategory !== 'all') {
-      query.set('category', selectedCategory);
-    }
-
-    return query.toString() ? `?${query.toString()}` : '';
-  }, [selectedCategory, selectedCity]);
-
   return (
-    <Container size="xl" py={{ base: 28, md: 40 }}>
-    
+    <PageSection py={{ base: 18, md: 30 }}>
+      <PageHeaderBlock
+        eyebrow={t('placesPage.pageEyebrow', { defaultValue: 'Explore' })}
+        title={t('placesPage.pageTitle', {
+          defaultValue: 'Find places fast',
+        })}
+        description={t('placesPage.pageDescription', {
+          defaultValue:
+            'Search by city or category and open place details.',
+        })}
+        size="section"
+      />
+
       {hasError ? (
         <Alert color="yellow" variant="light" mb="lg">
           {t('placesPage.errors.dataUnavailable')}
         </Alert>
       ) : null}
 
-      <Group justify="space-between" align="flex-end" mb="md" wrap="wrap">
+      <Group justify="space-between" align="flex-end" mb="sm" wrap="wrap">
         <div>
           <Text fw={700} fz="1.15rem">
             {t('placesPage.results.title', { count: filteredPlaces.length })}
@@ -139,16 +141,39 @@ export function PlacesPage() {
         </div>
       </Group>
 
+      <Group mb="md" grow align="flex-end">
+        <TextInput
+          label={t('common.search')}
+          placeholder={t('placesPage.filters.searchPlaceholder', {
+            defaultValue: 'Search place name',
+          })}
+          value={search}
+          onChange={(event) => setSearch(event.currentTarget.value)}
+        />
+        <Select
+          label={t('placesPage.filters.cityLabel', { defaultValue: 'Destination' })}
+          data={cityOptions}
+          value={selectedCity}
+          onChange={(value) => setSelectedCity(value ?? 'all')}
+        />
+        <Select
+          label={t('placesPage.filters.categoryLabel', { defaultValue: 'Category' })}
+          data={categoryOptions}
+          value={selectedCategory}
+          onChange={(value) => setSelectedCategory(value ?? 'all')}
+        />
+      </Group>
+
       {loading ? (
-        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg">
+        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
           {Array.from({ length: 6 }).map((_, index) => (
             <Skeleton key={index} h={420} radius="32px" />
           ))}
         </SimpleGrid>
       ) : filteredPlaces.length > 0 ? (
-        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg">
+        <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
           {filteredPlaces.map((place) => (
-            <PlaceCard key={String(place.id)} place={place} />
+            <PlaceCard key={String(place.id)} place={place} variant="immersive" />
           ))}
         </SimpleGrid>
       ) : (
@@ -156,6 +181,6 @@ export function PlacesPage() {
           <Text c="dimmed">{t('placesPage.results.empty')}</Text>
         </Paper>
       )}
-    </Container>
+    </PageSection>
   );
 }

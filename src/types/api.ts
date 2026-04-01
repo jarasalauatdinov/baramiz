@@ -1,39 +1,43 @@
-export type Id = string | number;
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
 
 export interface Category {
-  id: Id;
+  id: string;
   name: string;
-  description?: string;
-  imageUrl?: string;
+  description: string;
 }
 
 export interface Place {
-  id: Id;
+  id: string;
   name: string;
-  description?: string;
-  categoryId?: Id;
-  categoryName?: string;
-  city?: string;
-  region?: string;
-  imageUrl?: string;
-  coordinates?: {
-    lat?: number;
-    lng?: number;
-  };
-  rating?: number;
-  featured?: boolean;
-  durationMinutes?: number;
+  description: string;
+  city: string;
+  region: string;
+  category: string;
+  durationMinutes: number;
+  imageUrl: string;
+  coordinates: Coordinates;
+  featured: boolean;
 }
 
 export type RouteDuration = '3_hours' | 'half_day' | '1_day';
-
-export type RouteLanguage = 'uz' | 'en' | 'ru';
+export type RouteLanguage = 'kaa' | 'uz' | 'ru' | 'en';
+export type TripStyle = 'balanced' | 'culture' | 'scenic' | 'family';
+export type TransportPreference = 'walking' | 'car' | 'driver';
+export type BudgetLevel = 'light' | 'comfortable' | 'premium';
+export type TravelPace = 'easy' | 'steady' | 'full';
 
 export interface RouteGenerationInput {
   city: string;
   duration: RouteDuration;
   interests: string[];
   language: RouteLanguage;
+  tripStyle?: TripStyle;
+  transportPreference?: TransportPreference;
+  budgetLevel?: BudgetLevel;
+  travelPace?: TravelPace;
 }
 
 export interface GeneratedRoutePlace {
@@ -41,7 +45,9 @@ export interface GeneratedRoutePlace {
   name: string;
   city: string;
   category: string;
-  image: string;
+  imageUrl: string;
+  coordinates: Coordinates;
+  description: string;
 }
 
 export interface GeneratedRouteItem {
@@ -51,20 +57,34 @@ export interface GeneratedRouteItem {
   estimatedDurationMinutes: number;
 }
 
+export interface RouteSummary {
+  stopCount: number;
+  estimatedStartTime: string;
+  estimatedEndTime: string;
+  usedDuration: RouteDuration;
+  interests: string[];
+  tripStyle?: TripStyle;
+  transportPreference?: TransportPreference;
+  budgetLevel?: BudgetLevel;
+  travelPace?: TravelPace;
+}
+
 export interface GeneratedRoute {
   city: string;
   duration: RouteDuration;
   language: RouteLanguage;
   totalMinutes: number;
   items: GeneratedRouteItem[];
+  summary: RouteSummary;
 }
 
 export interface ChatMessageRequest {
   message: string;
-  history?: Array<{ role: 'user' | 'assistant'; content: string }>;
+  language: RouteLanguage;
 }
 
 export interface ChatMessageResponse {
   reply: string;
-  raw?: unknown;
+  source: 'fallback' | 'openai';
+  suggestions?: string[];
 }

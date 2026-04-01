@@ -10,12 +10,9 @@ import {
   Group,
   Loader,
   Paper,
-  Select,
   SegmentedControl,
   Stack,
-  Switch,
   Text,
-  TextInput,
   Title,
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
@@ -31,9 +28,8 @@ import {
 } from 'react-leaflet';
 import type { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getCategories } from '../entities/category/api/categoryApi';
 import { getPlaces } from '../entities/place/api/placeApi';
-import type { Category, Place } from '../types/api';
+import type { Place } from '../types/api';
 import { formatCategoryLabel, formatMinutesLabel } from '../utils/placeArtwork';
 import {
   buildGoogleMapsDirectionsUrl,
@@ -97,16 +93,15 @@ export function MapPage() {
         .filter(Boolean),
     [searchParams],
   );
-  const [categories, setCategories] = useState<Category[]>([]);
   const [places, setPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   const [mode, setMode] = useState<MapMode>(queryMode === 'route' ? 'route' : 'explore');
-  const [search, setSearch] = useState('');
+  const [search] = useState('');
   const [city, setCity] = useState(queryCity || 'all');
   const [category, setCategory] = useState(queryCategory || 'all');
-  const [featuredOnly, setFeaturedOnly] = useState(false);
+  const [featuredOnly] = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>(queryRouteIds);
   const [userLocation, setUserLocation] = useState<GeoPoint | null>(null);
 
@@ -155,31 +150,19 @@ export function MapPage() {
     let active = true;
 
     const loadData = async () => {
-      const [categoriesResult, placesResult] = await Promise.allSettled([
-        getCategories(),
-        getPlaces(),
-      ]);
+      const placesResult = await Promise.allSettled([getPlaces()]);
 
       if (!active) {
         return;
       }
 
-      if (categoriesResult.status === 'fulfilled') {
-        setCategories(categoriesResult.value);
+      if (placesResult[0].status === 'fulfilled') {
+        setPlaces(placesResult[0].value);
       } else {
-        console.error('Failed to load categories for map page', categoriesResult.reason);
+        console.error('Failed to load places for map page', placesResult[0].reason);
       }
 
-      if (placesResult.status === 'fulfilled') {
-        setPlaces(placesResult.value);
-      } else {
-        console.error('Failed to load places for map page', placesResult.reason);
-      }
-
-      if (
-        categoriesResult.status === 'rejected' ||
-        placesResult.status === 'rejected'
-      ) {
+      if (placesResult[0].status === 'rejected') {
         setHasError(true);
       }
 
@@ -193,52 +176,12 @@ export function MapPage() {
     };
   }, []);
 
-  const cityOptions = useMemo(() => {
-    const values = Array.from(
-      new Set(places.map((place) => place.city).filter(Boolean)),
-    ) as string[];
-
-    return [
-      { value: 'all', label: t('common.allDestinations') },
-      ...values.map((value) => ({ value, label: value })),
-    ];
-  }, [places, t]);
-
-  const categoryOptions = useMemo(() => {
-    if (categories.length > 0) {
-      return [
-        { value: 'all', label: t('common.allCategories') },
-        ...categories.map((item) => ({
-          value: String(item.id),
-          label: formatCategoryLabel(String(item.id), t),
-        })),
-      ];
-    }
-
-    const fallback = Array.from(
-      new Set(
-        places
-          .map((place) =>
-            String(place.categoryId ?? place.categoryName ?? '').toLowerCase().trim(),
-          )
-          .filter(Boolean),
-      ),
-    );
-
-    return [
-      { value: 'all', label: t('common.allCategories') },
-      ...fallback.map((value) => ({ value, label: formatCategoryLabel(value, t) })),
-    ];
-  }, [categories, places, t]);
-
   const filteredPlaces = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();
 
     return places.filter((place) => {
       const matchesCity = city === 'all' || place.city === city;
-      const placeCategory = String(
-        place.categoryId ?? place.categoryName ?? '',
-      ).toLowerCase();
+      const placeCategory = place.category.toLowerCase();
       const matchesCategory = category === 'all' || placeCategory === category.toLowerCase();
       const matchesFeatured = !featuredOnly || place.featured;
       const matchesSearch =
@@ -404,7 +347,7 @@ export function MapPage() {
   };
 
   return (
-    <Container size="xl" py={{ base: 34, md: 52 }}>
+    <Container size="xl" py={{ base: 34, md: 52 }}> 
      
 
       {hasError ? (
@@ -423,39 +366,6 @@ export function MapPage() {
         mb="lg"
         bg={publicUi.background.surface}
       >
-        <Grid gutter="md" align="end">
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <TextInput
-              label={t('placesPage.form.search')}
-              placeholder={t('placesPage.form.searchPlaceholder')}
-              value={search}
-              onChange={(event) => setSearch(event.currentTarget.value)}
-            />
-          </Grid.Col>
-          <Grid.Col span={{ base: 12, md: 3 }}>
-            <Select
-              label={t('placesPage.form.destination')}
-              data={cityOptions}
-              value={city}
-              onChange={(value) => setCity(value ?? 'all')}
-            />
-          </Grid.Col>
-          <Grid.Col span={{ base: 12, md: 3 }}>
-            <Select
-              label={t('placesPage.form.category')}
-              data={categoryOptions}
-              value={category}
-              onChange={(value) => setCategory(value ?? 'all')}
-            />
-          </Grid.Col>
-          <Grid.Col span={{ base: 12, md: 2 }}>
-            <Switch
-              label={t('mapPage.filters.featuredOnly', { defaultValue: 'Featured only' })}
-              checked={featuredOnly}
-              onChange={(event) => setFeaturedOnly(event.currentTarget.checked)}
-            />
-          </Grid.Col>
-        </Grid>
 
         <Group mt="md" justify="space-between" wrap="wrap" gap="sm">
           <SegmentedControl
@@ -546,7 +456,7 @@ export function MapPage() {
                           <Text fw={700}>{place.name}</Text>
                           <Text size="sm" c="dimmed">
                             {place.city ?? t('common.unknownCity')} -{' '}
-                            {formatCategoryLabel(place.categoryName, t)}
+                            {formatCategoryLabel(place.category, t)}
                           </Text>
                           <Group gap={6} wrap="wrap">
                             <Button size="xs" variant="light" onClick={() => toggleSelection(placeId)}>
@@ -681,7 +591,7 @@ export function MapPage() {
                               </Text>
                               <Text size="xs" c="dimmed">
                                 {entry.place.city ?? t('common.unknownCity')} -{' '}
-                                {formatCategoryLabel(entry.place.categoryName, t)}
+                                {formatCategoryLabel(entry.place.category, t)}
                               </Text>
                             </div>
                             <Button
@@ -731,7 +641,7 @@ export function MapPage() {
                             </Text>
                             <Text size="xs" c="dimmed">
                               {entry.place.city ?? t('common.unknownCity')} -{' '}
-                              {formatCategoryLabel(entry.place.categoryName, t)}
+                              {formatCategoryLabel(entry.place.category, t)}
                             </Text>
                           </div>
                           <Group gap={4}>

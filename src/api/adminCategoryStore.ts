@@ -95,8 +95,7 @@ export const removeStoredAdminCategory = (id: string, markDeleted = true) => {
 const toPublicCategory = (record: AdminCategoryRecord): Category => ({
   id: record.id,
   name: record.name || 'Untitled category',
-  description: record.description || undefined,
-  imageUrl: record.image || undefined,
+  description: record.description || '',
 });
 
 export const mergeAdminCategoriesIntoPublicCategories = (categories: Category[]): Category[] => {
@@ -122,7 +121,7 @@ export const buildAdminCategoryFromCategory = (category: Category): AdminCategor
   id: String(category.id),
   name: category.name,
   description: category.description ?? '',
-  image: category.imageUrl ?? '',
+  image: '',
   persistence: 'backend',
 });
 

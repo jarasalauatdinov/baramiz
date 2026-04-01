@@ -1,4 +1,4 @@
-import { API_ASSET_ORIGIN } from '../shared/config/api';
+import { getAssetOrigin } from '../shared/config/api';
 
 const PLACEHOLDER_HOSTS = new Set(['placehold.co', 'via.placeholder.com']);
 
@@ -109,7 +109,7 @@ export const resolveAssetUrl = (value?: string): string | undefined => {
     return undefined;
   }
 
-  if (/^data:/i.test(trimmed) || /^https?:\/\//i.test(trimmed)) {
+  if (/^(data|blob):/i.test(trimmed) || /^https?:\/\//i.test(trimmed)) {
     return trimmed;
   }
 
@@ -117,10 +117,16 @@ export const resolveAssetUrl = (value?: string): string | undefined => {
     return `https:${trimmed}`;
   }
 
+  const assetOrigin = getAssetOrigin();
   const normalized = trimmed.replace(/^\.?\//, '');
+
+  if (!assetOrigin) {
+    return trimmed.startsWith('/') ? trimmed : `/${normalized}`;
+  }
+
   return trimmed.startsWith('/')
-    ? `${API_ASSET_ORIGIN}${trimmed}`
-    : `${API_ASSET_ORIGIN}/${normalized}`;
+    ? `${assetOrigin}${trimmed}`
+    : `${assetOrigin}/${normalized}`;
 };
 
 export const isPlaceholderAssetUrl = (value?: string): boolean => {

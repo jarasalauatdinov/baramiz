@@ -4,6 +4,8 @@ import en from './locales/en.json';
 import kaa from './locales/kaa.json';
 import ru from './locales/ru.json';
 import uz from './locales/uz.json';
+import { createTranslationResource } from './shared/i18n/createTranslationResource';
+import { structuredResources } from './shared/i18n/structuredResources';
 
 export const LANGUAGE_STORAGE_KEY = 'baramiz-language';
 export const SUPPORTED_LANGUAGES = ['kaa', 'ru', 'uz', 'en'] as const;
@@ -45,10 +47,10 @@ const getInitialLanguage = (): AppLanguage => {
 
 void i18n.use(initReactI18next).init({
   resources: {
-    kaa: { translation: kaa },
-    ru: { translation: ru },
-    uz: { translation: uz },
-    en: { translation: en },
+    kaa: { translation: createTranslationResource(kaa, structuredResources.kaa) },
+    ru: { translation: createTranslationResource(ru, structuredResources.ru) },
+    uz: { translation: createTranslationResource(uz, structuredResources.uz) },
+    en: { translation: createTranslationResource(en, structuredResources.en) },
   },
   lng: getInitialLanguage(),
   fallbackLng: {

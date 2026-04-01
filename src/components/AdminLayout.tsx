@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { API_BASE_URL } from '../api/api';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ScrollToTop } from './ScrollToTop';
 import classes from './AdminLayout.module.css';
 
 const adminTheme = createTheme({
@@ -110,6 +111,10 @@ function getPageMeta(pathname: string, t: (key: string) => string) {
 }
 
 const formatApiLabel = (value: string) => {
+  if (!value.trim()) {
+    return 'Not configured';
+  }
+
   if (value.startsWith('http://')) {
     return value.replace('http://', '');
   }
@@ -137,6 +142,8 @@ export function AdminLayout() {
 
   return (
     <MantineProvider theme={adminTheme}>
+      <ScrollToTop />
+
       <AppShell
         className={classes.shell}
         header={{ height: 72 }}

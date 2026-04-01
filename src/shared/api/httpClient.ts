@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../config/api';
+import { buildApiUrl } from '../config/api';
 
 export type QueryValue = string | number | boolean | null | undefined;
 
@@ -47,11 +47,20 @@ export const requestJson = async <T>(
     payload = JSON.stringify(body);
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}${buildQuery(query)}`, {
-    ...rest,
-    headers: requestHeaders,
-    body: payload,
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(`${buildApiUrl(path)}${buildQuery(query)}`, {
+      ...rest,
+      headers: requestHeaders,
+      body: payload,
+    });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : 'Unknown network error';
+    throw new Error(
+      `Network request failed. Check that the backend is running, VITE_API_BASE_URL is correct, and local CORS/proxy settings allow the request. ${reason}`,
+    );
+  }
 
   if (!response.ok) {
     throw new Error(await readErrorMessage(response));
@@ -63,4 +72,3 @@ export const requestJson = async <T>(
 
   return (await response.json()) as T;
 };
-

@@ -1,50 +1,33 @@
-import type { FormEvent } from 'react';
-import { useEffect, useMemo, useState } from 'react';
-import {
-  Alert,
-  Autocomplete,
-  Button,
-  Container,
-  Group,
-  LoadingOverlay,
-  Paper,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+﻿import { useEffect, useMemo, useState } from 'react';
+import { Alert, Container, Paper, Stack, Text } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { PageHeaderBlock } from '../components/layout/PageHeaderBlock';
+import { PageSection } from '../components/layout/PageSection';
 import { getCategories } from '../entities/category/api/categoryApi';
 import { getPlaces } from '../entities/place/api/placeApi';
-import { generateRoute } from '../entities/route/api/routeApi';
-import type {
-  Category,
-  GeneratedRoute,
-  Place,
-  RouteGenerationInput,
-  RouteLanguage,
-} from '../types/api';
-import { formatCategoryLabel } from '../utils/placeArtwork';
+import { setCurrentRouteResult } from '../features/route-planning/model/currentRoute';
+import { createRoutePlanningResult } from '../features/route-planning/model/plannerService';
+import { resolvePlannerLanguage } from '../features/route-planning/model/options';
+import type { RoutePlanningPreferences } from '../features/route-planning/model/types';
+import { RoutePlanningForm } from '../features/route-planning/ui/RoutePlanningForm';
+import { getRouteBuilderAssistantPrompts } from '../features/travel-assistant/model/promptSuggestions';
+import { TravelAssistantPanel } from '../features/travel-assistant/ui/TravelAssistantPanel';
+import { routePaths } from '../router/paths';
+import type { Category, Place } from '../types/api';
 
 const fallbackInterests = ['history', 'culture', 'museum', 'nature', 'adventure', 'food'];
-const ROUTE_DURATION_FALLBACK: RouteGenerationInput['duration'] = '1_day';
 
 interface InterestOption {
   id: string;
-}
-
-interface FieldErrors {
-  city?: boolean;
-  interests?: boolean;
-  language?: boolean;
 }
 
 const deriveCityOptions = (places: Place[]) =>
   Array.from(new Set(places.map((place) => place.city).filter(Boolean))) as string[];
 
 export function RouteGeneratorPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const queryCity = searchParams.get('city')?.trim() ?? '';
@@ -52,14 +35,9 @@ export function RouteGeneratorPage() {
 
   const [interestOptions, setInterestOptions] = useState<InterestOption[]>([]);
   const [cityOptions, setCityOptions] = useState<string[]>([]);
-  const [city, setCity] = useState(queryCity || 'Nukus');
-  const [interests, setInterests] = useState<string[]>(
-    queryInterest ? [queryInterest] : ['history', 'museum'],
-  );
-  const [language] = useState<RouteLanguage>('uz');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [hasDataError, setHasDataError] = useState(false);
   const [hasSubmitError, setHasSubmitError] = useState(false);
 
   useEffect(() => {
@@ -83,21 +61,15 @@ export function RouteGeneratorPage() {
         );
       } else {
         console.error('Failed to load route interests', categoriesResult.reason);
-        setInterestOptions(
-          fallbackInterests.map((id) => ({
-            id,
-          })),
-        );
+        setInterestOptions(fallbackInterests.map((id) => ({ id })));
+        setHasDataError(true);
       }
 
       if (placesResult.status === 'fulfilled') {
-        const options = deriveCityOptions(placesResult.value);
-        setCityOptions(options);
-        if (queryCity && options.includes(queryCity)) {
-          setCity(queryCity);
-        }
+        setCityOptions(deriveCityOptions(placesResult.value));
       } else {
         console.error('Failed to load route cities', placesResult.reason);
+        setHasDataError(true);
       }
 
       setLoading(false);
@@ -108,62 +80,48 @@ export function RouteGeneratorPage() {
     return () => {
       active = false;
     };
-  }, [queryCity]);
+  }, []);
 
-  const selectedInterestLabels = useMemo(
-    () => interests.map((interestId) => formatCategoryLabel(interestId, t)),
-    [interests, t],
+  const initialValues = useMemo<Partial<RoutePlanningPreferences>>(
+    () => ({
+      city: queryCity,
+      interests: queryInterest ? [queryInterest] : [],
+    }),
+    [queryCity, queryInterest],
   );
 
-  const toggleInterest = (interestId: string) => {
-    setInterests((current) =>
-      current.includes(interestId)
-        ? current.filter((item) => item !== interestId)
-        : [...current, interestId],
-    );
-    setFieldErrors((current) => ({ ...current, interests: undefined }));
-  };
+  const assistantPrompts = useMemo(
+    () =>
+      getRouteBuilderAssistantPrompts(t, {
+        city: queryCity || undefined,
+        interest: queryInterest || undefined,
+      }),
+    [queryCity, queryInterest, t],
+  );
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const nextErrors: FieldErrors = {
-      city: !city.trim(),
-      interests: interests.length === 0,
-      language: !language,
-    };
-
-    setFieldErrors(nextErrors);
-    setHasSubmitError(false);
-
-    if (Object.values(nextErrors).some(Boolean)) {
-      return;
-    }
-
-    const payload: RouteGenerationInput = {
-      city: city.trim(),
-      duration: ROUTE_DURATION_FALLBACK,
-      interests,
-      language,
-    };
-
+  const handleSubmit = async (values: RoutePlanningPreferences) => {
     try {
       setSubmitting(true);
-      const route = await generateRoute(payload);
+      setHasSubmitError(false);
+
+      const result = await createRoutePlanningResult(
+        {
+          ...values,
+          language: resolvePlannerLanguage(i18n.resolvedLanguage),
+        },
+        { t },
+      );
+
       notifications.show({
         title: t('routeGenerator.notification.title'),
-        message: t('routeGenerator.notification.message', { city: payload.city }),
+        message: t('routeGenerator.notification.message', { city: values.city }),
         color: 'forest',
       });
-      navigate('/route-result', {
-        state: {
-          route,
-          request: {
-            interests: payload.interests,
-            city: payload.city,
-            duration: payload.duration,
-          },
-        } as { route: GeneratedRoute; request: Pick<RouteGenerationInput, 'interests' | 'city' | 'duration'> },
+
+      setCurrentRouteResult(result);
+
+      navigate(routePaths.appRouteResult, {
+        state: result,
       });
     } catch (error) {
       console.error('Failed to generate route', error);
@@ -174,32 +132,27 @@ export function RouteGeneratorPage() {
   };
 
   return (
-    <Container size="sm" py={{ base: 34, md: 56 }}>
-      <Paper
-        withBorder
-        radius="30px"
-        p={{ base: 'lg', md: '2rem' }}
-        bg="white"
-        pos="relative"
-        style={{
-          borderColor: 'rgba(23, 49, 42, 0.1)',
-          boxShadow: '0 20px 46px rgba(24, 34, 28, 0.08)',
-        }}
-      >
-        <LoadingOverlay visible={loading} overlayProps={{ blur: 1 }} />
+    <PageSection py={{ base: 18, md: 28 }}>
+      <Container size="xl">
+        <PageHeaderBlock
+          eyebrow={t('routeGenerator.form.eyebrow')}
+          title={t('routeGenerator.form.title')}
+          description={t('routeGenerator.form.description', {
+            defaultValue:
+              'Choose city and preferences, then generate a practical route.',
+          })}
+          size="section"
+        />
 
         <Stack gap="lg">
-          <div>
-            <Text fw={700} size="xs" tt="uppercase" c="sun.8" style={{ letterSpacing: '0.08em' }}>
-              {t('routeGenerator.form.eyebrow')}
-            </Text>
-            <Title order={2} mt={6} style={{ lineHeight: 1.15 }}>
-              {t('routeGenerator.form.title')}
-            </Title>
-            <Text mt="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
-              {t('routeGenerator.form.description')}
-            </Text>
-          </div>
+          {hasDataError ? (
+            <Alert color="yellow" variant="light">
+              {t('routeGenerator.errors.partialData', {
+                defaultValue:
+                  'Some live planning data could not be loaded. You can still build a route using the available planner options.',
+              })}
+            </Alert>
+          ) : null}
 
           {hasSubmitError ? (
             <Alert color="red" variant="light">
@@ -207,78 +160,57 @@ export function RouteGeneratorPage() {
             </Alert>
           ) : null}
 
-          <form onSubmit={handleSubmit}>
-            <Stack gap="lg">
-              <Autocomplete
-                label={t('routeGenerator.form.destinationLabel')}
-                placeholder={t('routeGenerator.form.destinationPlaceholder')}
-                data={cityOptions}
-                value={city}
-                onChange={(value) => {
-                  setCity(value);
-                  setFieldErrors((current) => ({ ...current, city: undefined }));
-                }}
-                error={fieldErrors.city ? t('routeGenerator.validation.city') : undefined}
-              />
+          <Paper
+            withBorder
+            radius="30px"
+            p={{ base: 'lg', md: '2rem' }}
+            bg="white"
+            style={{
+              borderColor: 'rgba(23, 49, 42, 0.1)',
+              boxShadow: '0 20px 46px rgba(24, 34, 28, 0.08)',
+            }}
+          >
+            <RoutePlanningForm
+              cityOptions={cityOptions}
+              interestOptions={interestOptions}
+              initialValues={initialValues}
+              loading={loading}
+              submitting={submitting}
+              onSubmit={handleSubmit}
+            />
+          </Paper>
 
-              <div>
-                <Text fw={600}>{t('routeGenerator.form.interestsLabel')}</Text>
-                <Group gap="sm" mt="sm">
-                  {interestOptions.map((option) => {
-                    const selected = interests.includes(option.id);
-                    return (
-                      <Button
-                        key={option.id}
-                        type="button"
-                        variant={selected ? 'filled' : 'light'}
-                        color={selected ? 'sun' : 'gray'}
-                        c={selected ? '#2d2208' : undefined}
-                        radius="xl"
-                        onClick={() => toggleInterest(option.id)}
-                      >
-                        {formatCategoryLabel(option.id, t)}
-                      </Button>
-                    );
-                  })}
-                </Group>
+          <TravelAssistantPanel
+            title={t('routeGenerator.assistant.title', {
+              defaultValue: 'Need a quick planning answer?',
+            })}
+            description={t('routeGenerator.assistant.description', {
+              defaultValue:
+                'Ask about cities, timing, or what fits your interests. Messages go only to the Baramiz backend assistant.',
+            })}
+            placeholder={t('routeGenerator.assistant.placeholder', {
+              defaultValue: 'Ask about a city, timing, or what kind of route fits best...',
+            })}
+            emptyHint={t('routeGenerator.assistant.emptyHint', {
+              defaultValue:
+                'Use this for a short answer before generating the route. The full plan still comes from the route builder.',
+            })}
+            suggestions={assistantPrompts}
+          />
 
-                {selectedInterestLabels.length > 0 ? (
-                  <Text size="sm" c="dimmed" mt="sm">
-                    {t('routeGenerator.form.selectedInterests', {
-                      items: selectedInterestLabels.join(', '),
-                    })}
-                  </Text>
-                ) : null}
-
-                {fieldErrors.interests ? (
-                  <Text size="sm" c="red" mt="xs">
-                    {t('routeGenerator.validation.interests')}
-                  </Text>
-                ) : null}
-              </div>
-
-           
-              <Button
-                type="submit"
-                size="lg"
-                fullWidth
-                color="sun"
-                c="#2d2208"
-                loading={submitting}
-                disabled={loading || submitting}
-              >
-                {t('common.generateRoute')}
-              </Button>
-
-              <Group justify="center">
-                <Button type="button" variant="subtle" color="forest" onClick={() => navigate('/map')}>
-                  {t('routeGenerator.form.openMap', { defaultValue: 'Open map navigator' })}
-                </Button>
-              </Group>
-            </Stack>
-          </form>
+          <Paper withBorder radius="24px" p="lg" bg="white">
+            <Text fw={700}>
+              {t('routeGenerator.integrations.title', { defaultValue: 'Route generation flow' })}
+            </Text>
+            <Text c="dimmed" mt={6} size="sm">
+              {t('routeGenerator.integrations.description', {
+                defaultValue:
+                  'Backend route endpoint is used first. Live place data is used only as fallback.',
+              })}
+            </Text>
+          </Paper>
         </Stack>
-      </Paper>
-    </Container>
+      </Container>
+    </PageSection>
   );
 }

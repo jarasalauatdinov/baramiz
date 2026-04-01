@@ -1,37 +1,58 @@
 import {
   Alert,
   Badge,
-  Box,
   Button,
-  Container,
   Group,
   Paper,
   SimpleGrid,
   Skeleton,
   Stack,
   Text,
-  Title,
+  ThemeIcon,
 } from '@mantine/core';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import heroIllustration from '../assets/right.svg';
-import { getCategories } from '../entities/category/api/categoryApi';
-import { getPlaces } from '../entities/place/api/placeApi';
+import { DestinationCard } from '../components/DestinationCard';
 import { GuideCard } from '../components/GuideCard';
+import { HeroDestinationShowcase } from '../components/layout/HeroDestinationShowcase';
+import { HeroSection } from '../components/layout/HeroSection';
+import { PageSection } from '../components/layout/PageSection';
 import { PlaceCard } from '../components/PlaceCard';
 import { SectionHeading } from '../components/SectionHeading';
 import { ServiceCard } from '../components/ServiceCard';
-import { DestinationCard } from '../components/DestinationCard';
+import { getCategories } from '../entities/category/api/categoryApi';
+import { getPlaces } from '../entities/place/api/placeApi';
 import { featuredDestinations, getLocalizedDestinations } from '../data/destinations';
 import { guideProfiles } from '../data/guides';
 import { getLocalizedServiceSections } from '../data/services';
+import { routePaths } from '../router/paths';
 import { publicUi } from '../shared/config/publicUi';
 import type { Category, Place } from '../types/api';
 import { formatCategoryLabel } from '../utils/placeArtwork';
-import styles from './HomePage.module.css';
 
 const fallbackCategoryIds = ['history', 'culture', 'museum', 'nature', 'adventure', 'food'];
+
+interface HomeCategoryShowcase {
+  id: string;
+  label: string;
+}
+
+interface HomeStoryCard {
+  title: string;
+  description: string;
+}
+
+const cardSurfaceStyle = {
+  borderColor: publicUi.border.default,
+  background: publicUi.background.surface,
+  boxShadow: publicUi.shadow.cardSoft,
+} as const;
+
+const cardSoftStyle = {
+  borderColor: publicUi.border.soft,
+  background: publicUi.background.surfaceSoft,
+} as const;
 
 export function HomePage() {
   const { t } = useTranslation();
@@ -41,8 +62,8 @@ export function HomePage() {
   const [allPlaces, setAllPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasDataError, setHasDataError] = useState(false);
-  const [selectedDestination] = useState('nukus');
-  const [selectedInterest] = useState('history');
+  const [selectedDestination, setSelectedDestination] = useState('nukus');
+  const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -95,35 +116,33 @@ export function HomePage() {
 
   const localizedDestinations = useMemo(() => getLocalizedDestinations(t), [t]);
   const localizedServiceSections = useMemo(() => getLocalizedServiceSections(t), [t]);
-  const interestOptions = categories.length > 0
-    ? categories.map((category) => ({
-        value: String(category.id),
-        label: formatCategoryLabel(String(category.id), t),
-      }))
-    : fallbackCategoryIds.map((id) => ({
-        value: id,
-        label: formatCategoryLabel(id, t),
-      }));
-  const categoryShowcase = useMemo(() => {
-    return interestOptions.slice(0, 6).map((option) => {
-      const descriptionKey = `categoryDescriptions.${option.value}`;
-      const description = t(descriptionKey);
-      const fallbackDescription = t('homeV2.categories.defaultDescription', {
-        defaultValue: 'A practical interest area to guide destination discovery and route planning.',
-      });
+  const heroDestinations = useMemo(() => localizedDestinations.slice(0, 4), [localizedDestinations]);
+  const featuredDestinationCards = useMemo(
+    () => localizedDestinations.slice(0, 2),
+    [localizedDestinations],
+  );
 
-      return {
-        id: option.value,
-        label: option.label,
-        description:
-          typeof description === 'string' && description !== descriptionKey
-            ? description
-            : fallbackDescription,
-      };
-    });
-  }, [interestOptions, t]);
   const selectedDestinationData =
-    localizedDestinations.find((destination) => destination.slug === selectedDestination) ?? localizedDestinations[0];
+    localizedDestinations.find((destination) => destination.slug === selectedDestination) ??
+    localizedDestinations[0];
+
+  const categoryShowcase = useMemo<HomeCategoryShowcase[]>(() => {
+    const options =
+      categories.length > 0
+        ? categories.map((category) => ({
+            value: String(category.id),
+            label: formatCategoryLabel(String(category.id), t),
+          }))
+        : fallbackCategoryIds.map((id) => ({
+            value: id,
+            label: formatCategoryLabel(id, t),
+          }));
+
+    return options.slice(0, 6).map((option) => ({
+      id: option.value,
+      label: option.label,
+    }));
+  }, [categories, t]);
 
   const destinationCounts = useMemo(() => {
     return Object.fromEntries(
@@ -133,60 +152,102 @@ export function HomePage() {
       ]),
     );
   }, [allPlaces]);
-  const routeSteps = [
-    {
-      number: '01',
-      title: t('homeV2.route.steps.cityTitle', { defaultValue: 'Choose a city' }),
-      description: t('homeV2.route.steps.cityDescription', {
-        defaultValue: 'Start from Nukus, Moynaq, Ellikqala, or another destination in the region.',
-      }),
-    },
-    {
-      number: '02',
-      title: t('homeV2.route.steps.interestsTitle', { defaultValue: 'Select interests' }),
-      description: t('homeV2.route.steps.interestsDescription', {
-        defaultValue: 'Mix museums, history, nature, food, and local culture into a route that feels practical.',
-      }),
-    },
-    {
-      number: '03',
-      title: t('homeV2.route.steps.itineraryTitle', { defaultValue: 'Get your itinerary' }),
-      description: t('homeV2.route.steps.itineraryDescription', {
-        defaultValue: 'Baramiz returns a readable route with stops, timing, and reasons for each recommendation.',
-      }),
-    },
-  ];
 
-  const whyItems = [
-    {
-      title: t('homeV2.why.items.aiTitle', { defaultValue: 'Route planning that stays practical' }),
-      description: t('homeV2.why.items.aiDescription', {
-        defaultValue: 'Baramiz focuses on useful travel plans, not abstract demos. Routes are built for real tourism decisions.',
-      }),
-    },
-    {
-      title: t('homeV2.why.items.localTitle', { defaultValue: 'Localized Karakalpakstan tourism focus' }),
-      description: t('homeV2.why.items.localDescription', {
-        defaultValue: 'Destinations, guides, and services are structured around how travelers actually explore the region.',
-      }),
-    },
-    {
-      title: t('homeV2.why.items.liveTitle', { defaultValue: 'Live attractions from the backend' }),
-      description: t('homeV2.why.items.liveDescription', {
-        defaultValue: 'Featured places and tourism categories use real backend data and degrade gracefully when requests fail.',
-      }),
-    },
-    {
-      title: t('homeV2.why.items.servicesTitle', { defaultValue: 'Services that make the platform feel complete' }),
-      description: t('homeV2.why.items.servicesDescription', {
-        defaultValue: 'Hotels, transport, tours, and local guides help Baramiz feel like a tourism platform rather than a simple itinerary page.',
-      }),
-    },
-  ];
-
-  const servicesShowcase = localizedServiceSections.filter((section) =>
-    ['accommodation', 'transport', 'agencies'].includes(section.id),
+  const featuredPlacesPreview = useMemo(
+    () => (featuredPlaces.length > 0 ? featuredPlaces.slice(0, 2) : allPlaces.slice(0, 2)),
+    [allPlaces, featuredPlaces],
   );
+
+  const popularServices = useMemo(
+    () =>
+      localizedServiceSections
+        .filter((section) => ['accommodation', 'transport', 'agencies'].includes(section.id))
+        .map((section) => ({
+          ...section,
+          item: section.items[0],
+        }))
+        .filter((section) => Boolean(section.item))
+        .slice(0, 2),
+    [localizedServiceSections],
+  );
+
+  const featuredGuides = useMemo(() => guideProfiles.slice(0, 2), []);
+
+  const routeSteps = useMemo(
+    () => [
+      {
+        number: '01',
+        title: t('pages.home.story.steps.destinationTitle', {
+          defaultValue: 'Pick the destination',
+        }),
+        description: t('pages.home.story.steps.destinationDescription', {
+          defaultValue: 'Start with Nukus, Moynaq, or another city that fits the trip.',
+        }),
+      },
+      {
+        number: '02',
+        title: t('pages.home.story.steps.interestsTitle', {
+          defaultValue: 'Add what matters',
+        }),
+        description: t('pages.home.story.steps.interestsDescription', {
+          defaultValue: 'Mix history, museums, nature, food, and local culture.',
+        }),
+      },
+      {
+        number: '03',
+        title: t('pages.home.story.steps.resultTitle', {
+          defaultValue: 'Move into the route',
+        }),
+        description: t('pages.home.story.steps.resultDescription', {
+          defaultValue: 'Open the plan, review stops, and continue into navigation.',
+        }),
+      },
+    ],
+    [t],
+  );
+
+  const storyPillars = useMemo<HomeStoryCard[]>(
+    () => [
+      {
+        title: t('pages.home.story.pillars.discoveryTitle', {
+          defaultValue: 'Destination-first discovery',
+        }),
+        description: t('pages.home.story.pillars.discoveryDescription', {
+          defaultValue: 'Start with where to go, then move into places and routes.',
+        }),
+      },
+      {
+        title: t('pages.home.story.pillars.supportTitle', {
+          defaultValue: 'Local support in the same flow',
+        }),
+        description: t('pages.home.story.pillars.supportDescription', {
+          defaultValue: 'Guides, stays, transport, and tours stay close to the trip.',
+        }),
+      },
+      {
+        title: t('pages.home.story.pillars.contextTitle', {
+          defaultValue: 'Regional context stays visible',
+        }),
+        description: t('pages.home.story.pillars.contextDescription', {
+          defaultValue: 'Museums, heritage, and local identity are not flattened away.',
+        }),
+      },
+    ],
+    [t],
+  );
+
+  const heroHighlights = useMemo(
+    () =>
+      [selectedDestinationData?.city, ...(selectedDestinationData?.bestFor ?? [])]
+        .filter((item): item is string => Boolean(item))
+        .slice(0, 2),
+    [selectedDestinationData],
+  );
+
+  const selectedInterestLabel = selectedInterest
+    ? categoryShowcase.find((item) => item.id === selectedInterest)?.label ??
+      formatCategoryLabel(selectedInterest, t)
+    : t('homepage.quickBuilder.noInterest', { defaultValue: 'No interest selected yet' });
 
   const handleExploreDestination = () => {
     const query = new URLSearchParams();
@@ -194,7 +255,11 @@ export function HomePage() {
       query.set('interest', selectedInterest);
     }
 
-    navigate(`/destinations/${selectedDestination}${query.toString() ? `?${query.toString()}` : ''}`);
+    navigate(
+      `${routePaths.destinationDetails(selectedDestination)}${
+        query.toString() ? `?${query.toString()}` : ''
+      }`,
+    );
   };
 
   const handleExplorePlaces = () => {
@@ -207,7 +272,7 @@ export function HomePage() {
       query.set('category', selectedInterest);
     }
 
-    navigate(`/places${query.toString() ? `?${query.toString()}` : ''}`);
+    navigate(`${routePaths.places}${query.toString() ? `?${query.toString()}` : ''}`);
   };
 
   const handleBuildRoute = () => {
@@ -220,353 +285,339 @@ export function HomePage() {
       query.set('interest', selectedInterest);
     }
 
-    navigate(`/route-generator${query.toString() ? `?${query.toString()}` : ''}`);
-  };
-
-  const handleOpenDestination = (slug: string) => {
-    const query = new URLSearchParams();
-    if (selectedInterest) {
-      query.set('interest', selectedInterest);
-    }
-
-    navigate(`/destinations/${slug}${query.toString() ? `?${query.toString()}` : ''}`);
+    navigate(`${routePaths.routeGenerator}${query.toString() ? `?${query.toString()}` : ''}`);
   };
 
   return (
-    <Box>
-      <Box component="section" py={{ base: 44, md: 72 }}>
-        <Container size="xl">
-          <Paper
-            className={styles.heroShell}
-            p={{ base: 'xl', md: '2.8rem' }}
-            radius={publicUi.radius.hero}
-          >
-            <SimpleGrid
-              cols={{ base: 1, lg: 2 }}
-              spacing={{ base: 'xl', lg: '2.3rem' }}
-              className={styles.heroMainGrid}
-            >
-              <Stack gap="150px" className={styles.heroContent}>
-                <div>
-                
-                  <Title order={1} mt="md" fz="94" className={styles.heroTitle}>
-                    {t('homeV2.hero.title', {
-                      defaultValue: 'Discover Karakalpakstan with Baramiz',
-                    })}
-                  </Title>
-               
-                </div>
+    <>
+      <PageSection py={{ base: 26, md: 60 }}>
+        <HeroSection
+          eyebrow={t('pages.home.hero.eyebrow', {
+            defaultValue: 'Karakalpakstan travel',
+          })}
+          title={t('pages.home.hero.title', {
+            defaultValue: 'Explore Karakalpakstan with routes and local support',
+          })}
+          description={t('pages.home.hero.description', {
+            defaultValue:
+              'Choose a destination, open live places, and plan the trip in a few taps.',
+          })}
+          actions={
+            <Stack gap="md">
+              <Group gap="xs" wrap="wrap">
+                {heroHighlights.map((item) => (
+                  <Badge key={item} color="forest" variant="light" radius="xl">
+                    {item}
+                  </Badge>
+                ))}
+              </Group>
 
-            
-                <Group gap="sm" wrap="wrap">
-                  <Button color="sun" c="#2d2208" size="lg" onClick={handleExplorePlaces}>
-                    {t('homeV2.hero.secondaryCta', { defaultValue: 'Explore places' })}
-                  </Button>
-                  <Button variant="default" size="lg" onClick={handleBuildRoute}>
-                    {t('homeV2.hero.routeCta', { defaultValue: 'Build route' })}
-                  </Button>
-                  <Button variant="subtle" size="md" onClick={handleExploreDestination}>
-                    {t('homeV2.planner.exploreButton', { defaultValue: 'Explore destination' })}
-                  </Button>
-                {selectedDestinationData ? (
-                  <Group gap="xs">
-                    {selectedDestinationData.bestFor.slice(0, 3).map((item) => (
-                      <Badge key={item} color="forest" variant="light" radius="xl">
-                        {item}
-                      </Badge>
-                    ))}
-                  </Group>
-                ) : null}
-                </Group>
+              <Group gap="sm" wrap="wrap">
+                <Button color="sun" c="#2d2208" size="lg" radius="xl" onClick={handleExploreDestination}>
+                  {t('pages.home.hero.primaryCta', { defaultValue: 'Explore destination' })}
+                </Button>
+                <Button variant="subtle" color="forest" size="lg" radius="xl" onClick={handleBuildRoute}>
+                  {t('pages.home.hero.secondaryCta', { defaultValue: 'Build route' })}
+                </Button>
+              </Group>
+            </Stack>
+          }
+          visual={
+            <HeroDestinationShowcase
+              destinations={heroDestinations}
+              activeSlug={selectedDestination}
+              onSelect={setSelectedDestination}
+            />
+          }
+        />
 
-              </Stack>
+        <Paper
+          withBorder
+          radius={publicUi.radius.panel}
+          p={{ base: 'lg', md: '1.4rem' }}
+          mt="lg"
+          style={{
+            borderColor: 'rgba(221, 193, 152, 0.34)',
+            background:
+              'linear-gradient(180deg, rgba(255,250,241,0.98), rgba(255,253,249,0.96))',
+            boxShadow: '0 18px 36px rgba(58, 41, 19, 0.05)',
+          }}
+        >
+          <Group justify="space-between" align="flex-end" gap="md" mb="lg" wrap="wrap">
+            <Stack gap={4}>
+              <Text size="xs" fw={800} c="sun.8" tt="uppercase" style={{ letterSpacing: '0.12em' }}>
+                {t('pages.home.quickBuilder.eyebrow', {
+                  defaultValue: 'Plan fast',
+                })}
+              </Text>
+              <Text fw={800} size="xl" style={{ lineHeight: 1.12, letterSpacing: '-0.02em' }}>
+                {t('pages.home.quickBuilder.title', {
+                  defaultValue: 'Choose a city, add an interest, and go',
+                })}
+              </Text>
+            </Stack>
 
-              <Box className={styles.heroVisual}>
-                <img
-                  src={heroIllustration}
-                  alt={t('homeV2.hero.visualAlt', {
-                    defaultValue: 'Karakalpakstan destinations collage',
-                  })}
-                  className={styles.heroIllustration}
-                />
-              </Box>
-            </SimpleGrid>
-
-         
-          </Paper>
-        </Container>
-      </Box>
-
-      {hasDataError ? (
-        <Container size="xl">
-          <Alert color="yellow" variant="light" mb="xl">
-            {t('home.errors.dataUnavailable')}
-          </Alert>
-        </Container>
-      ) : null}
-
-      <Box component="section" py={{ base: 24, md: 36 }}>
-        <Container size="xl">
-          <SectionHeading
-            eyebrow={t('homeV2.destinations.eyebrow', { defaultValue: 'Popular destinations' })}
-            title={t('homeV2.destinations.title', { defaultValue: 'Start with the destinations travelers ask for first' })}
-            description={t('homeV2.destinations.description', {
-              defaultValue: 'From Nukus museums to Moynaq and the Aral Sea story, Baramiz organizes Karakalpakstan into clear destination-led journeys.',
-            })}
-          />
-
-          <Group gap="sm" mb="lg" wrap="wrap">
-            {localizedDestinations.map((destination) => (
-              <Button
-                key={destination.slug}
-                variant="light"
-                color="forest"
-                radius="xl"
-                onClick={() => handleOpenDestination(destination.slug)}
-              >
-                {destination.name}
-              </Button>
-            ))}
+            <Badge color="forest" variant="light" radius="xl">
+              {selectedDestinationData?.name ?? t('common.appName')}
+            </Badge>
           </Group>
 
-          <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg">
-            {localizedDestinations.map((destination) => (
-              <DestinationCard
-                key={destination.slug}
-                destination={destination}
-                placeCount={destinationCounts[destination.slug]}
-              />
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
+          <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="md">
+            <Paper withBorder p="lg" radius="24px" style={cardSurfaceStyle}>
+              <Stack gap="sm">
+                <Text size="sm" fw={700}>
+                  {t('homepage.quickBuilder.destinationLabel', {
+                    defaultValue: 'Destination',
+                  })}
+                </Text>
+                <Group gap="sm" wrap="wrap">
+                  {heroDestinations.map((destination) => {
+                    const active = destination.slug === selectedDestination;
+                    return (
+                      <Button
+                        key={destination.slug}
+                        variant={active ? 'filled' : 'light'}
+                        color={active ? 'sun' : 'forest'}
+                        c={active ? '#2d2208' : undefined}
+                        radius="xl"
+                        onClick={() => setSelectedDestination(destination.slug)}
+                      >
+                        {destination.name}
+                      </Button>
+                    );
+                  })}
+                </Group>
+              </Stack>
+            </Paper>
 
-      <Box component="section" py={{ base: 24, md: 36 }}>
-        <Container size="xl">
-          <SectionHeading
-            eyebrow={t('homeV2.categories.eyebrow', { defaultValue: 'Quick categories' })}
-            title={t('homeV2.categories.title', { defaultValue: 'Explore places by what travelers care about most' })}
-            description={t('homeV2.categories.description', {
-              defaultValue: 'Tourism categories come from the backend and help users jump straight to relevant places.',
-            })}
-            action={
-              <Button variant="light" color="forest" onClick={() => navigate('/places')}>
-                {t('common.viewAllPlaces')}
-              </Button>
-            }
-          />
+            <Paper withBorder p="lg" radius="24px" style={cardSurfaceStyle}>
+              <Stack gap="sm">
+                <Text size="sm" fw={700}>
+                  {t('homepage.quickBuilder.interestsLabel', {
+                    defaultValue: 'Interest',
+                  })}
+                </Text>
+                <Group gap="sm" wrap="wrap">
+                  {categoryShowcase.map((category) => {
+                    const active = category.id === selectedInterest;
+                    return (
+                      <Button
+                        key={category.id}
+                        variant={active ? 'filled' : 'light'}
+                        color={active ? 'sun' : 'gray'}
+                        c={active ? '#2d2208' : undefined}
+                        radius="xl"
+                        onClick={() =>
+                          setSelectedInterest((current) =>
+                            current === category.id ? null : category.id,
+                          )
+                        }
+                      >
+                        {category.label}
+                      </Button>
+                    );
+                  })}
+                </Group>
+              </Stack>
+            </Paper>
 
-          <SimpleGrid cols={{ base: 1, sm: 2, xl: 3 }} spacing="md">
-            {categoryShowcase.map((category) => (
-              <Paper
-                key={category.id}
-                withBorder
-                p="lg"
-                radius="22px"
-                style={{ borderColor: 'rgba(44, 54, 46, 0.08)', background: '#fffdf8' }}
-              >
-                <Stack gap="sm">
-                  <Badge color="sun" variant="light" c="#5a420b" w="fit-content">
-                    {category.label}
-                  </Badge>
-                  <Text c="dimmed" style={{ lineHeight: 1.68 }}>
-                    {category.description}
+            <Paper withBorder p="lg" radius="24px" style={cardSurfaceStyle}>
+              <Stack gap="sm" h="100%" justify="space-between">
+                <Stack gap={6}>
+                  <Text size="sm" c="dimmed">
+                    {t('pages.home.quickBuilder.summaryBadge', {
+                      defaultValue: 'Next step',
+                    })}
+                  </Text>
+                  <Text fw={800} size="lg">
+                    {selectedInterestLabel}
+                  </Text>
+                  <Text size="sm" c="dimmed" style={{ lineHeight: 1.6 }}>
+                    {t('pages.home.quickBuilder.summaryText', {
+                      defaultValue: 'Open the destination, browse places, or go straight to the route.',
+                    })}
                   </Text>
                 </Stack>
-              </Paper>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
 
-      <Box component="section" py={{ base: 24, md: 36 }}>
-        <Container size="xl">
-          <Paper
-            withBorder
-            p={{ base: 'xl', md: '2rem' }}
-            radius={publicUi.radius.panel}
-            style={{
-              borderColor: publicUi.border.accent,
-              background: publicUi.background.accent,
-            }}
-          >
-            <SectionHeading
-              eyebrow={t('homeV2.route.eyebrow', { defaultValue: 'Route generator' })}
-              title={t('homeV2.route.title', { defaultValue: 'Turn destination research into a practical route' })}
-              description={t('homeV2.route.description', {
-                defaultValue: 'Baramiz helps travelers move from browsing to action with a route builder designed for practical tourism planning.',
-              })}
-              action={
-                <Button color="sun" c="#2d2208" onClick={() => navigate('/route-generator')}>
-                  {t('common.generateRoute')}
-                </Button>
-              }
-            />
-
-            <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
-              {routeSteps.map((step) => (
-                <Paper
-                  key={step.number}
-                  withBorder
-                  p="lg"
-                  radius="22px"
-                  style={{ borderColor: 'rgba(44, 54, 46, 0.08)', background: '#fffdf8' }}
-                >
-                  <Stack gap="sm">
-                    <Badge color="sun" variant="light" c="#5a420b" w="fit-content">
-                      {step.number}
-                    </Badge>
-                    <Text fw={700} size="lg">
-                      {step.title}
-                    </Text>
-                    <Text c="dimmed" style={{ lineHeight: 1.7 }}>
-                      {step.description}
-                    </Text>
-                  </Stack>
-                </Paper>
-              ))}
-            </SimpleGrid>
-          </Paper>
-        </Container>
-      </Box>
-
-      <Box component="section" py={{ base: 24, md: 36 }}>
-        <Container size="xl">
-          <Paper
-            withBorder
-            p={{ base: 'xl', md: '2rem' }}
-            radius={publicUi.radius.panel}
-            mb="xl"
-            style={{
-              borderColor: publicUi.border.default,
-              background: publicUi.background.panel,
-            }}
-          >
-            <SectionHeading
-              eyebrow={t('homeV2.map.eyebrow', { defaultValue: 'Map and navigation' })}
-              title={t('homeV2.map.title', {
-                defaultValue: 'Navigate destinations with map-first travel support',
-              })}
-              description={t('homeV2.map.description', {
-                defaultValue:
-                  'Open the map to explore places by city and category, create an ordered stop list, then continue in Google Maps or Yandex Maps.',
-              })}
-              action={
-                <Group gap="sm">
-                  <Button variant="light" color="forest" onClick={() => navigate('/map')}>
-                    {t('homeV2.map.openMap', { defaultValue: 'Open map' })}
-                  </Button>
-                  <Button color="sun" c="#2d2208" onClick={() => navigate('/route-generator')}>
+                <Stack gap="xs">
+                  <Button color="sun" c="#2d2208" size="md" onClick={handleBuildRoute} fullWidth>
                     {t('common.generateRoute')}
                   </Button>
-                </Group>
-              }
-            />
-          </Paper>
+                  <Button variant="light" color="forest" size="md" onClick={handleExploreDestination} fullWidth>
+                    {t('homepage.quickBuilder.destinationAction', {
+                      defaultValue: 'Open destination',
+                    })}
+                  </Button>
+                  <Button variant="subtle" size="md" onClick={handleExplorePlaces} fullWidth>
+                    {t('homepage.quickBuilder.placesAction', {
+                      defaultValue: 'Browse places',
+                    })}
+                  </Button>
+                </Stack>
+              </Stack>
+            </Paper>
+          </SimpleGrid>
+        </Paper>
+      </PageSection>
 
-          <SectionHeading
-            eyebrow={t('homeV2.featuredPlaces.eyebrow', { defaultValue: 'Featured places' })}
-            title={t('homeV2.featuredPlaces.title', { defaultValue: 'Live places ready for real trip planning' })}
-            description={t('homeV2.featuredPlaces.description', {
-              defaultValue: 'Featured attractions come from the backend so the platform always shows concrete tourism content, not empty promo blocks.',
-            })}
-            action={
-              <Button variant="light" color="forest" onClick={() => navigate('/places')}>
+      {hasDataError ? (
+        <PageSection py={0}>
+          <Alert color="yellow" variant="light" mb="xl">
+            {t('homepage.errors.dataUnavailable')}
+          </Alert>
+        </PageSection>
+      ) : null}
+
+      <PageSection>
+        <SectionHeading
+          eyebrow={t('pages.home.discover.eyebrow', {
+            defaultValue: 'Start exploring',
+          })}
+          title={t('pages.home.discover.title', {
+            defaultValue: 'Pick a destination or open live places',
+          })}
+          action={
+            <Group gap="sm" wrap="wrap">
+              <Button variant="light" color="forest" onClick={() => navigate(routePaths.destinations)}>
+                {t('common.exploreDestination')}
+              </Button>
+              <Button variant="subtle" onClick={() => navigate(routePaths.places)}>
                 {t('common.viewAllPlaces')}
               </Button>
-            }
-          />
+            </Group>
+          }
+        />
 
-          {loading ? (
-            <SimpleGrid cols={{ base: 1, md: 2, xl: 4 }} spacing="lg">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <Skeleton key={index} h={420} radius="24px" />
-              ))}
-            </SimpleGrid>
-          ) : featuredPlaces.length > 0 ? (
-            <SimpleGrid cols={{ base: 1, md: 2, xl: 4 }} spacing="lg">
-              {featuredPlaces.map((place) => (
-                <PlaceCard key={String(place.id)} place={place} />
-              ))}
-            </SimpleGrid>
-          ) : (
-            <Paper withBorder p="xl" radius="24px" bg="white">
-              <Text c="dimmed">{t('home.featuredPlaces.empty')}</Text>
-            </Paper>
-          )}
-        </Container>
-      </Box>
+        <SimpleGrid cols={{ base: 1, xl: 2 }} spacing="xl">
+          <Paper withBorder p={{ base: 'lg', md: 'xl' }} radius="26px" style={cardSurfaceStyle}>
+            <Stack gap="lg">
+              <Text size="sm" fw={700} c="forest.8">
+                {t('pages.home.discover.destinationsLabel', {
+                  defaultValue: 'Featured destinations',
+                })}
+              </Text>
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg">
+                {featuredDestinationCards.map((destination) => (
+                  <DestinationCard
+                    key={destination.slug}
+                    destination={destination}
+                    placeCount={destinationCounts[destination.slug]}
+                  />
+                ))}
+              </SimpleGrid>
+            </Stack>
+          </Paper>
 
-      <Box component="section" py={{ base: 24, md: 36 }}>
-        <Container size="xl">
+          <Paper withBorder p={{ base: 'lg', md: 'xl' }} radius="26px" style={cardSurfaceStyle}>
+            <Stack gap="lg">
+              <Text size="sm" fw={700} c="forest.8">
+                {t('pages.home.discover.placesLabel', {
+                  defaultValue: 'Live place highlights',
+                })}
+              </Text>
+              {loading ? (
+                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg">
+                  {Array.from({ length: 2 }).map((_, index) => (
+                    <Skeleton key={index} h={380} radius="24px" />
+                  ))}
+                </SimpleGrid>
+              ) : featuredPlacesPreview.length > 0 ? (
+                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg">
+                  {featuredPlacesPreview.map((place) => (
+                    <PlaceCard key={String(place.id)} place={place} />
+                  ))}
+                </SimpleGrid>
+              ) : (
+                <Paper withBorder p="xl" radius="24px" bg="white">
+                  <Text c="dimmed">{t('homepage.places.empty')}</Text>
+                </Paper>
+              )}
+            </Stack>
+          </Paper>
+        </SimpleGrid>
+      </PageSection>
+
+      <PageSection>
+        <Paper
+          withBorder
+          p={{ base: 'xl', md: '2rem' }}
+          radius={publicUi.radius.panel}
+          style={{
+            borderColor: publicUi.border.accent,
+            background: publicUi.background.accent,
+          }}
+        >
           <SectionHeading
-            eyebrow={t('homeV2.guides.eyebrow', { defaultValue: 'Local guides directory' })}
-            title={t('homeV2.guides.title', { defaultValue: 'Connect travelers with guides who know the region' })}
-            description={t('homeV2.guides.description', {
-              defaultValue: 'A strong tourism platform needs more than places. It needs trusted people who can translate local knowledge into a better trip.',
+            eyebrow={t('pages.home.support.eyebrow', {
+              defaultValue: 'Local support',
+            })}
+            title={t('pages.home.support.title', {
+              defaultValue: 'Find stays, transport, and people who know the region',
             })}
           />
 
-          <SimpleGrid cols={{ base: 1, md: 2, xl: 4 }} spacing="lg">
-            {guideProfiles.map((guide) => (
-              <GuideCard key={guide.id} guide={guide} />
-            ))}
+          <SimpleGrid cols={{ base: 1, xl: 2 }} spacing="xl">
+            <Stack gap="lg">
+              <Group justify="space-between" align="center" gap="sm" wrap="wrap">
+                <Text size="sm" fw={700} c="forest.8">
+                  {t('pages.home.support.servicesLabel', {
+                    defaultValue: 'Popular services',
+                  })}
+                </Text>
+                <Button variant="subtle" color="forest" onClick={() => navigate(routePaths.services)}>
+                  {t('common.browseServices')}
+                </Button>
+              </Group>
+              <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
+                {popularServices.map((section) => (
+                  <ServiceCard
+                    key={section.id}
+                    item={section.item}
+                    kind={section.id}
+                    actionLabel={t('homepage.services.cardAction', {
+                      defaultValue: 'Open service',
+                    })}
+                  />
+                ))}
+              </SimpleGrid>
+            </Stack>
+
+            <Stack gap="lg">
+              <Group justify="space-between" align="center" gap="sm" wrap="wrap">
+                <Text size="sm" fw={700} c="forest.8">
+                  {t('pages.home.support.guidesLabel', {
+                    defaultValue: 'Local guides',
+                  })}
+                </Text>
+                <Button variant="subtle" color="forest" onClick={() => navigate(routePaths.guides)}>
+                  {t('homepage.guides.actionLabel', { defaultValue: 'Guides' })}
+                </Button>
+              </Group>
+              <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
+                {featuredGuides.map((guide) => (
+                  <GuideCard key={guide.id} guide={guide} />
+                ))}
+              </SimpleGrid>
+            </Stack>
           </SimpleGrid>
-        </Container>
-      </Box>
+        </Paper>
+      </PageSection>
 
-      <Box component="section" py={{ base: 24, md: 36 }}>
-        <Container size="xl">
-          <SectionHeading
-            eyebrow={t('homeV2.services.eyebrow', { defaultValue: 'Tourism services' })}
-            title={t('homeV2.services.title', { defaultValue: 'Hotels, transport, and tours in one platform flow' })}
-            description={t('homeV2.services.description', {
-              defaultValue: 'Baramiz should feel like a real travel product, so services sit beside destinations and route planning instead of outside the experience.',
-            })}
-            action={
-              <Button variant="light" color="forest" onClick={() => navigate('/services')}>
-                {t('common.browseServices')}
-              </Button>
-            }
-          />
-
-          <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg">
-            {(servicesShowcase.length > 0 ? servicesShowcase : localizedServiceSections.slice(0, 3)).map((section) => (
-              <ServiceCard
-                key={section.id}
-                item={section.items[0]}
-                actionLabel={t('homeV2.services.cardAction', { defaultValue: 'Open service' })}
-              />
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      <Box component="section" py={{ base: 24, md: 56 }}>
-        <Container size="xl">
-          <Paper
-            withBorder
-            p={{ base: 'xl', md: '2rem' }}
-            radius={publicUi.radius.panel}
-            style={{ borderColor: publicUi.border.soft, background: publicUi.background.surfaceSoft }}
-          >
+      <PageSection>
+        <SimpleGrid cols={{ base: 1, xl: 2 }} spacing="xl">
+          <Paper withBorder p={{ base: 'xl', md: '2rem' }} radius={publicUi.radius.panel} style={cardSurfaceStyle}>
             <SectionHeading
-              eyebrow={t('homeV2.why.eyebrow', { defaultValue: 'Why Baramiz' })}
-              title={t('homeV2.why.title', { defaultValue: 'A tourism platform with warm local context and practical planning' })}
-              description={t('homeV2.why.description', {
-                defaultValue: 'Baramiz combines destination discovery, guides, services, and route planning into one travel product for Karakalpakstan.',
+              eyebrow={t('pages.home.story.eyebrow', {
+                defaultValue: 'Why Baramiz',
+              })}
+              title={t('pages.home.story.title', {
+                defaultValue: 'Built for real travel decisions',
               })}
             />
 
-            <SimpleGrid cols={{ base: 1, md: 2, xl: 4 }} spacing="md">
-              {whyItems.map((item, index) => (
-                <Paper
-                  key={item.title}
-                  withBorder
-                  p="lg"
-                  radius="22px"
-                  style={{ borderColor: 'rgba(44, 54, 46, 0.08)', background: '#ffffff' }}
-                >
+            <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="md">
+              {storyPillars.map((item, index) => (
+                <Paper key={item.title} withBorder p="lg" radius="22px" style={cardSoftStyle}>
                   <Stack gap="sm">
                     <Badge color="sun" variant="light" c="#5a420b" w="fit-content">
                       0{index + 1}
@@ -574,7 +625,7 @@ export function HomePage() {
                     <Text fw={700} size="lg">
                       {item.title}
                     </Text>
-                    <Text c="dimmed" style={{ lineHeight: 1.7 }}>
+                    <Text c="dimmed" size="sm" style={{ lineHeight: 1.65 }}>
                       {item.description}
                     </Text>
                   </Stack>
@@ -582,8 +633,91 @@ export function HomePage() {
               ))}
             </SimpleGrid>
           </Paper>
-        </Container>
-      </Box>
-    </Box>
+
+          <Paper withBorder p={{ base: 'xl', md: '2rem' }} radius={publicUi.radius.panel} style={cardSurfaceStyle}>
+            <Stack gap="lg" h="100%">
+              <Stack gap={6}>
+                <Text size="xs" fw={800} c="sun.8" tt="uppercase" style={{ letterSpacing: '0.12em' }}>
+                  {t('pages.home.story.stepsEyebrow', {
+                    defaultValue: 'How it works',
+                  })}
+                </Text>
+                <Text fw={800} size="1.8rem" style={{ lineHeight: 1.12, letterSpacing: '-0.03em' }}>
+                  {t('pages.home.story.stepsTitle', {
+                    defaultValue: 'Three clear moves into a route',
+                  })}
+                </Text>
+              </Stack>
+
+              <Stack gap="md">
+                {routeSteps.map((step) => (
+                  <Group key={step.number} align="flex-start" gap="md" wrap="nowrap">
+                    <ThemeIcon size={38} radius="xl" color="sun" c="#2d2208" variant="filled">
+                      {step.number}
+                    </ThemeIcon>
+                    <Stack gap={4}>
+                      <Text fw={700}>{step.title}</Text>
+                      <Text c="dimmed" size="sm" style={{ lineHeight: 1.65 }}>
+                        {step.description}
+                      </Text>
+                    </Stack>
+                  </Group>
+                ))}
+              </Stack>
+
+              <Button color="sun" c="#2d2208" onClick={handleBuildRoute} w="fit-content">
+                {t('common.generateRoute')}
+              </Button>
+            </Stack>
+          </Paper>
+        </SimpleGrid>
+      </PageSection>
+
+      <PageSection py={{ base: 22, md: 52 }}>
+        <Paper
+          withBorder
+          p={{ base: 'xl', md: '2rem' }}
+          radius={publicUi.radius.panel}
+          style={{
+            borderColor: publicUi.border.accent,
+            background: publicUi.background.accent,
+          }}
+        >
+          <SimpleGrid cols={{ base: 1, lg: 2 }} spacing="lg">
+            <Stack gap="sm">
+              <Badge color="forest" variant="light" radius="xl" w="fit-content">
+                {t('pages.home.final.eyebrow', { defaultValue: 'Ready to start?' })}
+              </Badge>
+              <Text fw={800} size="clamp(1.8rem, 4vw, 2.8rem)" style={{ lineHeight: 1.06, letterSpacing: '-0.03em' }}>
+                {t('pages.home.final.title', {
+                  defaultValue: 'Start with a place. Leave with a route.',
+                })}
+              </Text>
+              <Text c="dimmed" style={{ lineHeight: 1.65, maxWidth: 520 }}>
+                {t('pages.home.final.description', {
+                  defaultValue: 'Open the destination now or jump straight into planning.',
+                })}
+              </Text>
+            </Stack>
+
+            <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="sm" h="fit-content">
+              <Button color="sun" c="#2d2208" onClick={handleBuildRoute} fullWidth>
+                {t('common.generateRoute')}
+              </Button>
+              <Button variant="light" color="forest" onClick={handleExploreDestination} fullWidth>
+                {t('homepage.finalCta.destinationAction', {
+                  defaultValue: 'Open destination',
+                })}
+              </Button>
+              <Button variant="subtle" onClick={handleExplorePlaces} fullWidth>
+                {t('homepage.quickBuilder.placesAction', {
+                  defaultValue: 'Browse places',
+                })}
+              </Button>
+            </SimpleGrid>
+          </SimpleGrid>
+        </Paper>
+      </PageSection>
+    </>
   );
 }
