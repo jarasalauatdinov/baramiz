@@ -10,17 +10,20 @@ import {
   Text,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GuideCard } from '../components/GuideCard';
 import { PageHeaderBlock } from '../components/layout/PageHeaderBlock';
 import { PageSection } from '../components/layout/PageSection';
 import { getGuideCityOptions, getGuideSpecialtyOptions, guideProfiles } from '../data/guides';
+import { startProtectedAction } from '../features/auth/lib/startProtectedAction';
+import { createGuideBookingSource } from '../features/booking/model/bookingDraft';
 import { routePaths } from '../router/paths';
 
 const ALL_OPTION = 'all';
 
 export function GuidesPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selectedCity, setSelectedCity] = useState(ALL_OPTION);
   const [selectedSpecialty, setSelectedSpecialty] = useState(ALL_OPTION);
 
@@ -55,6 +58,22 @@ export function GuidesPage() {
       return matchesCity && matchesSpecialty;
     });
   }, [selectedCity, selectedSpecialty]);
+
+  const handleBookGuide = (guideId: string) => {
+    const guide = guideProfiles.find((item) => item.id === guideId);
+    if (!guide) {
+      return;
+    }
+
+    startProtectedAction(navigate, {
+      reason: 'guide-request',
+      redirectTo: routePaths.appBookingDetails,
+      redirectState: {
+        seed: createGuideBookingSource(guide),
+        originPath: routePaths.appGuides,
+      },
+    });
+  };
 
   return (
     <PageSection py={{ base: 18, md: 28 }}>
@@ -132,7 +151,7 @@ export function GuidesPage() {
       {visibleGuides.length > 0 ? (
         <SimpleGrid cols={{ base: 1, md: 2, xl: 3 }} spacing="lg">
           {visibleGuides.map((guide) => (
-            <GuideCard key={guide.id} guide={guide} />
+            <GuideCard key={guide.id} guide={guide} onBook={() => handleBookGuide(guide.id)} />
           ))}
         </SimpleGrid>
       ) : (

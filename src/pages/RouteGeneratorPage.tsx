@@ -1,21 +1,17 @@
-﻿import { useEffect, useMemo, useState } from 'react';
-import { Alert, Container, Paper, Stack, Text } from '@mantine/core';
+import { useEffect, useMemo, useState } from 'react';
 import { notifications } from '@mantine/notifications';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { PageHeaderBlock } from '../components/layout/PageHeaderBlock';
-import { PageSection } from '../components/layout/PageSection';
-import { getCategories } from '../entities/category/api/categoryApi';
-import { getPlaces } from '../entities/place/api/placeApi';
+import { getCategories, type Category } from '../entities/category';
+import { getLocalizedDestinationByCity, getLocalizedDestinations } from '../entities/destination';
+import { getPlaces, type Place } from '../entities/place';
 import { setCurrentRouteResult } from '../features/route-planning/model/currentRoute';
-import { createRoutePlanningResult } from '../features/route-planning/model/plannerService';
 import { resolvePlannerLanguage } from '../features/route-planning/model/options';
+import { createRoutePlanningResult } from '../features/route-planning/model/plannerService';
 import type { RoutePlanningPreferences } from '../features/route-planning/model/types';
-import { RoutePlanningForm } from '../features/route-planning/ui/RoutePlanningForm';
 import { getRouteBuilderAssistantPrompts } from '../features/travel-assistant/model/promptSuggestions';
-import { TravelAssistantPanel } from '../features/travel-assistant/ui/TravelAssistantPanel';
+import { RouteBuilderScreen } from '../widgets/route-builder';
 import { routePaths } from '../router/paths';
-import type { Category, Place } from '../types/api';
 
 const fallbackInterests = ['history', 'culture', 'museum', 'nature', 'adventure', 'food'];
 
@@ -99,6 +95,12 @@ export function RouteGeneratorPage() {
     [queryCity, queryInterest, t],
   );
 
+  const destinations = useMemo(() => getLocalizedDestinations(t), [t]);
+  const previewDestination = useMemo(
+    () => getLocalizedDestinationByCity(queryCity || cityOptions[0], t) ?? destinations[0] ?? null,
+    [cityOptions, destinations, queryCity, t],
+  );
+
   const handleSubmit = async (values: RoutePlanningPreferences) => {
     try {
       setSubmitting(true);
@@ -132,82 +134,19 @@ export function RouteGeneratorPage() {
   };
 
   return (
-    <PageSection py={{ base: 14, md: 22 }}>
-      <Container size="xl">
-        <PageHeaderBlock
-          eyebrow={t('routeGenerator.form.eyebrow')}
-          title={t('routeGenerator.form.title')}
-          description={t('routeGenerator.form.description')}
-          size="section"
-        />
-
-        <Stack gap="lg">
-          {hasDataError ? (
-            <Alert color="yellow" variant="light">
-              {t('routeGenerator.errors.partialData', {
-                defaultValue:
-                  'Some live planning data could not be loaded. You can still build a route using the available planner options.',
-              })}
-            </Alert>
-          ) : null}
-
-          {hasSubmitError ? (
-            <Alert color="red" variant="light">
-              {t('routeGenerator.errors.generateFailed')}
-            </Alert>
-          ) : null}
-
-          <Paper
-            withBorder
-            radius="30px"
-            p={{ base: 'lg', md: '2rem' }}
-            bg="white"
-            style={{
-              borderColor: 'rgba(23, 49, 42, 0.1)',
-              boxShadow: '0 20px 46px rgba(24, 34, 28, 0.08)',
-            }}
-          >
-            <RoutePlanningForm
-              cityOptions={cityOptions}
-              interestOptions={interestOptions}
-              initialValues={initialValues}
-              loading={loading}
-              submitting={submitting}
-              onSubmit={handleSubmit}
-            />
-          </Paper>
-
-          <TravelAssistantPanel
-            title={t('routeGenerator.assistant.title', {
-              defaultValue: 'Need a quick answer?',
-            })}
-            description={t('routeGenerator.assistant.description', {
-              defaultValue:
-                'Ask about city, timing, or interests. Messages go only to Baramiz backend.',
-            })}
-            placeholder={t('routeGenerator.assistant.placeholder', {
-              defaultValue: 'Ask about a city, timing, or what kind of route fits best...',
-            })}
-            emptyHint={t('routeGenerator.assistant.emptyHint', {
-              defaultValue:
-                'Use this for a short answer before generating the route. The full plan still comes from the route builder.',
-            })}
-            suggestions={assistantPrompts}
-          />
-
-          <Paper withBorder radius="24px" p="lg" bg="white">
-            <Text fw={700}>
-              {t('routeGenerator.integrations.title', { defaultValue: 'Route generation flow' })}
-            </Text>
-            <Text c="dimmed" mt={6} size="sm">
-              {t('routeGenerator.integrations.description', {
-                defaultValue:
-                  'Backend route API is used first. Local fallback is only for failures.',
-              })}
-            </Text>
-          </Paper>
-        </Stack>
-      </Container>
-    </PageSection>
+    <RouteBuilderScreen
+      previewDestination={previewDestination}
+      queryCity={queryCity}
+      queryInterest={queryInterest}
+      hasDataError={hasDataError}
+      hasSubmitError={hasSubmitError}
+      loading={loading}
+      submitting={submitting}
+      cityOptions={cityOptions}
+      interestOptions={interestOptions}
+      initialValues={initialValues}
+      assistantPrompts={assistantPrompts}
+      onSubmit={handleSubmit}
+    />
   );
 }

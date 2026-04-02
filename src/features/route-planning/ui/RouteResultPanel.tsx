@@ -14,19 +14,19 @@ export function RouteResultPanel({ title, description, children }: RouteResultPa
       withBorder
       radius={publicUi.radius.panel}
       p={{ base: 'lg', md: 'xl' }}
-      bg={publicUi.background.surface}
+      bg={publicUi.background.surfaceWarm}
       style={{
         borderColor: publicUi.border.default,
         boxShadow: publicUi.shadow.cardSoft,
       }}
     >
-      <Stack gap="lg">
+      <Stack gap="md">
         <div>
           <Title order={3} style={{ lineHeight: 1.15 }}>
             {title}
           </Title>
           {description ? (
-            <Text c="dimmed" size="sm" mt={8} style={{ lineHeight: 1.7 }}>
+            <Text c="dimmed" size="sm" mt={6} style={{ lineHeight: 1.6 }}>
               {description}
             </Text>
           ) : null}

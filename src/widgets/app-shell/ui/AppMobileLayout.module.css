@@ -1,0 +1,137 @@
+.header {
+  border-bottom: 1px solid rgba(193, 148, 117, 0.14);
+  background: rgba(255, 250, 245, 0.88);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 8px 20px rgba(56, 42, 30, 0.04);
+}
+
+.headerInner {
+  min-height: 58px;
+}
+
+.brandMark {
+  width: 28px;
+  height: 28px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #f2b07f, #cf7141);
+  box-shadow:
+    inset 0 0 0 6px rgba(255, 255, 255, 0.2),
+    0 7px 14px rgba(183, 94, 48, 0.18);
+  flex-shrink: 0;
+}
+
+.brandCopy {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+}
+
+.brandTitle {
+  letter-spacing: -0.025em;
+}
+
+.shellMain {
+  min-height: calc(100vh - 58px);
+  background:
+    radial-gradient(circle at top, rgba(255, 233, 209, 0.34), transparent 0 36%),
+    linear-gradient(180deg, #fcf8f2 0%, #f7f0e5 100%);
+}
+
+.bottomNavShell {
+  position: fixed;
+  left: max(14px, env(safe-area-inset-left));
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 220;
+}
+
+.bottomNav {
+  border: 1px solid rgba(186, 141, 103, 0.18);
+  background: linear-gradient(180deg, rgba(255, 251, 246, 0.96), rgba(253, 246, 238, 0.94));
+  backdrop-filter: blur(22px);
+  box-shadow: 0 22px 42px rgba(71, 53, 38, 0.11);
+  padding: 9px 10px calc(10px + env(safe-area-inset-bottom));
+}
+
+.bottomNavLink {
+  flex: 1 1 0;
+  min-width: 0;
+  text-decoration: none;
+  display: block;
+}
+
+.bottomNavButton {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 20px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  color: #746e63;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.bottomNavButton[data-active] {
+  background: linear-gradient(180deg, rgba(244, 206, 152, 0.38), rgba(236, 173, 110, 0.22));
+  color: #4e2f1f;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(209, 147, 97, 0.08),
+    0 10px 18px rgba(206, 146, 96, 0.08);
+}
+
+.bottomNavButton[data-primary] .bottomNavIcon {
+  width: 28px;
+  height: 28px;
+  background: rgba(206, 120, 68, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(206, 120, 68, 0.12);
+}
+
+.bottomNavButton[data-primary][data-active] {
+  background: linear-gradient(180deg, rgba(232, 165, 110, 0.38), rgba(228, 144, 80, 0.22));
+}
+
+.bottomNavIcon {
+  width: 23px;
+  height: 23px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  background: rgba(114, 92, 73, 0.14);
+}
+
+.bottomNavButton[data-active] .bottomNavIcon {
+  background: rgba(206, 120, 68, 0.44);
+  box-shadow: 0 8px 16px rgba(206, 120, 68, 0.16);
+}
+
+.bottomNavButton[data-primary][data-active] .bottomNavIcon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 251, 245, 0.92);
+  color: #c1693a;
+}
+
+.bottomNavGlyph {
+  width: 14px;
+  height: 14px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bottomNavLabel {
+  font-size: 10.5px;
+  letter-spacing: 0.01em;
+}

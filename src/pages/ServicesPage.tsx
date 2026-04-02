@@ -10,19 +10,26 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { PageHeaderBlock } from '../components/layout/PageHeaderBlock';
 import { PageSection } from '../components/layout/PageSection';
 import { ServiceCard } from '../components/ServiceCard';
 import {
+  type ServiceCardData,
+  type ServiceSectionId,
   getLocalizedServiceSections,
   getServiceCityOptions,
   getServiceSectionOptions,
 } from '../data/services';
+import { startProtectedAction } from '../features/auth/lib/startProtectedAction';
+import { createServiceBookingSource } from '../features/booking/model/bookingDraft';
+import { routePaths } from '../router/paths';
 
 const ALL_OPTION = 'all';
 
 export function ServicesPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedCity, setSelectedCity] = useState(ALL_OPTION);
   const [selectedType, setSelectedType] = useState(ALL_OPTION);
@@ -77,6 +84,17 @@ export function ServicesPage() {
     setSearch('');
     setSelectedCity(ALL_OPTION);
     setSelectedType(ALL_OPTION);
+  };
+
+  const handleBookService = (kind: ServiceSectionId, item: ServiceCardData) => {
+    startProtectedAction(navigate, {
+      reason: 'service-request',
+      redirectTo: routePaths.appBookingDetails,
+      redirectState: {
+        seed: createServiceBookingSource(item, kind),
+        originPath: routePaths.appServices,
+      },
+    });
   };
 
   return (
@@ -166,6 +184,7 @@ export function ServicesPage() {
                     item={item}
                     kind={section.id}
                     actionLabel={item.contactLabel ?? t('common.viewService')}
+                    onBook={() => handleBookService(section.id, item)}
                   />
                 ))}
               </SimpleGrid>

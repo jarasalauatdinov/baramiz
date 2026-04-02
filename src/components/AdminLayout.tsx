@@ -13,8 +13,8 @@ import { useDisclosure } from '@mantine/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { API_BASE_URL } from '../api/api';
-import { LanguageSwitcher } from './LanguageSwitcher';
-import { ScrollToTop } from './ScrollToTop';
+import { LanguageSwitcher } from '../features/language-switcher';
+import { ScrollToTop } from '../shared/lib/router/ScrollToTop';
 import classes from './AdminLayout.module.css';
 
 const adminTheme = createTheme({

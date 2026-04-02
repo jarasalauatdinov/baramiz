@@ -1,4 +1,4 @@
-﻿import type { TranslationResource } from './createTranslationResource';
+import type { TranslationResource } from './createTranslationResource';
 
 interface StructuredLocales {
   en: TranslationResource;
@@ -701,6 +701,7 @@ Object.assign(enPages, {
     explore: 'Explore',
     route: 'Route',
     guides: 'Guides',
+    profile: 'Profile',
   },
   appLayout: {
     subtitle: 'Travel app',
@@ -777,6 +778,7 @@ Object.assign(uzPages, {
     explore: 'Kashf etish',
     route: 'Marshrut',
     guides: 'Gidlar',
+    profile: 'Profil',
   },
   appLayout: {
     subtitle: 'Sayohat ilovasi',
@@ -853,6 +855,7 @@ Object.assign(ruPages, {
     explore: 'Обзор',
     route: 'Маршрут',
     guides: 'Гиды',
+    profile: 'Профиль',
   },
   appLayout: {
     subtitle: 'Тревел-приложение',
@@ -929,6 +932,7 @@ Object.assign(kaaPages, {
     explore: 'Ashiw',
     route: 'Marshrut',
     guides: 'Gidler',
+    profile: 'Profil',
   },
   appLayout: {
     subtitle: 'Sayahat ilovasi',
@@ -986,6 +990,838 @@ Object.assign(kaaPages, {
       servicesEyebrow: 'Qollaw',
       servicesTitle: 'Lokal qollaw jaqın',
       servicesDescription: '{{services}} xızmet hám {{guides}} gid bar.',
+    },
+  },
+});
+
+Object.assign(enPages, {
+  auth: {
+    integration: 'Baramiz now signs you in through the backend API and keeps your traveler profile in sync.',
+    gate: {
+      continueBrowsing: 'Continue browsing',
+      booking: {
+        badge: 'Continue booking',
+        title: 'Sign in to continue this protected step',
+        description: 'You can explore the app freely. Login is only needed for bookings, payments, and saved actions.',
+      },
+      payment: {
+        badge: 'Continue payment',
+        title: 'Sign in before payment',
+        description: 'Your booking context will stay in place. Login is needed only before the protected payment step.',
+      },
+      saveRoute: {
+        badge: 'Save route',
+        title: 'Sign in to save this route',
+        description: 'Browsing stays open without login. We only ask when you want to keep routes for later.',
+      },
+      guide: {
+        badge: 'Request guide',
+        title: 'Sign in to request a local guide',
+        description: 'We only ask now because guide requests need traveler details and a clear follow-up channel.',
+      },
+      service: {
+        badge: 'Request service',
+        title: 'Sign in to request this service',
+        description: 'Your browsing stays open. Login is only needed when you move into booking or local support.',
+      },
+    },
+    fields: {
+      fullName: 'Full name',
+      email: 'Email',
+      password: 'Password',
+    },
+    login: {
+      badge: 'Welcome back',
+      title: 'Sign in to continue planning',
+      description: 'Open your routes, bookings, and saved discovery flow in one place.',
+      submit: 'Sign in',
+      createAccount: 'Create account',
+      switchAction: 'Need an account? Register',
+      error: 'Enter email and password to continue.',
+    },
+    register: {
+      badge: 'Create account',
+      title: 'Start with a simple traveler profile',
+      description: 'This keeps the app personal and makes bookings feel like part of one product flow.',
+      submit: 'Create account',
+      switchAction: 'Already have an account? Sign in',
+      haveAccount: 'Back to sign in',
+      fullNamePlaceholder: 'Aizada Nurymbetova',
+      error: 'Fill in your name, email, and password first.',
+    },
+  },
+  booking: {
+    common: {
+      backToBrowse: 'Back to browsing',
+      backToBooking: 'Back to booking details',
+      backToReview: 'Back to review',
+      bookNow: 'Request booking',
+    },
+    source: {
+      service: 'Service booking',
+      guide: 'Guide booking',
+      route: 'Route support',
+    },
+    empty: {
+      badge: 'Booking flow',
+      title: 'Start from a service, guide, or route support card',
+      description: 'Once you choose a booking entry point, the request will continue here.',
+    },
+    fields: {
+      phone: 'Phone number',
+      travelDate: 'Travel date',
+      guests: 'Guests',
+      contactMethod: 'Preferred contact method',
+      note: 'Trip note',
+    },
+    contact: {
+      phone: 'Phone',
+      telegram: 'Telegram',
+      email: 'Email',
+    },
+    details: {
+      eyebrow: 'Booking request',
+      title: 'Share the trip details',
+      description: 'Keep it short. Local support will use this to confirm the reservation.',
+      validation: 'Add traveler details, phone, and travel date before continuing.',
+      continue: 'Review request',
+    },
+    review: {
+      eyebrow: 'Review request',
+      title: 'Check the details once',
+      description: 'This is still an MVP request flow, so the summary stays short and clear.',
+      travelerTitle: 'Traveler details',
+      guests_one: '1 guest',
+      guests_other: '{{count}} guests',
+      mvpTitle: 'What happens next',
+      mvpDescription: 'Baramiz records the reservation request now and leaves final confirmation to local support.',
+      continue: 'Choose payment method',
+    },
+    payment: {
+      eyebrow: 'Payment preference',
+      title: 'Select how you want to pay',
+      description: 'Choose the payment method you prefer when support confirms the booking.',
+      methods: {
+        visa: 'Visa / bank card',
+        humo: 'Humo / local card',
+        cash: 'Pay on confirmation',
+      },
+      mvpNotice: 'This MVP does not process live payments yet. The selected method is saved as a preference for support follow-up.',
+      confirm: 'Send booking request',
+    },
+    confirmation: {
+      eyebrow: 'Request sent',
+      title: 'Your booking request is in progress',
+      description: 'The request is stored and ready for local follow-up.',
+      pending: 'Pending support confirmation',
+      reference: 'Reference',
+      nextTitle: 'What to expect',
+      next1: 'Local support will review the request details and preferred payment method.',
+      next2: 'The traveler will be contacted through the selected channel for final confirmation.',
+      next3: 'The final operational booking API can be connected later without rebuilding this flow.',
+      back: 'Back to app',
+      home: 'Open home',
+    },
+  },
+  appHome: {
+    greetingWithName: 'Welcome back, {{name}}',
+  },
+});
+
+Object.assign(uzPages, {
+  auth: {
+    integration: 'Baramiz endi backend auth API orqali kirishni boshqaradi va traveler profilingizni sinxron saqlaydi.',
+    gate: {
+      continueBrowsing: 'Ko‘rishda davom etish',
+      booking: {
+        badge: 'Bronni davom ettirish',
+        title: 'Bu himoyalangan qadamni davom ettirish uchun kiring',
+        description: 'Ilovani erkin ko‘rishingiz mumkin. Login faqat bron, to‘lov va saqlash kabi harakatlarda kerak bo‘ladi.',
+      },
+      payment: {
+        badge: 'To‘lovni davom ettirish',
+        title: 'To‘lovdan oldin kiring',
+        description: 'Bron konteksti saqlanadi. Login faqat himoyalangan to‘lov bosqichidan oldin kerak bo‘ladi.',
+      },
+      saveRoute: {
+        badge: 'Marshrutni saqlash',
+        title: 'Bu marshrutni saqlash uchun kiring',
+        description: 'Ko‘rish uchun login kerak emas. Biz faqat marshrutni keyinga saqlamoqchi bo‘lsangiz so‘raymiz.',
+      },
+      guide: {
+        badge: 'Gid so‘rovi',
+        title: 'Mahalliy gid so‘rash uchun kiring',
+        description: 'Bu bosqichda traveler ma’lumoti va bog‘lanish kanali kerak bo‘lgani uchun login so‘raladi.',
+      },
+      service: {
+        badge: 'Xizmat so‘rovi',
+        title: 'Bu xizmatni so‘rash uchun kiring',
+        description: 'Ko‘rish davom etadi. Login faqat bron yoki mahalliy yordam bosqichiga o‘tganda kerak bo‘ladi.',
+      },
+    },
+    fields: {
+      fullName: 'To‘liq ism',
+      email: 'Email',
+      password: 'Parol',
+    },
+    login: {
+      badge: 'Qaytganingizdan xursandmiz',
+      title: 'Rejalashni davom ettirish uchun kiring',
+      description: 'Marshrutlar, bronlar va kashfiyot oqimini bitta joyda oching.',
+      submit: 'Kirish',
+      createAccount: 'Hisob yaratish',
+      switchAction: 'Hisob yo‘qmi? Ro‘yxatdan o‘ting',
+      error: 'Davom etish uchun email va parol kiriting.',
+    },
+    register: {
+      badge: 'Hisob yaratish',
+      title: 'Oddiy traveler profilidan boshlang',
+      description: 'Bu ilovani shaxsiyroq qiladi va bron oqimini bitta mahsulot ichida ushlab turadi.',
+      submit: 'Hisob yaratish',
+      switchAction: 'Hisob bormi? Kiring',
+      haveAccount: 'Kirishga qaytish',
+      fullNamePlaceholder: 'Ayzada Nurymbetova',
+      error: 'Avval ism, email va parolni to‘ldiring.',
+    },
+  },
+  booking: {
+    common: {
+      backToBrowse: 'Ko‘rishga qaytish',
+      backToBooking: 'Bron tafsilotlariga qaytish',
+      backToReview: 'Ko‘rib chiqishga qaytish',
+      bookNow: 'Bron so‘rovi',
+    },
+    source: {
+      service: 'Xizmat broni',
+      guide: 'Gid broni',
+      route: 'Marshrut yordami',
+    },
+    empty: {
+      badge: 'Bron oqimi',
+      title: 'Xizmat, gid yoki marshrut yordami kartasidan boshlang',
+      description: 'Bron kirish nuqtasini tanlaganingizdan keyin so‘rov shu yerda davom etadi.',
+    },
+    fields: {
+      phone: 'Telefon raqam',
+      travelDate: 'Safar sanasi',
+      guests: 'Mehmonlar',
+      contactMethod: 'Bog‘lanish usuli',
+      note: 'Safar eslatmasi',
+    },
+    contact: {
+      phone: 'Telefon',
+      telegram: 'Telegram',
+      email: 'Email',
+    },
+    details: {
+      eyebrow: 'Bron so‘rovi',
+      title: 'Safar tafsilotlarini kiriting',
+      description: 'Qisqa yozing. Mahalliy yordam shu ma’lumot bilan bronni tasdiqlaydi.',
+      validation: 'Davom etish uchun traveler ma’lumoti, telefon va safar sanasini kiriting.',
+      continue: 'So‘rovni ko‘rib chiqish',
+    },
+    review: {
+      eyebrow: 'So‘rovni ko‘rib chiqish',
+      title: 'Tafsilotlarni yana bir bor tekshiring',
+      description: 'Bu hali MVP so‘rov oqimi, shuning uchun xulosa qisqa va aniq turadi.',
+      travelerTitle: 'Traveler ma’lumotlari',
+      guests_one: '1 mehmon',
+      guests_other: '{{count}} mehmon',
+      mvpTitle: 'Keyingi qadam',
+      mvpDescription: 'Baramiz hozir bron so‘rovini saqlaydi, yakuniy tasdiq esa mahalliy yordam orqali bo‘ladi.',
+      continue: 'To‘lov usulini tanlash',
+    },
+    payment: {
+      eyebrow: 'To‘lov tanlovi',
+      title: 'Qanday to‘lashni tanlang',
+      description: 'Yordam bronni tasdiqlaganda qaysi usul qulay ekanini tanlang.',
+      methods: {
+        visa: 'Visa / bank karta',
+        humo: 'Humo / mahalliy karta',
+        cash: 'Tasdiqda to‘lash',
+      },
+      mvpNotice: 'Bu MVP hali jonli to‘lovni qayta ishlamaydi. Tanlangan usul support uchun afzal ko‘rilgan variant sifatida saqlanadi.',
+      confirm: 'Bron so‘rovini yuborish',
+    },
+    confirmation: {
+      eyebrow: 'So‘rov yuborildi',
+      title: 'Bron so‘rovingiz qabul qilindi',
+      description: 'So‘rov saqlandi va mahalliy yordam uchun tayyor.',
+      pending: 'Mahalliy tasdiq kutilmoqda',
+      reference: 'Raqam',
+      nextTitle: 'Keyin nima bo‘ladi',
+      next1: 'Mahalliy yordam bron tafsilotlari va to‘lov usulini ko‘rib chiqadi.',
+      next2: 'Traveler tanlangan kanal orqali yakuniy tasdiq uchun bog‘lanadi.',
+      next3: 'Keyin real booking API shu oqimga alohida qo‘shilishi mumkin.',
+      back: 'Ilovaga qaytish',
+      home: 'Bosh sahifani ochish',
+    },
+  },
+  appHome: {
+    greetingWithName: 'Qaytganingiz yaxshi, {{name}}',
+  },
+});
+
+Object.assign(ruPages, {
+  auth: {
+    integration: 'Baramiz теперь использует backend auth API и синхронизирует профиль путешественника через сервер.',
+    gate: {
+      continueBrowsing: 'Продолжить просмотр',
+      booking: {
+        badge: 'Продолжить бронь',
+        title: 'Войдите, чтобы продолжить этот защищенный шаг',
+        description: 'Приложение можно свободно изучать без входа. Авторизация нужна только для брони, оплаты и сохраненных действий.',
+      },
+      payment: {
+        badge: 'Продолжить оплату',
+        title: 'Войдите перед оплатой',
+        description: 'Контекст бронирования сохранится. Вход нужен только перед защищенным этапом оплаты.',
+      },
+      saveRoute: {
+        badge: 'Сохранить маршрут',
+        title: 'Войдите, чтобы сохранить этот маршрут',
+        description: 'Для просмотра вход не нужен. Мы просим авторизацию только когда вы хотите сохранить маршрут на потом.',
+      },
+      guide: {
+        badge: 'Запросить гида',
+        title: 'Войдите, чтобы запросить локального гида',
+        description: 'На этом шаге уже нужны данные путешественника и канал связи, поэтому требуется вход.',
+      },
+      service: {
+        badge: 'Запросить сервис',
+        title: 'Войдите, чтобы запросить этот сервис',
+        description: 'Просмотр остается открытым. Вход нужен только когда вы переходите к брони или локальной поддержке.',
+      },
+    },
+    fields: {
+      fullName: 'Полное имя',
+      email: 'Email',
+      password: 'Пароль',
+    },
+    login: {
+      badge: 'С возвращением',
+      title: 'Войдите, чтобы продолжить планирование',
+      description: 'Откройте маршруты, бронирования и сценарий открытия в одном месте.',
+      submit: 'Войти',
+      createAccount: 'Создать аккаунт',
+      switchAction: 'Нет аккаунта? Зарегистрируйтесь',
+      error: 'Введите email и пароль, чтобы продолжить.',
+    },
+    register: {
+      badge: 'Создать аккаунт',
+      title: 'Начните с простого профиля путешественника',
+      description: 'Так приложение становится личным, а бронирование выглядит частью единого продукта.',
+      submit: 'Создать аккаунт',
+      switchAction: 'Уже есть аккаунт? Войдите',
+      haveAccount: 'Вернуться ко входу',
+      fullNamePlaceholder: 'Айзада Нурымбетова',
+      error: 'Сначала заполните имя, email и пароль.',
+    },
+  },
+  booking: {
+    common: {
+      backToBrowse: 'Назад к просмотру',
+      backToBooking: 'Назад к деталям брони',
+      backToReview: 'Назад к проверке',
+      bookNow: 'Запросить бронь',
+    },
+    source: {
+      service: 'Бронирование сервиса',
+      guide: 'Бронирование гида',
+      route: 'Поддержка маршрута',
+    },
+    empty: {
+      badge: 'Поток бронирования',
+      title: 'Начните с карточки сервиса, гида или поддержки маршрута',
+      description: 'После выбора точки входа запрос продолжится здесь.',
+    },
+    fields: {
+      phone: 'Номер телефона',
+      travelDate: 'Дата поездки',
+      guests: 'Гости',
+      contactMethod: 'Предпочтительный канал связи',
+      note: 'Комментарий к поездке',
+    },
+    contact: {
+      phone: 'Телефон',
+      telegram: 'Telegram',
+      email: 'Email',
+    },
+    details: {
+      eyebrow: 'Запрос на бронь',
+      title: 'Добавьте детали поездки',
+      description: 'Коротко и по делу. Локальная поддержка использует это для подтверждения.',
+      validation: 'Перед продолжением добавьте данные путешественника, телефон и дату поездки.',
+      continue: 'Проверить запрос',
+    },
+    review: {
+      eyebrow: 'Проверка запроса',
+      title: 'Проверьте детали один раз',
+      description: 'Это MVP-поток запроса, поэтому итог остается коротким и понятным.',
+      travelerTitle: 'Данные путешественника',
+      guests_one: '1 гость',
+      guests_other: '{{count}} гостей',
+      mvpTitle: 'Что будет дальше',
+      mvpDescription: 'Сейчас Baramiz сохраняет запрос на бронь, а финальное подтверждение остается за локальной поддержкой.',
+      continue: 'Выбрать способ оплаты',
+    },
+    payment: {
+      eyebrow: 'Способ оплаты',
+      title: 'Выберите удобный способ оплаты',
+      description: 'Укажите предпочтение, которое будет использовано при подтверждении со стороны поддержки.',
+      methods: {
+        visa: 'Visa / банковская карта',
+        humo: 'Humo / локальная карта',
+        cash: 'Оплата при подтверждении',
+      },
+      mvpNotice: 'Этот MVP пока не обрабатывает живые платежи. Выбранный способ сохраняется как предпочтение для поддержки.',
+      confirm: 'Отправить запрос на бронь',
+    },
+    confirmation: {
+      eyebrow: 'Запрос отправлен',
+      title: 'Ваш запрос на бронь принят',
+      description: 'Запрос сохранен и готов для локального сопровождения.',
+      pending: 'Ожидает подтверждения поддержки',
+      reference: 'Номер',
+      nextTitle: 'Что дальше',
+      next1: 'Локальная поддержка проверит детали и выбранный способ оплаты.',
+      next2: 'С путешественником свяжутся через выбранный канал для финального подтверждения.',
+      next3: 'Позже сюда можно подключить реальный booking API без перестройки экрана.',
+      back: 'Вернуться в приложение',
+      home: 'Открыть главную',
+    },
+  },
+  appHome: {
+    greetingWithName: 'С возвращением, {{name}}',
+  },
+});
+
+Object.assign(kaaPages, {
+  auth: {
+    integration: 'Baramiz endi backend auth API arqalı kiriwdi basqaradı hám sayahatshi profilińizdi server menen sinxron saqlaydı.',
+    gate: {
+      continueBrowsing: 'Kóriwdi dawam etiw',
+      booking: {
+        badge: 'Brondı dawam etiw',
+        title: 'Bul qorǵalǵan qadamdı dawam ettiriw ushin kiriń',
+        description: 'Ilovanı erkin kóriwge boladı. Kiriw tek bron, tólem hám saqlanǵan ámeller ushin kerek.',
+      },
+      payment: {
+        badge: 'Tólemni dawam etiw',
+        title: 'Tólemden aldın kiriń',
+        description: 'Bron konteksti saqlanadı. Kiriw tek qorǵalǵan tólem basqıshınan aldın kerek.',
+      },
+      saveRoute: {
+        badge: 'Marshruttı saqlaw',
+        title: 'Bul marshruttı saqlaw ushin kiriń',
+        description: 'Kóriw ushin kiriw kerek emes. Biz tek marshruttı keyinge saqlamaqşı bolsańız soraymız.',
+      },
+      guide: {
+        badge: 'Gid sorawi',
+        title: 'Lokal giddi soraw ushin kiriń',
+        description: 'Bul basqıshta sayahatshi maǵlıwmatı menen baylanıs kanalı kerek bolǵanı ushın kiriw soraladı.',
+      },
+      service: {
+        badge: 'Xızmet sorawi',
+        title: 'Bul xızmetti soraw ushin kiriń',
+        description: 'Kóriw ashıq qaladı. Kiriw tek bron yamasa lokal qollaw basqıshına ótkende kerek boladı.',
+      },
+    },
+    fields: {
+      fullName: 'Tolıq atı',
+      email: 'Email',
+      password: 'Parol',
+    },
+    login: {
+      badge: 'Qaytıp kelgenińiz jaqsı',
+      title: 'Josparlawdı dawam ettiriw ushin kiriń',
+      description: 'Marshrutlar, bronlar hám ashiw aǵımın bir jerden aşıń.',
+      submit: 'Kiriw',
+      createAccount: 'Account jaratıw',
+      switchAction: 'Account joq pa? Dizimnen ótiń',
+      error: 'Dawam etiw ushin email hám paroldı kiritıń.',
+    },
+    register: {
+      badge: 'Account jaratıw',
+      title: 'Sayahatshi profilinen baslań',
+      description: 'Bul ilovanı jekeleytin hám bron aǵımın bir ónim ishinde uslap turadı.',
+      submit: 'Account jaratıw',
+      switchAction: 'Account bar ma? Kiriń',
+      haveAccount: 'Kiriwge qaytıw',
+      fullNamePlaceholder: 'Ayzada Nurymbetova',
+      error: 'Aldın atıńızdı, email hám paroldı toltırıń.',
+    },
+  },
+  booking: {
+    common: {
+      backToBrowse: 'Kóriwge qaytıw',
+      backToBooking: 'Bron detallarina qaytıw',
+      backToReview: 'Tekseriwge qaytıw',
+      bookNow: 'Bron sorawın jiberiw',
+    },
+    source: {
+      service: 'Xızmet bronı',
+      guide: 'Gid bronı',
+      route: 'Marshrut qollawi',
+    },
+    empty: {
+      badge: 'Bron aǵımı',
+      title: 'Xızmet, gid yamasa marshrut qollawi kartasınan baslań',
+      description: 'Kiriw noqatı tańlanǵannan keyin soraw osı jerde dawam etedi.',
+    },
+    fields: {
+      phone: 'Telefon nomeri',
+      travelDate: 'Sayahat sáni',
+      guests: 'Mehmanlar',
+      contactMethod: 'Baylanıs usılı',
+      note: 'Sayahat eslatpesi',
+    },
+    contact: {
+      phone: 'Telefon',
+      telegram: 'Telegram',
+      email: 'Email',
+    },
+    details: {
+      eyebrow: 'Bron sorawi',
+      title: 'Sayahat detalların kiritiń',
+      description: 'Qısqa jazıń. Lokal qollaw usı maǵlıwmat penen tastıyıqlaydı.',
+      validation: 'Dawam etiw ushin sayahatshi maǵlıwmatı, telefon hám sáneni kiritiń.',
+      continue: 'Sorawdı tekseriw',
+    },
+    review: {
+      eyebrow: 'Sorawdı tekseriw',
+      title: 'Detallardı taǵı bir ret kóriń',
+      description: 'Bul áli MVP soraw aǵımı, sonıń ushın qorytındı qısqa hám túsinikli.',
+      travelerTitle: 'Sayahatshi maǵlıwmatları',
+      guests_one: '1 mehman',
+      guests_other: '{{count}} mehman',
+      mvpTitle: 'Keyingi qadam',
+      mvpDescription: 'Házir Baramiz bron sorawın saqlaydı, al aqırǵı tastıyıq lokal qollaw arqalı boladı.',
+      continue: 'Tólem usılın tańlaw',
+    },
+    payment: {
+      eyebrow: 'Tólem tańlawı',
+      title: 'Qalay tólewdi tańlań',
+      description: 'Qollaw tastıyıqlaganda qaysı usıl qolay ekenin kórsetiń.',
+      methods: {
+        visa: 'Visa / bank kartası',
+        humo: 'Humo / lokal karta',
+        cash: 'Tastıyıqta tólew',
+      },
+      mvpNotice: 'Bul MVP ázir tiris tólem qabıllamaydı. Tańlanǵan usıl qollaw ushin qalaǵan variant retinde saqlanadı.',
+      confirm: 'Bron sorawın jiberiw',
+    },
+    confirmation: {
+      eyebrow: 'Soraw jiberildi',
+      title: 'Bron sorawińız qabıllandı',
+      description: 'Soraw saqlandı hám lokal qollawǵa tayar.',
+      pending: 'Qollaw tastıyığın kútip tur',
+      reference: 'Nomer',
+      nextTitle: 'Keyin ne boladı',
+      next1: 'Lokal qollaw bron detalları hám tólem usılın kóredi.',
+      next2: 'Sayahatshi menen tańlanǵan kanal arqalı aqırǵı tastıyıq ushin baylanısıлады.',
+      next3: 'Keyin bul aǵımǵa haqıyqıy booking API qosıwǵa boladı.',
+      back: 'Ilovaǵa qaytıw',
+      home: 'Bas betti ashiw',
+    },
+  },
+  appHome: {
+    greetingWithName: 'Qaytıp kelgenińiz jaqsı, {{name}}',
+  },
+});
+
+Object.assign(((enPages as { auth: { gate: Record<string, unknown> } }).auth.gate), {
+  profile: {
+    badge: 'Open profile',
+    title: 'Sign in to open your profile',
+    description:
+      'Baramiz stays open for browsing. We only ask for login when you want your personal profile and saved activity.',
+  },
+});
+
+Object.assign(((uzPages as { auth: { gate: Record<string, unknown> } }).auth.gate), {
+  profile: {
+    badge: 'Profilni ochish',
+    title: 'Profilni ochish uchun kiring',
+    description:
+      'Baramiz ko‘rish uchun ochiq qoladi. Login faqat shaxsiy profil, saqlangan marshrutlar va faoliyat uchun kerak bo‘ladi.',
+  },
+});
+
+Object.assign(((ruPages as { auth: { gate: Record<string, unknown> } }).auth.gate), {
+  profile: {
+    badge: 'Открыть профиль',
+    title: 'Войдите, чтобы открыть профиль',
+    description:
+      'Baramiz остается открытым для просмотра. Вход нужен только когда вам нужен личный профиль и сохраненная активность.',
+  },
+});
+
+Object.assign(((kaaPages as { auth: { gate: Record<string, unknown> } }).auth.gate), {
+  profile: {
+    badge: 'Profildi ashiw',
+    title: 'Profildi ashiw ushin kiriń',
+    description:
+      'Baramiz kóriw ushin ashıq qaladı. Kiriw tek jeke profilińiz hám saqlanǵan ámeller ushin kerek boladı.',
+  },
+});
+
+Object.assign(enPages, {
+  profile: {
+    guest: {
+      badge: 'Traveler profile',
+      title: 'Sign in to open your profile',
+      description:
+        'Browse Baramiz freely first. Login is only needed when you want your personal profile, saved routes, or bookings.',
+    },
+    header: {
+      badge: 'Profile',
+    },
+    loading: 'Refreshing your profile...',
+    metrics: {
+      savedRoutesLabel: 'Saved routes',
+      bookingLabel: 'Latest booking',
+      bookingStatus: 'Pending support',
+      bookingEmpty: 'No request yet',
+    },
+    actions: {
+      logout: 'Log out',
+      title: 'Continue from where you left off',
+      buildRoute: 'Build a route',
+    },
+  },
+});
+
+Object.assign(uzPages, {
+  profile: {
+    guest: {
+      badge: 'Traveler profili',
+      title: 'Profilni ochish uchun kiring',
+      description:
+        'Avval Baramizni erkin ko‘ring. Login faqat shaxsiy profil, saqlangan marshrutlar yoki bronlar kerak bo‘lganda so‘raladi.',
+    },
+    header: {
+      badge: 'Profil',
+    },
+    loading: 'Profil yangilanmoqda...',
+    metrics: {
+      savedRoutesLabel: 'Saqlangan marshrutlar',
+      bookingLabel: 'So‘nggi bron',
+      bookingStatus: 'Support kutilmoqda',
+      bookingEmpty: 'Hali so‘rov yo‘q',
+    },
+    actions: {
+      logout: 'Chiqish',
+      title: 'Qolgan joydan davom eting',
+      buildRoute: 'Marshrut qurish',
+    },
+  },
+});
+
+Object.assign(ruPages, {
+  profile: {
+    guest: {
+      badge: 'Профиль путешественника',
+      title: 'Войдите, чтобы открыть профиль',
+      description:
+        'Сначала изучайте Baramiz свободно. Вход нужен только когда вам нужен личный профиль, сохраненные маршруты или бронирования.',
+    },
+    header: {
+      badge: 'Профиль',
+    },
+    loading: 'Профиль обновляется...',
+    metrics: {
+      savedRoutesLabel: 'Сохраненные маршруты',
+      bookingLabel: 'Последняя бронь',
+      bookingStatus: 'Ожидает поддержки',
+      bookingEmpty: 'Запросов пока нет',
+    },
+    actions: {
+      logout: 'Выйти',
+      title: 'Продолжите с того места, где остановились',
+      buildRoute: 'Построить маршрут',
+    },
+  },
+});
+
+Object.assign(kaaPages, {
+  profile: {
+    guest: {
+      badge: 'Sayahatshi profili',
+      title: 'Profildi ashiw ushin kiriń',
+      description:
+        'Aldın Baramizdi erkin kóriń. Kiriw tek jeke profilińiz, saqlanǵan marshrutlar yamasa bronlar kerek bolǵanda soraladı.',
+    },
+    header: {
+      badge: 'Profil',
+    },
+    loading: 'Profil jańalanıp atır...',
+    metrics: {
+      savedRoutesLabel: 'Saqlanǵan marshrutlar',
+      bookingLabel: 'Sońǵı bron',
+      bookingStatus: 'Qollaw kútilmekte',
+      bookingEmpty: 'Ázirge soraw joq',
+    },
+    actions: {
+      logout: 'Shığıw',
+      title: 'Toqtaǵan jerińizden dawam etiń',
+      buildRoute: 'Marshrut quriw',
+    },
+  },
+});
+
+Object.assign((enPages as { booking: { source: Record<string, unknown>; fields: Record<string, unknown> } }).booking.source, {
+  hotel: 'Hotel booking',
+});
+Object.assign((enPages as { booking: { fields: Record<string, unknown> } }).booking.fields, {
+  checkOutDate: 'Check-out date',
+});
+Object.assign(enPages, {
+  hotels: {
+    list: {
+      badge: 'Trip stays',
+      title: 'Hotels for your {{city}} route',
+      description: 'A short curated list matched to your trip city, pace, and budget.',
+      hotelsLabel: 'hotels',
+      emptyTitle: 'Generate a route first',
+      emptyDescription: 'Hotels are suggested after a route is planned so the stay fits the trip.',
+    },
+    card: {
+      priceFrom: 'From ${{price}} / night',
+      rating: '{{rating}} rating',
+      view: 'View details',
+      book: 'Book',
+    },
+    details: {
+      badge: 'Hotel details',
+      back: 'Back to hotels',
+      tripBadge: 'Matched for {{city}} route',
+      amenitiesTitle: 'Amenities',
+      book: 'Book',
+      emptyTitle: 'This hotel is not available right now',
+      emptyDescription: 'Open the trip hotel list again to choose another stay for your route.',
+    },
+    route: {
+      title: 'Stay close to this route',
+      description: 'Open a short curated list of hotels matched to this city, budget, and route pace.',
+      cta: 'Find hotels for this trip',
+    },
+  },
+});
+
+Object.assign((uzPages as { booking: { source: Record<string, unknown>; fields: Record<string, unknown> } }).booking.source, {
+  hotel: 'Mehmonxona broni',
+});
+Object.assign((uzPages as { booking: { fields: Record<string, unknown> } }).booking.fields, {
+  checkOutDate: 'Chiqish sanasi',
+});
+Object.assign(uzPages, {
+  hotels: {
+    list: {
+      badge: 'Safar mehmonxonalari',
+      title: '{{city}} marshruti uchun mehmonxonalar',
+      description: 'Safar shahri, ritmi va budjetiga mos qisqa tanlangan ro‘yxat.',
+      hotelsLabel: 'mehmonxona',
+      emptyTitle: 'Avval marshrut yarating',
+      emptyDescription: 'Mehmonxonalar marshrut tuzilgandan keyin tavsiya qilinadi.',
+    },
+    card: {
+      priceFrom: '${{price}} / kechadan',
+      rating: '{{rating}} reyting',
+      view: 'Tafsilotlar',
+      book: 'Bron qilish',
+    },
+    details: {
+      badge: 'Mehmonxona tafsilotlari',
+      back: 'Mehmonxonalarga qaytish',
+      tripBadge: '{{city}} marshrutiga mos',
+      amenitiesTitle: 'Qulayliklar',
+      book: 'Bron qilish',
+      emptyTitle: 'Bu mehmonxona hozir mavjud emas',
+      emptyDescription: 'Safaringiz uchun boshqa variantni tanlash uchun ro‘yxatni qayta oching.',
+    },
+    route: {
+      title: 'Shu marshrutga yaqin turing',
+      description: 'Shahar, budjet va safar ritmiga mos mehmonxonalarni oching.',
+      cta: 'Bu safar uchun mehmonxonalar',
+    },
+  },
+});
+
+Object.assign((ruPages as { booking: { source: Record<string, unknown>; fields: Record<string, unknown> } }).booking.source, {
+  hotel: 'Бронь отеля',
+});
+Object.assign((ruPages as { booking: { fields: Record<string, unknown> } }).booking.fields, {
+  checkOutDate: 'Дата выезда',
+});
+Object.assign(ruPages, {
+  hotels: {
+    list: {
+      badge: 'Отели поездки',
+      title: 'Отели для маршрута по {{city}}',
+      description: 'Небольшая подборка отелей под город маршрута, темп и бюджет поездки.',
+      hotelsLabel: 'отеля',
+      emptyTitle: 'Сначала постройте маршрут',
+      emptyDescription: 'Отели предлагаются после генерации маршрута, чтобы проживание подходило под поездку.',
+    },
+    card: {
+      priceFrom: 'От ${{price}} / ночь',
+      rating: 'Рейтинг {{rating}}',
+      view: 'Подробнее',
+      book: 'Забронировать',
+    },
+    details: {
+      badge: 'Детали отеля',
+      back: 'Назад к отелям',
+      tripBadge: 'Подходит для маршрута по {{city}}',
+      amenitiesTitle: 'Удобства',
+      book: 'Забронировать',
+      emptyTitle: 'Этот отель сейчас недоступен',
+      emptyDescription: 'Откройте список отелей снова и выберите другой вариант для маршрута.',
+    },
+    route: {
+      title: 'Остановитесь ближе к этому маршруту',
+      description: 'Откройте короткий список отелей под город, бюджет и темп поездки.',
+      cta: 'Найти отели для этой поездки',
+    },
+  },
+});
+
+Object.assign((kaaPages as { booking: { source: Record<string, unknown>; fields: Record<string, unknown> } }).booking.source, {
+  hotel: 'Mehmanxana bronı',
+});
+Object.assign((kaaPages as { booking: { fields: Record<string, unknown> } }).booking.fields, {
+  checkOutDate: 'Shığıw sánesi',
+});
+Object.assign(kaaPages, {
+  hotels: {
+    list: {
+      badge: 'Sayahat qonaq üyleri',
+      title: '{{city}} marshruti ushin mehmanxanalar',
+      description: 'Qala, sayahat ritmi hám byudjetke mos qısqa tańlanǵan dizim.',
+      hotelsLabel: 'mehmanxana',
+      emptyTitle: 'Aldın marshrut quriń',
+      emptyDescription: 'Mehmanxanalar marshrut tayarlanǵannan keyin usınıladı.',
+    },
+    card: {
+      priceFrom: '${{price}} / túnnen',
+      rating: '{{rating}} reyting',
+      view: 'Tolıq kóriw',
+      book: 'Bron qılıw',
+    },
+    details: {
+      badge: 'Mehmanxana detalları',
+      back: 'Mehmanxanalarga qaytıw',
+      tripBadge: '{{city}} marshrutına mos',
+      amenitiesTitle: 'Qolaylıqlar',
+      book: 'Bron qılıw',
+      emptyTitle: 'Bul mehmanxana házir qoljetimsiz',
+      emptyDescription: 'Sayahatińız ushin basqa varianttı tańlaw ushin dizimdi qayta aşıń.',
+    },
+    route: {
+      title: 'Bul marshrutqa jaqın turaq tańlań',
+      description: 'Qala, byudjet hám sayahat ritmine mas mehmanxanalardı aşıń.',
+      cta: 'Bul sayahat ushin mehmanxana tabıń',
     },
   },
 });

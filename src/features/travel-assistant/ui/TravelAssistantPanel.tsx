@@ -20,6 +20,7 @@ interface TravelAssistantPanelProps {
   placeholder: string;
   emptyHint: string;
   suggestions?: string[];
+  compact?: boolean;
 }
 
 export function TravelAssistantPanel({
@@ -28,6 +29,7 @@ export function TravelAssistantPanel({
   placeholder,
   emptyHint,
   suggestions = [],
+  compact = false,
 }: TravelAssistantPanelProps) {
   const { t, i18n } = useTranslation();
   const [message, setMessage] = useState('');
@@ -71,11 +73,24 @@ export function TravelAssistantPanel({
   };
 
   return (
-    <Paper withBorder radius="24px" p={{ base: 'lg', md: 'xl' }} bg="white">
+    <Paper
+      withBorder
+      radius={compact ? '22px' : '24px'}
+      p={compact ? { base: 'md', md: 'lg' } : { base: 'lg', md: 'xl' }}
+      bg={compact ? '#fffaf3' : 'white'}
+      style={
+        compact
+          ? {
+              borderColor: 'rgba(188, 146, 111, 0.18)',
+              boxShadow: '0 12px 24px rgba(60, 44, 31, 0.06)',
+            }
+          : undefined
+      }
+    >
       <Stack gap="md">
         <Stack gap={6}>
-          <Text fw={700}>{title}</Text>
-          <Text size="sm" c="dimmed" style={{ lineHeight: 1.65 }}>
+          <Text fw={700} size={compact ? 'sm' : undefined}>{title}</Text>
+          <Text size="sm" c="dimmed" style={{ lineHeight: compact ? 1.55 : 1.65 }}>
             {description}
           </Text>
         </Stack>
@@ -91,7 +106,7 @@ export function TravelAssistantPanel({
               {visibleSuggestions.map((suggestion) => (
                 <Button
                   key={suggestion}
-                  variant="light"
+                  variant={compact ? 'subtle' : 'light'}
                   color="forest"
                   radius="xl"
                   size="compact-sm"
@@ -112,6 +127,17 @@ export function TravelAssistantPanel({
           value={message}
           onChange={(event) => setMessage(event.currentTarget.value)}
           placeholder={placeholder}
+          radius="xl"
+          styles={
+            compact
+              ? {
+                  input: {
+                    background: '#fff',
+                    borderColor: 'rgba(188, 146, 111, 0.2)',
+                  },
+                }
+              : undefined
+          }
         />
 
         {error ? (
@@ -122,7 +148,9 @@ export function TravelAssistantPanel({
 
         <Button
           color="forest"
+          variant={compact ? 'light' : 'filled'}
           fullWidth
+          size={compact ? 'sm' : 'md'}
           loading={loading}
           onClick={() => void submitMessage(message)}
           disabled={!message.trim()}

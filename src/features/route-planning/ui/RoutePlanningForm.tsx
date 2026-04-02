@@ -2,9 +2,10 @@
 import { useMemo, useState } from 'react';
 import {
   Autocomplete,
+  Badge,
   Button,
   Paper,
-  SimpleGrid,
+  Group,
   Stack,
   Text,
 } from '@mantine/core';
@@ -16,6 +17,7 @@ import {
   getDurationLabel,
   getDurationOptions,
   getTransportOptions,
+  getTransportPreferenceLabel,
   getTravelPaceLabel,
   getTravelPaceOptions,
   getTripStyleLabel,
@@ -127,77 +129,135 @@ export function RoutePlanningForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <SimpleGrid cols={{ base: 1, xl: 2 }} spacing="lg">
-        <Paper withBorder p={{ base: 'lg', md: 'xl' }} radius="26px" bg="white">
+      <Stack gap="lg">
+        <Paper withBorder radius="22px" p="md" bg="#fff8ef">
+          <Stack gap="sm">
+            <div>
+              <Text fw={700}>{t('routeGenerator.summary.title', { defaultValue: 'Route setup' })}</Text>
+              <Text size="sm" c="dimmed" mt={4} style={{ lineHeight: 1.6 }}>
+                {t('routeGenerator.summary.description', {
+                  defaultValue: 'Choose the destination and route mood first. The planner will do the rest.',
+                })}
+              </Text>
+            </div>
+
+            <Group gap="xs" wrap="wrap">
+              <Badge color="forest" variant="light" radius="xl">
+                {city || t('routeGenerator.summary.pendingCity', { defaultValue: 'Choose a city' })}
+              </Badge>
+              <Badge color="sun" variant="light" radius="xl" c="#5a420b">
+                {selectedInterestsLabel ||
+                  t('routeGenerator.summary.pendingInterests', {
+                    defaultValue: 'Choose interests',
+                  })}
+              </Badge>
+              <Badge color="gray" variant="light" radius="xl">
+                {tripStyle ? getTripStyleLabel(tripStyle, t) : '-'}
+              </Badge>
+              <Badge color="gray" variant="light" radius="xl">
+                {transportPreference
+                  ? getTransportPreferenceLabel(transportPreference, t)
+                  : '-'}
+              </Badge>
+            </Group>
+          </Stack>
+        </Paper>
+
+        <Autocomplete
+          label={t('routeGenerator.form.destinationLabel')}
+          placeholder={t('routeGenerator.form.destinationPlaceholder')}
+          data={cityOptions}
+          value={city}
+          onChange={(value) => {
+            setCity(value);
+            setErrors((current) => ({ ...current, city: undefined }));
+          }}
+          error={errors.city}
+          radius="xl"
+          size="md"
+          styles={{
+            input: {
+              minHeight: 52,
+              background: '#fff',
+              borderColor: 'rgba(94, 72, 53, 0.12)',
+              boxShadow: '0 12px 26px rgba(60, 44, 31, 0.08)',
+            },
+          }}
+        />
+
+        <PlannerOptionGroup
+          label={t('routeGenerator.form.interestsLabel')}
+          description={t('routeGenerator.form.interestsHelp', {
+            defaultValue: 'Pick what matters most.',
+          })}
+          options={interestOptions.map((option) => ({
+            value: option.id,
+            label: formatCategoryLabel(option.id, t),
+          }))}
+          multiple
+          compact
+          value={interests}
+          onToggle={toggleInterest}
+          error={errors.interests}
+        />
+
+        <PlannerOptionGroup
+          label={t('routeGenerator.form.tripStyleLabel', { defaultValue: 'Trip style' })}
+          description={t('routeGenerator.form.tripStyleHelp', {
+            defaultValue: 'Set the overall route feel.',
+          })}
+          options={tripStyleOptions}
+          compact
+          value={tripStyle}
+          onToggle={(value) => {
+            setTripStyle(value as RoutePlanningPreferences['tripStyle']);
+            setErrors((current) => ({ ...current, tripStyle: undefined }));
+          }}
+          error={errors.tripStyle}
+        />
+
+        <PlannerOptionGroup
+          label={t('routeGenerator.form.transportLabel', {
+            defaultValue: 'Transport preference',
+          })}
+          description={t('routeGenerator.form.transportHelp', {
+            defaultValue: 'How the traveler will move.',
+          })}
+          options={transportOptions}
+          compact
+          value={transportPreference}
+          onToggle={(value) => {
+            setTransportPreference(value as RoutePlanningPreferences['transportPreference']);
+            setErrors((current) => ({ ...current, transportPreference: undefined }));
+          }}
+          error={errors.transportPreference}
+        />
+
+        <PlannerOptionGroup
+          label={t('routeGenerator.form.budgetLabel', { defaultValue: 'Budget level' })}
+          description={t('routeGenerator.form.budgetHelp', {
+            defaultValue: 'Set travel comfort level.',
+          })}
+          options={budgetOptions}
+          compact
+          value={budgetLevel}
+          onToggle={(value) => {
+            setBudgetLevel(value as RoutePlanningPreferences['budgetLevel']);
+            setErrors((current) => ({ ...current, budgetLevel: undefined }));
+          }}
+          error={errors.budgetLevel}
+        />
+
+        <Paper withBorder radius="22px" p="md" bg="#fffdf8" style={{ borderColor: 'rgba(188, 146, 111, 0.18)' }}>
           <Stack gap="lg">
-            <Autocomplete
-              label={t('routeGenerator.form.destinationLabel')}
-              placeholder={t('routeGenerator.form.destinationPlaceholder')}
-              data={cityOptions}
-              value={city}
-              onChange={(value) => {
-                setCity(value);
-                setErrors((current) => ({ ...current, city: undefined }));
-              }}
-              error={errors.city}
-            />
-
-            <PlannerOptionGroup
-              label={t('routeGenerator.form.interestsLabel')}
-              description={t('routeGenerator.form.interestsHelp', {
-                defaultValue: 'Pick what matters most.',
-              })}
-              options={interestOptions.map((option) => ({
-                value: option.id,
-                label: formatCategoryLabel(option.id, t),
-              }))}
-              multiple
-              value={interests}
-              onToggle={toggleInterest}
-              error={errors.interests}
-            />
-
-            <PlannerOptionGroup
-              label={t('routeGenerator.form.tripStyleLabel', { defaultValue: 'Trip style' })}
-              description={t('routeGenerator.form.tripStyleHelp', {
-                defaultValue: 'Set the overall route feel.',
-              })}
-              options={tripStyleOptions}
-              value={tripStyle}
-              onToggle={(value) => {
-                setTripStyle(value as RoutePlanningPreferences['tripStyle']);
-                setErrors((current) => ({ ...current, tripStyle: undefined }));
-              }}
-              error={errors.tripStyle}
-            />
-
-            <PlannerOptionGroup
-              label={t('routeGenerator.form.transportLabel', { defaultValue: 'Transport preference' })}
-              description={t('routeGenerator.form.transportHelp', {
-                defaultValue: 'How the traveler will move.',
-              })}
-              options={transportOptions}
-              value={transportPreference}
-              onToggle={(value) => {
-                setTransportPreference(value as RoutePlanningPreferences['transportPreference']);
-                setErrors((current) => ({ ...current, transportPreference: undefined }));
-              }}
-              error={errors.transportPreference}
-            />
-
-            <PlannerOptionGroup
-              label={t('routeGenerator.form.budgetLabel', { defaultValue: 'Budget level' })}
-              description={t('routeGenerator.form.budgetHelp', {
-                defaultValue: 'Set travel comfort level.',
-              })}
-              options={budgetOptions}
-              value={budgetLevel}
-              onToggle={(value) => {
-                setBudgetLevel(value as RoutePlanningPreferences['budgetLevel']);
-                setErrors((current) => ({ ...current, budgetLevel: undefined }));
-              }}
-              error={errors.budgetLevel}
-            />
+            <div>
+              <Text fw={700}>{t('routeGenerator.form.optionalTitle', { defaultValue: 'Optional preferences' })}</Text>
+              <Text size="sm" c="dimmed" mt={4} style={{ lineHeight: 1.6 }}>
+                {t('routeGenerator.form.optionalDescription', {
+                  defaultValue: 'Use these only if you want the route to feel more specific.',
+                })}
+              </Text>
+            </div>
 
             <PlannerOptionGroup
               label={t('routeGenerator.form.durationLabel')}
@@ -205,6 +265,7 @@ export function RoutePlanningForm({
                 defaultValue: 'Optional. Leave flexible if needed.',
               })}
               options={durationOptions}
+              compact
               value={duration ?? null}
               onToggle={(value) =>
                 setDuration((current) =>
@@ -219,6 +280,7 @@ export function RoutePlanningForm({
                 defaultValue: 'Optional. Controls route density.',
               })}
               options={paceOptions}
+              compact
               value={travelPace ?? null}
               onToggle={(value) =>
                 setTravelPace((current) =>
@@ -227,42 +289,33 @@ export function RoutePlanningForm({
               }
             />
 
-            <Button
-              type="submit"
-              size="lg"
-              fullWidth
-              color="sun"
-              c="#2d2208"
-              loading={submitting}
-              disabled={loading || submitting}
-            >
-              {t('routeGenerator.form.submit', { defaultValue: 'Build route' })}
-            </Button>
+            <Group gap="xs" wrap="wrap">
+              <Badge color="gray" variant="light" radius="xl">
+                {budgetLevel ? getBudgetLevelLabel(budgetLevel, t) : '-'}
+              </Badge>
+              <Badge color="gray" variant="light" radius="xl">
+                {getDurationLabel(duration, t)}
+              </Badge>
+              <Badge color="gray" variant="light" radius="xl">
+                {getTravelPaceLabel(travelPace, t)}
+              </Badge>
+            </Group>
           </Stack>
         </Paper>
 
-        <Stack gap="lg">
-          <Paper withBorder p={{ base: 'lg', md: 'xl' }} radius="26px" bg="white">
-            <Stack gap="sm">
-              <Text fw={700}>{t('routeGenerator.summary.title', { defaultValue: 'Planning summary' })}</Text>
-              <Text c="dimmed" style={{ lineHeight: 1.68 }}>
-                {t('routeGenerator.summary.description', {
-                  defaultValue: 'Review your selections before generating route.',
-                })}
-              </Text>
-              <Stack gap={8} mt="sm">
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.city', { defaultValue: 'Starting city' })}:</Text> {city || t('routeGenerator.summary.pendingCity', { defaultValue: 'Choose a city' })}</Text>
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.interests', { defaultValue: 'Interests' })}:</Text> {selectedInterestsLabel || t('routeGenerator.summary.pendingInterests', { defaultValue: 'Choose at least one interest' })}</Text>
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.tripStyle', { defaultValue: 'Trip style' })}:</Text> {tripStyle ? getTripStyleLabel(tripStyle, t) : '-'}</Text>
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.transport', { defaultValue: 'Transport' })}:</Text> {transportPreference ? getTransportOptions(t).find((item) => item.value === transportPreference)?.label : '-'}</Text>
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.budget', { defaultValue: 'Budget' })}:</Text> {budgetLevel ? getBudgetLevelLabel(budgetLevel, t) : '-'}</Text>
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.duration', { defaultValue: 'Duration' })}:</Text> {getDurationLabel(duration, t)}</Text>
-                <Text size="sm"><Text span fw={700}>{t('routeGenerator.summary.pace', { defaultValue: 'Pace' })}:</Text> {getTravelPaceLabel(travelPace, t)}</Text>
-              </Stack>
-            </Stack>
-          </Paper>
-        </Stack>
-      </SimpleGrid>
+        <Button
+          type="submit"
+          size="lg"
+          fullWidth
+          color="sun"
+          c="#2d2208"
+          loading={submitting}
+          disabled={loading || submitting}
+          style={{ boxShadow: '0 14px 28px rgba(229, 182, 47, 0.22)' }}
+        >
+          {t('routeGenerator.form.submit', { defaultValue: 'Build route' })}
+        </Button>
+      </Stack>
     </form>
   );
 }

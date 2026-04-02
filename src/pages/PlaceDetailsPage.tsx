@@ -13,7 +13,7 @@ import {
   Title,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CircleMarker, MapContainer, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { DestinationImage } from '../components/DestinationImage';
@@ -26,6 +26,11 @@ import { ServiceCard } from '../components/ServiceCard';
 import { getLocalizedDestinationByCity } from '../data/destinations';
 import { guideProfiles } from '../data/guides';
 import { getLocalizedServiceSections } from '../data/services';
+import { startProtectedAction } from '../features/auth/lib/startProtectedAction';
+import {
+  createGuideBookingSource,
+  createServiceBookingSource,
+} from '../features/booking/model/bookingDraft';
 import { getPlaceById, getPlaces } from '../entities/place/api/placeApi';
 import { routePaths } from '../router/paths';
 import { publicUi } from '../shared/config/publicUi';
@@ -38,6 +43,7 @@ const RELATED_PLACES_LIMIT = 3;
 export function PlaceDetailsPage() {
   const { id } = useParams();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [place, setPlace] = useState<Place | null>(null);
   const [relatedPlaces, setRelatedPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
@@ -148,6 +154,38 @@ export function PlaceDetailsPage() {
     const query = new URLSearchParams({ city: place.city });
     return `${routePaths.appExplore}?${query.toString()}`;
   }, [place?.city]);
+
+  const handleBookService = (serviceId: string) => {
+    const serviceMatch = recommendedServices.find((entry) => entry.item.id === serviceId);
+    if (!serviceMatch) {
+      return;
+    }
+
+    startProtectedAction(navigate, {
+      reason: 'service-request',
+      redirectTo: routePaths.appBookingDetails,
+      redirectState: {
+        seed: createServiceBookingSource(serviceMatch.item, serviceMatch.kind),
+        originPath: routePaths.appPlaceDetails(String(place?.id ?? id ?? '')),
+      },
+    });
+  };
+
+  const handleBookGuide = (guideId: string) => {
+    const guide = recommendedGuides.find((entry) => entry.id === guideId);
+    if (!guide) {
+      return;
+    }
+
+    startProtectedAction(navigate, {
+      reason: 'guide-request',
+      redirectTo: routePaths.appBookingDetails,
+      redirectState: {
+        seed: createGuideBookingSource(guide),
+        originPath: routePaths.appPlaceDetails(String(place?.id ?? id ?? '')),
+      },
+    });
+  };
 
   if (loading) {
     return (
@@ -420,7 +458,12 @@ export function PlaceDetailsPage() {
                 {recommendedServices.length > 0 ? (
                   <SimpleGrid cols={{ base: 1, md: 2 }} spacing="sm">
                     {recommendedServices.map((service) => (
-                      <ServiceCard key={service.item.id} item={service.item} kind={service.kind} />
+                      <ServiceCard
+                        key={service.item.id}
+                        item={service.item}
+                        kind={service.kind}
+                        onBook={() => handleBookService(service.item.id ?? '')}
+                      />
                     ))}
                   </SimpleGrid>
                 ) : (
@@ -435,7 +478,7 @@ export function PlaceDetailsPage() {
                 {recommendedGuides.length > 0 ? (
                   <SimpleGrid cols={{ base: 1, md: 2 }} spacing="sm">
                     {recommendedGuides.map((guide) => (
-                      <GuideCard key={guide.id} guide={guide} />
+                      <GuideCard key={guide.id} guide={guide} onBook={() => handleBookGuide(guide.id)} />
                     ))}
                   </SimpleGrid>
                 ) : (

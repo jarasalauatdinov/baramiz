@@ -2,8 +2,8 @@ import { AppShell, Box, Burger, Button, Container, Drawer, Group, Stack, Text } 
 import { useDisclosure } from '@mantine/hooks';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { LanguageSwitcher } from '../../features/language-switcher';
 import { routePaths } from '../../router/paths';
-import { LanguageSwitcher } from '../LanguageSwitcher';
 import styles from './PublicLayout.module.css';
 
 interface NavigationItemProps {

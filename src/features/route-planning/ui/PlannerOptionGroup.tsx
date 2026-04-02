@@ -13,6 +13,7 @@ interface PlannerOptionGroupProps {
   description?: string;
   options: OptionItem[];
   multiple?: boolean;
+  compact?: boolean;
   value: string | null | string[];
   onToggle: (value: string) => void;
   error?: string;
@@ -23,6 +24,7 @@ export function PlannerOptionGroup({
   description,
   options,
   multiple = false,
+  compact = false,
   value,
   onToggle,
   error,
@@ -50,24 +52,25 @@ export function PlannerOptionGroup({
             <Paper
               key={option.value}
               withBorder
-              p={{ base: 'md', md: 'lg' }}
+              p={compact ? { base: 'sm', md: 'md' } : { base: 'md', md: 'lg' }}
               radius={publicUi.radius.cardInner}
               onClick={() => onToggle(option.value)}
               style={{
                 borderColor: selected ? 'rgba(229,182,47,0.44)' : 'rgba(23,49,42,0.08)',
-                background: selected ? '#fff8e6' : publicUi.background.surface,
-                boxShadow: selected ? '0 10px 24px rgba(229, 182, 47, 0.10)' : 'none',
+                background: selected ? 'linear-gradient(180deg, #fff8e9, #fffdf6)' : publicUi.background.surface,
+                boxShadow: selected ? '0 12px 26px rgba(229, 182, 47, 0.12)' : 'none',
                 cursor: 'pointer',
-                minHeight: 156,
+                minHeight: compact ? 124 : 156,
+                transition: 'transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease',
               }}
             >
-              <Stack gap="md" h="100%" justify="space-between">
+              <Stack gap={compact ? 'sm' : 'md'} h="100%" justify="space-between">
                 <div>
-                  <Text fw={700} style={{ lineHeight: 1.28 }}>
+                  <Text fw={700} style={{ lineHeight: 1.24 }}>
                     {option.label}
                   </Text>
                   {option.description ? (
-                    <Text size="sm" c="dimmed" mt={6} style={{ lineHeight: 1.6 }}>
+                    <Text size="sm" c="dimmed" mt={6} style={{ lineHeight: compact ? 1.5 : 1.6 }}>
                       {option.description}
                     </Text>
                   ) : null}
@@ -78,7 +81,7 @@ export function PlannerOptionGroup({
                   color={selected ? 'sun' : 'gray'}
                   c={selected ? '#2d2208' : undefined}
                   radius="xl"
-                  size="md"
+                  size={compact ? 'compact-sm' : 'md'}
                   fullWidth
                   onClick={(event) => {
                     event.stopPropagation();

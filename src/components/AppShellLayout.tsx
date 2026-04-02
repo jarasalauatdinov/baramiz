@@ -1,9 +1,9 @@
 import { AppShell } from '@mantine/core';
 import { Outlet } from 'react-router-dom';
+import { ScrollToTop } from '../shared/lib/router/ScrollToTop';
 import { PublicFooter } from './layout/PublicFooter';
 import { PublicHeader } from './layout/PublicHeader';
 import { MobileBottomNav } from './layout/MobileBottomNav';
-import { ScrollToTop } from './ScrollToTop';
 
 export function AppShellLayout() {
   return (
